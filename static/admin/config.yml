@@ -34,7 +34,7 @@ collections:
     editor:
       preview: false
     files:
-      - file: "site/content/events/cubes.json"
+      - file: "content/events/cubes.json"
         name: cubes
         label: "Cubes"
         fields:
