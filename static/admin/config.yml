@@ -56,8 +56,8 @@ collections:
                 name: city
                 widget: select
                 options:
-                  - { label: "Zürich", value: "ZRH" }
-                  - { label: "Aarau", value: "AAR" }
+                  - { label: "Zürich", value: "zuerich" }
+                  - { label: "Aarau", value: "aarau" }
               - label: Status
                 name: status
                 widget: select
