@@ -1,0 +1,11 @@
+{
+  "cubesList": [
+    {
+      "start": "2025-01-12T13:45:00.000Z",
+      "end": "2025-01-12T17:00:00.000Z",
+      "location": "zueghusplatz",
+      "city": "ZRH",
+      "status": "confirmed"
+    }
+  ]
+}

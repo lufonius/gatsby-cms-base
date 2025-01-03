@@ -1,3 +1,5 @@
+local_backend: true
+
 backend:
   name: git-gateway
   branch: main # Branch to update (optional; defaults to master)
@@ -6,13 +8,13 @@ media_folder: static/img
 public_folder: /img
 
 collections:
-  - name: 'blog'
-    label: 'Blog'
-    folder: 'content/blog'
+  - name: 'news'
+    label: 'News'
+    folder: 'content/news'
     create: true
     slug: 'index'
-    media_folder: ''
-    public_folder: ''
+    media_folder: 'static/news/img'
+    public_folder: 'public'
     path: '{{title}}/index'
     editor:
       preview: false
@@ -21,3 +23,39 @@ collections:
       - { label: 'Publish Date', name: 'date', widget: 'datetime' }
       - { label: 'Description', name: 'description', widget: 'string' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
+  - name: 'events'
+    label: 'Events'
+    editor:
+      preview: false
+    files:
+      - file: "site/content/events/cubes.json"
+        name: cubes
+        label: "Cubes"
+        fields:
+          - label: "Cubes"
+            name: cubesList
+            summary: "{{fields.location}}: {{fields.start | date('DD.MM.YYYY HH:mm')}} - {{fields.end | date('HH:mm')}}"
+            widget: list
+            fields:
+              - {label: Start, name: start, widget: datetime}
+              - {label: End, name: end, widget: datetime}
+              - label: Ort
+                name: location
+                widget: select
+                options:
+                  - { label: "Züghusplatz", value: "zueghusplatz" }
+                  - { label: "Bellevue", value: "bellevue" }
+                  - { label: "Igelweid", value: "igelweid" }
+              - label: Stadt
+                name: city
+                widget: select
+                options:
+                  - { label: "Zürich", value: "ZRH" }
+                  - { label: "Aarau", value: "AAR" }
+              - label: Status
+                name: status
+                widget: select
+                options:
+                  - { label: "Bestätigt", value: "confirmed" }
+                  - { label: "In Planung", value: "in-planning" }
+                  - { label: "Cancelled", value: "cancelled" }
