@@ -6,7 +6,14 @@ const config: GatsbyConfig = {
     siteUrl: `https://www.yourdomain.tld`
   },
   graphqlTypegen: true,
-  plugins: ["gatsby-plugin-decap-cms"]
+  plugins: [
+    {
+      resolve: "gatsby-plugin-decap-cms",
+      options: {
+        modulePath: `${__dirname}/src/cms/cms.js`, // Path to your CMS customization file
+      },
+    },
+  ]
 };
 
 export default config;

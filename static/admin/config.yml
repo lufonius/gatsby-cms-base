@@ -5,7 +5,13 @@ backend:
   branch: main # Branch to update (optional; defaults to master)
 
 media_folder: static/img
-public_folder: /img
+
+media_library:
+  name: cloudinary
+  config:
+    multiple: true
+    cloud_name: do4gpzw5z
+    api_key: 649834317653572
 
 collections:
   - name: 'news'
@@ -59,3 +65,10 @@ collections:
                   - { label: "Bestätigt", value: "confirmed" }
                   - { label: "In Planung", value: "in-planning" }
                   - { label: "Cancelled", value: "cancelled" }
+              - label: "Images"
+                name: "images"
+                widget: "file"
+                media_library:
+                  name: cloudinary
+                  allow_multiple: true
+                  choose_url: false
