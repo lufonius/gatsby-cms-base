@@ -1,0 +1,19 @@
+{
+  "name": "gatsby-cms-base",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lufonius/gatsby-cms-base.git"
+  },
+  "author": "Luc Fonjallaz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lufonius/gatsby-cms-base/issues"
+  },
+  "homepage": "https://github.com/lufonius/gatsby-cms-base#readme",
+  "description": ""
+}
