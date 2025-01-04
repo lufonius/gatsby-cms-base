@@ -65,10 +65,8 @@ collections:
                   - { label: "Bestätigt", value: "confirmed" }
                   - { label: "In Planung", value: "in-planning" }
                   - { label: "Cancelled", value: "cancelled" }
-              - label: "Images"
-                name: "images"
-                widget: "file"
-                media_library:
-                  name: cloudinary
-                  allow_multiple: true
-                  choose_url: false
+              - label: "Swisstransfer Link"
+                name: swisstransferLink
+                widget: string
+                required: false
+              - {label: "Swisstransfer Link läuft ab am", name: swissTransferLinkEnd, widget: datetime, required: false}

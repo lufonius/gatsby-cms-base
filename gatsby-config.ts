@@ -13,6 +13,14 @@ const config: GatsbyConfig = {
         modulePath: `${__dirname}/src/cms/cms.js`, // Path to your CMS customization file
       },
     },
+    `gatsby-transformer-json`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `content`,
+        path: `${__dirname}/content/`,
+      },
+    },
   ]
 };
 

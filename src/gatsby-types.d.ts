@@ -343,6 +343,196 @@ type DirectorySortInput = {
   readonly uid: InputMaybe<SortOrderEnum>;
 };
 
+type EventsJson = Node & {
+  readonly children: ReadonlyArray<Node>;
+  readonly cubesList: Maybe<ReadonlyArray<Maybe<EventsJsonCubesList>>>;
+  readonly id: Scalars['ID'];
+  readonly internal: Internal;
+  readonly parent: Maybe<Node>;
+};
+
+type EventsJsonConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<EventsJsonEdge>;
+  readonly group: ReadonlyArray<EventsJsonGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<EventsJson>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type EventsJsonConnection_distinctArgs = {
+  field: EventsJsonFieldSelector;
+};
+
+
+type EventsJsonConnection_groupArgs = {
+  field: EventsJsonFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type EventsJsonConnection_maxArgs = {
+  field: EventsJsonFieldSelector;
+};
+
+
+type EventsJsonConnection_minArgs = {
+  field: EventsJsonFieldSelector;
+};
+
+
+type EventsJsonConnection_sumArgs = {
+  field: EventsJsonFieldSelector;
+};
+
+type EventsJsonCubesList = {
+  readonly city: Maybe<Scalars['String']>;
+  readonly end: Maybe<Scalars['Date']>;
+  readonly location: Maybe<Scalars['String']>;
+  readonly start: Maybe<Scalars['Date']>;
+  readonly status: Maybe<Scalars['String']>;
+  readonly swissTransferLinkEnd: Maybe<Scalars['Date']>;
+  readonly swisstransferLink: Maybe<Scalars['String']>;
+};
+
+
+type EventsJsonCubesList_endArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type EventsJsonCubesList_startArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type EventsJsonCubesList_swissTransferLinkEndArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+type EventsJsonCubesListFieldSelector = {
+  readonly city: InputMaybe<FieldSelectorEnum>;
+  readonly end: InputMaybe<FieldSelectorEnum>;
+  readonly location: InputMaybe<FieldSelectorEnum>;
+  readonly start: InputMaybe<FieldSelectorEnum>;
+  readonly status: InputMaybe<FieldSelectorEnum>;
+  readonly swissTransferLinkEnd: InputMaybe<FieldSelectorEnum>;
+  readonly swisstransferLink: InputMaybe<FieldSelectorEnum>;
+};
+
+type EventsJsonCubesListFilterInput = {
+  readonly city: InputMaybe<StringQueryOperatorInput>;
+  readonly end: InputMaybe<DateQueryOperatorInput>;
+  readonly location: InputMaybe<StringQueryOperatorInput>;
+  readonly start: InputMaybe<DateQueryOperatorInput>;
+  readonly status: InputMaybe<StringQueryOperatorInput>;
+  readonly swissTransferLinkEnd: InputMaybe<DateQueryOperatorInput>;
+  readonly swisstransferLink: InputMaybe<StringQueryOperatorInput>;
+};
+
+type EventsJsonCubesListFilterListInput = {
+  readonly elemMatch: InputMaybe<EventsJsonCubesListFilterInput>;
+};
+
+type EventsJsonCubesListSortInput = {
+  readonly city: InputMaybe<SortOrderEnum>;
+  readonly end: InputMaybe<SortOrderEnum>;
+  readonly location: InputMaybe<SortOrderEnum>;
+  readonly start: InputMaybe<SortOrderEnum>;
+  readonly status: InputMaybe<SortOrderEnum>;
+  readonly swissTransferLinkEnd: InputMaybe<SortOrderEnum>;
+  readonly swisstransferLink: InputMaybe<SortOrderEnum>;
+};
+
+type EventsJsonEdge = {
+  readonly next: Maybe<EventsJson>;
+  readonly node: EventsJson;
+  readonly previous: Maybe<EventsJson>;
+};
+
+type EventsJsonFieldSelector = {
+  readonly children: InputMaybe<NodeFieldSelector>;
+  readonly cubesList: InputMaybe<EventsJsonCubesListFieldSelector>;
+  readonly id: InputMaybe<FieldSelectorEnum>;
+  readonly internal: InputMaybe<InternalFieldSelector>;
+  readonly parent: InputMaybe<NodeFieldSelector>;
+};
+
+type EventsJsonFilterInput = {
+  readonly children: InputMaybe<NodeFilterListInput>;
+  readonly cubesList: InputMaybe<EventsJsonCubesListFilterListInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly internal: InputMaybe<InternalFilterInput>;
+  readonly parent: InputMaybe<NodeFilterInput>;
+};
+
+type EventsJsonFilterListInput = {
+  readonly elemMatch: InputMaybe<EventsJsonFilterInput>;
+};
+
+type EventsJsonGroupConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<EventsJsonEdge>;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+  readonly group: ReadonlyArray<EventsJsonGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<EventsJson>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type EventsJsonGroupConnection_distinctArgs = {
+  field: EventsJsonFieldSelector;
+};
+
+
+type EventsJsonGroupConnection_groupArgs = {
+  field: EventsJsonFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type EventsJsonGroupConnection_maxArgs = {
+  field: EventsJsonFieldSelector;
+};
+
+
+type EventsJsonGroupConnection_minArgs = {
+  field: EventsJsonFieldSelector;
+};
+
+
+type EventsJsonGroupConnection_sumArgs = {
+  field: EventsJsonFieldSelector;
+};
+
+type EventsJsonSortInput = {
+  readonly children: InputMaybe<NodeSortInput>;
+  readonly cubesList: InputMaybe<EventsJsonCubesListSortInput>;
+  readonly id: InputMaybe<SortOrderEnum>;
+  readonly internal: InputMaybe<InternalSortInput>;
+  readonly parent: InputMaybe<NodeSortInput>;
+};
+
 type FieldSelectorEnum =
   | 'SELECT';
 
@@ -357,8 +547,14 @@ type File = Node & {
   readonly birthtime: Maybe<Scalars['Date']>;
   /** @deprecated Use `birthTime` instead */
   readonly birthtimeMs: Maybe<Scalars['Float']>;
+  readonly blksize: Maybe<Scalars['Int']>;
+  readonly blocks: Maybe<Scalars['Int']>;
   readonly changeTime: Scalars['Date'];
+  /** Returns the first child node of type EventsJson or null if there are no children of given type on this node */
+  readonly childEventsJson: Maybe<EventsJson>;
   readonly children: ReadonlyArray<Node>;
+  /** Returns all children nodes filtered by type EventsJson */
+  readonly childrenEventsJson: Maybe<ReadonlyArray<Maybe<EventsJson>>>;
   readonly ctime: Scalars['Date'];
   readonly ctimeMs: Scalars['Float'];
   readonly dev: Scalars['Int'];
@@ -377,6 +573,8 @@ type File = Node & {
   readonly nlink: Scalars['Int'];
   readonly parent: Maybe<Node>;
   readonly prettySize: Scalars['String'];
+  /** Copy file to static directory and return public url to it */
+  readonly publicURL: Maybe<Scalars['String']>;
   readonly rdev: Scalars['Int'];
   readonly relativeDirectory: Scalars['String'];
   readonly relativePath: Scalars['String'];
@@ -496,8 +694,12 @@ type FileFieldSelector = {
   readonly birthTime: InputMaybe<FieldSelectorEnum>;
   readonly birthtime: InputMaybe<FieldSelectorEnum>;
   readonly birthtimeMs: InputMaybe<FieldSelectorEnum>;
+  readonly blksize: InputMaybe<FieldSelectorEnum>;
+  readonly blocks: InputMaybe<FieldSelectorEnum>;
   readonly changeTime: InputMaybe<FieldSelectorEnum>;
+  readonly childEventsJson: InputMaybe<EventsJsonFieldSelector>;
   readonly children: InputMaybe<NodeFieldSelector>;
+  readonly childrenEventsJson: InputMaybe<EventsJsonFieldSelector>;
   readonly ctime: InputMaybe<FieldSelectorEnum>;
   readonly ctimeMs: InputMaybe<FieldSelectorEnum>;
   readonly dev: InputMaybe<FieldSelectorEnum>;
@@ -516,6 +718,7 @@ type FileFieldSelector = {
   readonly nlink: InputMaybe<FieldSelectorEnum>;
   readonly parent: InputMaybe<NodeFieldSelector>;
   readonly prettySize: InputMaybe<FieldSelectorEnum>;
+  readonly publicURL: InputMaybe<FieldSelectorEnum>;
   readonly rdev: InputMaybe<FieldSelectorEnum>;
   readonly relativeDirectory: InputMaybe<FieldSelectorEnum>;
   readonly relativePath: InputMaybe<FieldSelectorEnum>;
@@ -534,8 +737,12 @@ type FileFilterInput = {
   readonly birthTime: InputMaybe<DateQueryOperatorInput>;
   readonly birthtime: InputMaybe<DateQueryOperatorInput>;
   readonly birthtimeMs: InputMaybe<FloatQueryOperatorInput>;
+  readonly blksize: InputMaybe<IntQueryOperatorInput>;
+  readonly blocks: InputMaybe<IntQueryOperatorInput>;
   readonly changeTime: InputMaybe<DateQueryOperatorInput>;
+  readonly childEventsJson: InputMaybe<EventsJsonFilterInput>;
   readonly children: InputMaybe<NodeFilterListInput>;
+  readonly childrenEventsJson: InputMaybe<EventsJsonFilterListInput>;
   readonly ctime: InputMaybe<DateQueryOperatorInput>;
   readonly ctimeMs: InputMaybe<FloatQueryOperatorInput>;
   readonly dev: InputMaybe<IntQueryOperatorInput>;
@@ -554,6 +761,7 @@ type FileFilterInput = {
   readonly nlink: InputMaybe<IntQueryOperatorInput>;
   readonly parent: InputMaybe<NodeFilterInput>;
   readonly prettySize: InputMaybe<StringQueryOperatorInput>;
+  readonly publicURL: InputMaybe<StringQueryOperatorInput>;
   readonly rdev: InputMaybe<IntQueryOperatorInput>;
   readonly relativeDirectory: InputMaybe<StringQueryOperatorInput>;
   readonly relativePath: InputMaybe<StringQueryOperatorInput>;
@@ -613,8 +821,12 @@ type FileSortInput = {
   readonly birthTime: InputMaybe<SortOrderEnum>;
   readonly birthtime: InputMaybe<SortOrderEnum>;
   readonly birthtimeMs: InputMaybe<SortOrderEnum>;
+  readonly blksize: InputMaybe<SortOrderEnum>;
+  readonly blocks: InputMaybe<SortOrderEnum>;
   readonly changeTime: InputMaybe<SortOrderEnum>;
+  readonly childEventsJson: InputMaybe<EventsJsonSortInput>;
   readonly children: InputMaybe<NodeSortInput>;
+  readonly childrenEventsJson: InputMaybe<EventsJsonSortInput>;
   readonly ctime: InputMaybe<SortOrderEnum>;
   readonly ctimeMs: InputMaybe<SortOrderEnum>;
   readonly dev: InputMaybe<SortOrderEnum>;
@@ -633,6 +845,7 @@ type FileSortInput = {
   readonly nlink: InputMaybe<SortOrderEnum>;
   readonly parent: InputMaybe<NodeSortInput>;
   readonly prettySize: InputMaybe<SortOrderEnum>;
+  readonly publicURL: InputMaybe<SortOrderEnum>;
   readonly rdev: InputMaybe<SortOrderEnum>;
   readonly relativeDirectory: InputMaybe<SortOrderEnum>;
   readonly relativePath: InputMaybe<SortOrderEnum>;
@@ -766,6 +979,7 @@ type PageInfo = {
 
 type Query = {
   readonly allDirectory: DirectoryConnection;
+  readonly allEventsJson: EventsJsonConnection;
   readonly allFile: FileConnection;
   readonly allSite: SiteConnection;
   readonly allSiteBuildMetadata: SiteBuildMetadataConnection;
@@ -773,6 +987,7 @@ type Query = {
   readonly allSitePage: SitePageConnection;
   readonly allSitePlugin: SitePluginConnection;
   readonly directory: Maybe<Directory>;
+  readonly eventsJson: Maybe<EventsJson>;
   readonly file: Maybe<File>;
   readonly site: Maybe<Site>;
   readonly siteBuildMetadata: Maybe<SiteBuildMetadata>;
@@ -787,6 +1002,14 @@ type Query_allDirectoryArgs = {
   limit: InputMaybe<Scalars['Int']>;
   skip: InputMaybe<Scalars['Int']>;
   sort: InputMaybe<ReadonlyArray<InputMaybe<DirectorySortInput>>>;
+};
+
+
+type Query_allEventsJsonArgs = {
+  filter: InputMaybe<EventsJsonFilterInput>;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+  sort: InputMaybe<ReadonlyArray<InputMaybe<EventsJsonSortInput>>>;
 };
 
 
@@ -877,6 +1100,15 @@ type Query_directoryArgs = {
 };
 
 
+type Query_eventsJsonArgs = {
+  children: InputMaybe<NodeFilterListInput>;
+  cubesList: InputMaybe<EventsJsonCubesListFilterListInput>;
+  id: InputMaybe<StringQueryOperatorInput>;
+  internal: InputMaybe<InternalFilterInput>;
+  parent: InputMaybe<NodeFilterInput>;
+};
+
+
 type Query_fileArgs = {
   absolutePath: InputMaybe<StringQueryOperatorInput>;
   accessTime: InputMaybe<DateQueryOperatorInput>;
@@ -886,8 +1118,12 @@ type Query_fileArgs = {
   birthTime: InputMaybe<DateQueryOperatorInput>;
   birthtime: InputMaybe<DateQueryOperatorInput>;
   birthtimeMs: InputMaybe<FloatQueryOperatorInput>;
+  blksize: InputMaybe<IntQueryOperatorInput>;
+  blocks: InputMaybe<IntQueryOperatorInput>;
   changeTime: InputMaybe<DateQueryOperatorInput>;
+  childEventsJson: InputMaybe<EventsJsonFilterInput>;
   children: InputMaybe<NodeFilterListInput>;
+  childrenEventsJson: InputMaybe<EventsJsonFilterListInput>;
   ctime: InputMaybe<DateQueryOperatorInput>;
   ctimeMs: InputMaybe<FloatQueryOperatorInput>;
   dev: InputMaybe<IntQueryOperatorInput>;
@@ -906,6 +1142,7 @@ type Query_fileArgs = {
   nlink: InputMaybe<IntQueryOperatorInput>;
   parent: InputMaybe<NodeFilterInput>;
   prettySize: InputMaybe<StringQueryOperatorInput>;
+  publicURL: InputMaybe<StringQueryOperatorInput>;
   rdev: InputMaybe<IntQueryOperatorInput>;
   relativeDirectory: InputMaybe<StringQueryOperatorInput>;
   relativePath: InputMaybe<StringQueryOperatorInput>;
