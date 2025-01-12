@@ -7,6 +7,7 @@ const config: GatsbyConfig = {
   },
   graphqlTypegen: true,
   plugins: [
+    "gatsby-plugin-postcss",
     {
       resolve: "gatsby-plugin-decap-cms",
       options: {
