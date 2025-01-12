@@ -552,9 +552,13 @@ type File = Node & {
   readonly changeTime: Scalars['Date'];
   /** Returns the first child node of type EventsJson or null if there are no children of given type on this node */
   readonly childEventsJson: Maybe<EventsJson>;
+  /** Returns the first child node of type KnowledgeJson or null if there are no children of given type on this node */
+  readonly childKnowledgeJson: Maybe<KnowledgeJson>;
   readonly children: ReadonlyArray<Node>;
   /** Returns all children nodes filtered by type EventsJson */
   readonly childrenEventsJson: Maybe<ReadonlyArray<Maybe<EventsJson>>>;
+  /** Returns all children nodes filtered by type KnowledgeJson */
+  readonly childrenKnowledgeJson: Maybe<ReadonlyArray<Maybe<KnowledgeJson>>>;
   readonly ctime: Scalars['Date'];
   readonly ctimeMs: Scalars['Float'];
   readonly dev: Scalars['Int'];
@@ -698,8 +702,10 @@ type FileFieldSelector = {
   readonly blocks: InputMaybe<FieldSelectorEnum>;
   readonly changeTime: InputMaybe<FieldSelectorEnum>;
   readonly childEventsJson: InputMaybe<EventsJsonFieldSelector>;
+  readonly childKnowledgeJson: InputMaybe<KnowledgeJsonFieldSelector>;
   readonly children: InputMaybe<NodeFieldSelector>;
   readonly childrenEventsJson: InputMaybe<EventsJsonFieldSelector>;
+  readonly childrenKnowledgeJson: InputMaybe<KnowledgeJsonFieldSelector>;
   readonly ctime: InputMaybe<FieldSelectorEnum>;
   readonly ctimeMs: InputMaybe<FieldSelectorEnum>;
   readonly dev: InputMaybe<FieldSelectorEnum>;
@@ -741,8 +747,10 @@ type FileFilterInput = {
   readonly blocks: InputMaybe<IntQueryOperatorInput>;
   readonly changeTime: InputMaybe<DateQueryOperatorInput>;
   readonly childEventsJson: InputMaybe<EventsJsonFilterInput>;
+  readonly childKnowledgeJson: InputMaybe<KnowledgeJsonFilterInput>;
   readonly children: InputMaybe<NodeFilterListInput>;
   readonly childrenEventsJson: InputMaybe<EventsJsonFilterListInput>;
+  readonly childrenKnowledgeJson: InputMaybe<KnowledgeJsonFilterListInput>;
   readonly ctime: InputMaybe<DateQueryOperatorInput>;
   readonly ctimeMs: InputMaybe<FloatQueryOperatorInput>;
   readonly dev: InputMaybe<IntQueryOperatorInput>;
@@ -825,8 +833,10 @@ type FileSortInput = {
   readonly blocks: InputMaybe<SortOrderEnum>;
   readonly changeTime: InputMaybe<SortOrderEnum>;
   readonly childEventsJson: InputMaybe<EventsJsonSortInput>;
+  readonly childKnowledgeJson: InputMaybe<KnowledgeJsonSortInput>;
   readonly children: InputMaybe<NodeSortInput>;
   readonly childrenEventsJson: InputMaybe<EventsJsonSortInput>;
+  readonly childrenKnowledgeJson: InputMaybe<KnowledgeJsonSortInput>;
   readonly ctime: InputMaybe<SortOrderEnum>;
   readonly ctimeMs: InputMaybe<SortOrderEnum>;
   readonly dev: InputMaybe<SortOrderEnum>;
@@ -934,6 +944,228 @@ type JSONQueryOperatorInput = {
   readonly regex: InputMaybe<Scalars['JSON']>;
 };
 
+type KnowledgeJson = Node & {
+  readonly children: ReadonlyArray<Node>;
+  readonly id: Scalars['ID'];
+  readonly internal: Internal;
+  readonly journalList: Maybe<ReadonlyArray<Maybe<KnowledgeJsonJournalList>>>;
+  readonly parent: Maybe<Node>;
+  readonly studies: Maybe<ReadonlyArray<Maybe<KnowledgeJsonStudies>>>;
+};
+
+type KnowledgeJsonConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<KnowledgeJsonEdge>;
+  readonly group: ReadonlyArray<KnowledgeJsonGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<KnowledgeJson>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type KnowledgeJsonConnection_distinctArgs = {
+  field: KnowledgeJsonFieldSelector;
+};
+
+
+type KnowledgeJsonConnection_groupArgs = {
+  field: KnowledgeJsonFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type KnowledgeJsonConnection_maxArgs = {
+  field: KnowledgeJsonFieldSelector;
+};
+
+
+type KnowledgeJsonConnection_minArgs = {
+  field: KnowledgeJsonFieldSelector;
+};
+
+
+type KnowledgeJsonConnection_sumArgs = {
+  field: KnowledgeJsonFieldSelector;
+};
+
+type KnowledgeJsonEdge = {
+  readonly next: Maybe<KnowledgeJson>;
+  readonly node: KnowledgeJson;
+  readonly previous: Maybe<KnowledgeJson>;
+};
+
+type KnowledgeJsonFieldSelector = {
+  readonly children: InputMaybe<NodeFieldSelector>;
+  readonly id: InputMaybe<FieldSelectorEnum>;
+  readonly internal: InputMaybe<InternalFieldSelector>;
+  readonly journalList: InputMaybe<KnowledgeJsonJournalListFieldSelector>;
+  readonly parent: InputMaybe<NodeFieldSelector>;
+  readonly studies: InputMaybe<KnowledgeJsonStudiesFieldSelector>;
+};
+
+type KnowledgeJsonFilterInput = {
+  readonly children: InputMaybe<NodeFilterListInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly internal: InputMaybe<InternalFilterInput>;
+  readonly journalList: InputMaybe<KnowledgeJsonJournalListFilterListInput>;
+  readonly parent: InputMaybe<NodeFilterInput>;
+  readonly studies: InputMaybe<KnowledgeJsonStudiesFilterListInput>;
+};
+
+type KnowledgeJsonFilterListInput = {
+  readonly elemMatch: InputMaybe<KnowledgeJsonFilterInput>;
+};
+
+type KnowledgeJsonGroupConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<KnowledgeJsonEdge>;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+  readonly group: ReadonlyArray<KnowledgeJsonGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<KnowledgeJson>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type KnowledgeJsonGroupConnection_distinctArgs = {
+  field: KnowledgeJsonFieldSelector;
+};
+
+
+type KnowledgeJsonGroupConnection_groupArgs = {
+  field: KnowledgeJsonFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type KnowledgeJsonGroupConnection_maxArgs = {
+  field: KnowledgeJsonFieldSelector;
+};
+
+
+type KnowledgeJsonGroupConnection_minArgs = {
+  field: KnowledgeJsonFieldSelector;
+};
+
+
+type KnowledgeJsonGroupConnection_sumArgs = {
+  field: KnowledgeJsonFieldSelector;
+};
+
+type KnowledgeJsonJournalList = {
+  readonly id: Maybe<Scalars['String']>;
+  readonly name: Maybe<Scalars['String']>;
+};
+
+type KnowledgeJsonJournalListFieldSelector = {
+  readonly id: InputMaybe<FieldSelectorEnum>;
+  readonly name: InputMaybe<FieldSelectorEnum>;
+};
+
+type KnowledgeJsonJournalListFilterInput = {
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+};
+
+type KnowledgeJsonJournalListFilterListInput = {
+  readonly elemMatch: InputMaybe<KnowledgeJsonJournalListFilterInput>;
+};
+
+type KnowledgeJsonJournalListSortInput = {
+  readonly id: InputMaybe<SortOrderEnum>;
+  readonly name: InputMaybe<SortOrderEnum>;
+};
+
+type KnowledgeJsonSortInput = {
+  readonly children: InputMaybe<NodeSortInput>;
+  readonly id: InputMaybe<SortOrderEnum>;
+  readonly internal: InputMaybe<InternalSortInput>;
+  readonly journalList: InputMaybe<KnowledgeJsonJournalListSortInput>;
+  readonly parent: InputMaybe<NodeSortInput>;
+  readonly studies: InputMaybe<KnowledgeJsonStudiesSortInput>;
+};
+
+type KnowledgeJsonStudies = {
+  readonly authors: Maybe<Scalars['String']>;
+  readonly conclusion: Maybe<Scalars['String']>;
+  readonly conclusionShort: Maybe<Scalars['String']>;
+  readonly hypothesisOrGoal: Maybe<Scalars['String']>;
+  readonly id: Maybe<Scalars['String']>;
+  readonly interventalStudyType: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+  readonly journal: Maybe<Scalars['String']>;
+  readonly link: Maybe<Scalars['String']>;
+  readonly published: Maybe<Scalars['Date']>;
+  readonly sampleSize: Maybe<Scalars['Int']>;
+  readonly statisticalSignificance: Maybe<Scalars['Boolean']>;
+  readonly title: Maybe<Scalars['String']>;
+};
+
+
+type KnowledgeJsonStudies_publishedArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+type KnowledgeJsonStudiesFieldSelector = {
+  readonly authors: InputMaybe<FieldSelectorEnum>;
+  readonly conclusion: InputMaybe<FieldSelectorEnum>;
+  readonly conclusionShort: InputMaybe<FieldSelectorEnum>;
+  readonly hypothesisOrGoal: InputMaybe<FieldSelectorEnum>;
+  readonly id: InputMaybe<FieldSelectorEnum>;
+  readonly interventalStudyType: InputMaybe<FieldSelectorEnum>;
+  readonly journal: InputMaybe<FieldSelectorEnum>;
+  readonly link: InputMaybe<FieldSelectorEnum>;
+  readonly published: InputMaybe<FieldSelectorEnum>;
+  readonly sampleSize: InputMaybe<FieldSelectorEnum>;
+  readonly statisticalSignificance: InputMaybe<FieldSelectorEnum>;
+  readonly title: InputMaybe<FieldSelectorEnum>;
+};
+
+type KnowledgeJsonStudiesFilterInput = {
+  readonly authors: InputMaybe<StringQueryOperatorInput>;
+  readonly conclusion: InputMaybe<StringQueryOperatorInput>;
+  readonly conclusionShort: InputMaybe<StringQueryOperatorInput>;
+  readonly hypothesisOrGoal: InputMaybe<StringQueryOperatorInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly interventalStudyType: InputMaybe<StringQueryOperatorInput>;
+  readonly journal: InputMaybe<StringQueryOperatorInput>;
+  readonly link: InputMaybe<StringQueryOperatorInput>;
+  readonly published: InputMaybe<DateQueryOperatorInput>;
+  readonly sampleSize: InputMaybe<IntQueryOperatorInput>;
+  readonly statisticalSignificance: InputMaybe<BooleanQueryOperatorInput>;
+  readonly title: InputMaybe<StringQueryOperatorInput>;
+};
+
+type KnowledgeJsonStudiesFilterListInput = {
+  readonly elemMatch: InputMaybe<KnowledgeJsonStudiesFilterInput>;
+};
+
+type KnowledgeJsonStudiesSortInput = {
+  readonly authors: InputMaybe<SortOrderEnum>;
+  readonly conclusion: InputMaybe<SortOrderEnum>;
+  readonly conclusionShort: InputMaybe<SortOrderEnum>;
+  readonly hypothesisOrGoal: InputMaybe<SortOrderEnum>;
+  readonly id: InputMaybe<SortOrderEnum>;
+  readonly interventalStudyType: InputMaybe<SortOrderEnum>;
+  readonly journal: InputMaybe<SortOrderEnum>;
+  readonly link: InputMaybe<SortOrderEnum>;
+  readonly published: InputMaybe<SortOrderEnum>;
+  readonly sampleSize: InputMaybe<SortOrderEnum>;
+  readonly statisticalSignificance: InputMaybe<SortOrderEnum>;
+  readonly title: InputMaybe<SortOrderEnum>;
+};
+
 /** Node Interface */
 type Node = {
   readonly children: ReadonlyArray<Node>;
@@ -981,6 +1213,7 @@ type Query = {
   readonly allDirectory: DirectoryConnection;
   readonly allEventsJson: EventsJsonConnection;
   readonly allFile: FileConnection;
+  readonly allKnowledgeJson: KnowledgeJsonConnection;
   readonly allSite: SiteConnection;
   readonly allSiteBuildMetadata: SiteBuildMetadataConnection;
   readonly allSiteFunction: SiteFunctionConnection;
@@ -989,6 +1222,7 @@ type Query = {
   readonly directory: Maybe<Directory>;
   readonly eventsJson: Maybe<EventsJson>;
   readonly file: Maybe<File>;
+  readonly knowledgeJson: Maybe<KnowledgeJson>;
   readonly site: Maybe<Site>;
   readonly siteBuildMetadata: Maybe<SiteBuildMetadata>;
   readonly siteFunction: Maybe<SiteFunction>;
@@ -1018,6 +1252,14 @@ type Query_allFileArgs = {
   limit: InputMaybe<Scalars['Int']>;
   skip: InputMaybe<Scalars['Int']>;
   sort: InputMaybe<ReadonlyArray<InputMaybe<FileSortInput>>>;
+};
+
+
+type Query_allKnowledgeJsonArgs = {
+  filter: InputMaybe<KnowledgeJsonFilterInput>;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+  sort: InputMaybe<ReadonlyArray<InputMaybe<KnowledgeJsonSortInput>>>;
 };
 
 
@@ -1122,8 +1364,10 @@ type Query_fileArgs = {
   blocks: InputMaybe<IntQueryOperatorInput>;
   changeTime: InputMaybe<DateQueryOperatorInput>;
   childEventsJson: InputMaybe<EventsJsonFilterInput>;
+  childKnowledgeJson: InputMaybe<KnowledgeJsonFilterInput>;
   children: InputMaybe<NodeFilterListInput>;
   childrenEventsJson: InputMaybe<EventsJsonFilterListInput>;
+  childrenKnowledgeJson: InputMaybe<KnowledgeJsonFilterListInput>;
   ctime: InputMaybe<DateQueryOperatorInput>;
   ctimeMs: InputMaybe<FloatQueryOperatorInput>;
   dev: InputMaybe<IntQueryOperatorInput>;
@@ -1150,6 +1394,16 @@ type Query_fileArgs = {
   size: InputMaybe<IntQueryOperatorInput>;
   sourceInstanceName: InputMaybe<StringQueryOperatorInput>;
   uid: InputMaybe<IntQueryOperatorInput>;
+};
+
+
+type Query_knowledgeJsonArgs = {
+  children: InputMaybe<NodeFilterListInput>;
+  id: InputMaybe<StringQueryOperatorInput>;
+  internal: InputMaybe<InternalFilterInput>;
+  journalList: InputMaybe<KnowledgeJsonJournalListFilterListInput>;
+  parent: InputMaybe<NodeFilterInput>;
+  studies: InputMaybe<KnowledgeJsonStudiesFilterListInput>;
 };
 
 

@@ -1,0 +1,21 @@
+{
+  "studies": [
+    {
+      "interventalStudyType": [
+        "metaAnalysis",
+        "systemicReview"
+      ],
+      "authors": "Wenming Shi, Xin Huang, C Mary Schooling, Jie V Zhao",
+      "sampleSize": 4462799,
+      "published": "2025-01-12T18:19:00.000Z",
+      "hypothesisOrGoal": "Observational studies show inconsistent associations of red meat consumption with cardiovascular disease (CVD) and diabetes. Moreover, red meat consumption varies by sex and setting, however, whether the associations vary by sex and setting remains unclear.",
+      "journal": "journal-l8fNn6WUy6",
+      "title": "Red meat consumption, cardiovascular diseases, and diabetes: a systematic review and meta-analysis",
+      "link": "https://doi.org/10.1093/eurheartj/ehad336",
+      "id": "study-du2XOm9vch",
+      "conclusionShort": "Unprocessed and processed red meat consumption are both associated with higher risk of CVD, CVD subtypes, and diabetes.",
+      "statisticalSignificance": true,
+      "conclusion": "Unprocessed and processed red meat consumption are both associated with higher risk of CVD, CVD subtypes, and diabetes, with a stronger association in western settings but no sex difference. Better understanding of the mechanisms is needed to facilitate improving cardiometabolic and planetary health."
+    }
+  ]
+}

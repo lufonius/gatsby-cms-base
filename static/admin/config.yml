@@ -6,13 +6,6 @@ backend:
 
 media_folder: static/img
 
-media_library:
-  name: cloudinary
-  config:
-    multiple: true
-    cloud_name: do4gpzw5z
-    api_key: 649834317653572
-
 collections:
   - name: 'news'
     label: 'News'
@@ -70,3 +63,90 @@ collections:
                 widget: string
                 required: false
               - {label: "Swisstransfer Link läuft ab am", name: swissTransferLinkEnd, widget: datetime, required: false}
+  - name: knowledge
+    label: 'Knowledge'
+    editor:
+      preview: false
+    files:
+      - file: "content/knowledge/journals.json"
+        name: journals
+        label: "Journals"
+        editor:
+          preview: false
+        fields:
+            - label: "Journal List"
+              name: journalList
+              summary: "{{fields.name}}"
+              widget: list
+              fields:
+                - {label: Name, name: name, widget: string}
+                - {label: Id, name: id, widget: uuid, prefix: 'journal'}
+      - file: "content/knowledge/science.json"
+        name: science
+        label: "Forschung"
+        fields:
+          - label: "Studien"
+            name: studies
+            summary: "{{fields.published | date('MMMM YYYY')}}: {{fields.title}}"
+            widget: list
+            add_to_top: true
+            fields:
+              - {label: Id, name: id, widget: uuid, prefix: study}
+              - {label: Titel, name: title, widget: string}
+              - {label: Veröffentlicht, name: published, widget: datetime}
+              - { label: 'Autoren', name: 'authors', widget: 'string' }
+              - { label: 'Hypothese oder Ziel', name: 'hypothesisOrGoal', widget: 'text' }
+              - { label: 'Konklusion', name: 'conclusion', widget: 'text' }
+              - { label: 'Konklusion Kurz', name: 'conclusionShort', widget: 'string' }
+              - label: "Intervenierender Studientyp"
+                name: interventalStudyType
+                required: false
+                widget: select
+                multiple: true
+                options:
+                  - {label: "Systematische Übersicht", value: systemicReview}
+                  - {label: "Meta-Analyse", value: metaAnalysis}
+                  - {label: "Doppelblind", value: doubleBlinded}
+                  - {label: "Einfachblind", value: singleBlinded}
+                  - {label: "Randomisiert, kontrolliert (RCT)", value: randomicedControlTrials}
+                  - {label: "Nicht-randomisiert, kontrolliert", value: controlTrials}
+                  - {label: "Crossover", value: crossover}
+              - label: Stichprobengrösse
+                name: sampleSize
+                widget: number
+                value_type: int
+              - {label: "Statistische Signifikanz", name: statisticalSignificance, widget: "boolean"}
+              - { label: 'Link', name: 'link', widget: 'string' }
+              - label: Journal
+                required: false
+                name: journal
+                widget: relation
+                collection: knowledge
+                file: journals
+                search_fields: ["journalList.*.name"]
+                value_field: "journalList.*.id"
+                display_fields: ["journalList.*.name"]
+  - name: fallacies
+    label: "Fallacies / Irrtümer"
+    editor:
+      preview: false
+    folder: 'content/fallacies'
+    create: true
+    slug: 'index'
+    media_folder: 'static/fallacies/img'
+    public_folder: 'public'
+    path: '{{summary}}/index'
+    fields:
+      - { label: 'Kurze Zusammenfassung', name: 'summary', widget: 'string' }
+      - { label: 'Fallacy / Irrtum', name: 'fallacy', widget: 'string' }
+      - { label: 'Erwiederung', name: 'description', widget: 'markdown' }
+      - label: Studien
+        required: false
+        name: studien
+        widget: relation
+        multiple: true
+        collection: knowledge
+        file: science
+        search_fields: ["studies.*.title"]
+        value_field: "studies.*.id"
+        display_fields: ["studies.*.title"]
