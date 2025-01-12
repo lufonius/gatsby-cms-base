@@ -1,6 +1,8 @@
 import { useState } from "react";
 import * as React from "react";
 import { PageProps, useStaticQuery, graphql } from "gatsby"
+import CustomSelect from '../components/custom-select';
+import { Dialog, DialogPanel, DialogTitle, Description, DialogBackdrop } from '@headlessui/react'
 
 const IndexPage = ({ path }: PageProps) => {
     const data = useStaticQuery(graphql`
@@ -42,13 +44,16 @@ const IndexPage = ({ path }: PageProps) => {
       }
     };
 
+    let [isOpen, setIsOpen] = useState(false);
+
   return (
     <main>
-        <select value={selectedFilter} onChange={handleFilterChange}>
-        <option value="All">All</option>
-        <option value="zuerich">Zürich</option>
-        <option value="aarau">Aarau</option>
-      </select>
+      <CustomSelect 
+        items={[{label: "Zürich", value: "zuerich"}, {label: "Aarau", value: "aar"}]}
+        name="city"
+        label="Stadt"
+        onChange={handleFilterChange}
+    /> 
 
       <br />
 
@@ -60,6 +65,24 @@ const IndexPage = ({ path }: PageProps) => {
                 <input type="text"></input>
             </div>
         ))}
+
+<button onClick={() => setIsOpen(true)} className="bg-gray-50 rounded p-2">Open dialog</button>
+      <Dialog open={isOpen} onClose={() => setIsOpen(false)} className="relative z-50">
+      <DialogBackdrop className="fixed inset-0 bg-black/30 backdrop-blur-sm backdrop-brightness-50" />
+
+        <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
+          <DialogPanel className="max-w-lg space-y-4 bg-gray-800 p-12 rounded">
+            <DialogTitle className="font-bold">Deactivate account</DialogTitle>
+            <Description>This will permanently deactivate your account</Description>
+            <p>Are you sure you want to deactivate your account? All of your data will be permanently removed.</p>
+            <div className="flex gap-4">
+              <button onClick={() => setIsOpen(false)} className="bg-gray-50 rounded p-2">Cancel</button>
+              <button onClick={() => setIsOpen(false)} className="bg-red-800 text-gray-50 rounded p-2">Deactivate</button>
+            </div>
+          </DialogPanel>
+        </div>
+      </Dialog>
+
     </main>
   )
 }

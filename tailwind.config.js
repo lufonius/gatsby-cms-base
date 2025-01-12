@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 const defaultTheme = require('tailwindcss/defaultTheme');
+const colors = require('tailwindcss/colors');
 
 module.exports = {
   content: [
@@ -10,6 +11,12 @@ module.exports = {
     fontFamily: {
       heading: ['"Bebas Neue"'],
       sans: ['Epilogue', ...defaultTheme.fontFamily.sans]
+    },
+    colors: {
+        black: colors.black,
+        white: colors.white,
+        gray: colors.neutral,
+        red: colors.red
     },
     extend: {
       borderRadius: {
