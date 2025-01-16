@@ -9,24 +9,43 @@ import CubeEvent from '../components/event';
 const IndexPage = ({ path }: PageProps) => {
     const data = useStaticQuery(graphql`
         query {
-            allEventsJson {
-                totalCount
+            allCities {
+                nodes {
+                    citiesList {
+                        id
+                        name
+                    }
+              }
+            }
+            allCubes {
                 nodes {
                     cubesList {
-                        city
                         end
-                        location
+                        locationId
                         start
                         status
-                        swisstransferLink
                         swissTransferLinkEnd
+                        swisstransferLink
+                    }
+                }
+            }
+            allLocations {
+                nodes {
+                    locationsList {
+                        cityRelation
+                        googleMapsLink
+                        id
+                        name
                     }
                 }
             }
         }
     `);
 
-    const allCubes = data.allEventsJson.nodes[0].cubesList;
+    const allCubes = data.allCubes.nodes[0].cubesList;
+    const allCities = data.allCities.nodes[0].citiesList;
+    const allCitiesMapped = allCities.map((city: any) => ({ label: city.name, value: city.id }));
+    const allLocations = data.allLocations.nodes[0].locationsList;
 
     const [selectedFilter, setSelectedFilter] = useState('All');
     const [enabled, setEnabled] = useState(false);
@@ -43,17 +62,27 @@ const IndexPage = ({ path }: PageProps) => {
       if (filter === 'All') {
         setFilteredItems(allCubes);
       } else {
-        setFilteredItems(allCubes.filter((item: any) => item.city.includes(filter)));
+        setFilteredItems(allCubes.filter((item: any) => item.cityRelation.includes(filter)));
       }
     };
 
     let [isOpen, setIsOpen] = useState(false);
 
+    const findLocation = (locationId: string) => {
+        return allLocations.find((location: any) => location.id === locationId);
+    };
+
+    const findCity = (locationId: string) => {
+        const location = findLocation(locationId);
+        const city = allCities.find((city: any) => city.id === location.cityRelation);
+        return city;
+    }
+
   return (
     <main>
         <h1 className="font-heading text-6xl">AARS Kalender</h1>
       <Select 
-        items={[{label: "Zürich", value: "zuerich"}, {label: "Aarau", value: "aar"}]}
+        items={allCitiesMapped}
         name="city"
         label="Stadt"
         onChange={handleFilterChange}
@@ -75,17 +104,16 @@ const IndexPage = ({ path }: PageProps) => {
     <AnimatePresence>
         {filteredItems.map((cube: any) => (
             <motion.li
-            key={cube.city + cube.start}
-            initial={{ opacity: 0, height: 0}}
-            animate={{ opacity: 1, height: "auto"}}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2 }}
-            layout
-            
+                key={cube.id}
+                initial={{ opacity: 0, height: 0}}
+                animate={{ opacity: 1, height: "auto"}}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.2 }}
+                layout
           >
-
+            {cube.locationId}
             <CubeEvent
-                city="Zürich"
+                //city={findCity(cube.locationId).name}
                 swissTransferLink={cube.swisstransferLink}
                 swissTransferLinkValidUntil={cube.swissTransferLinkEnd}
             ></CubeEvent>

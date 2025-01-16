@@ -33,24 +33,19 @@ collections:
         fields:
           - label: "Cubes"
             name: cubesList
-            summary: "{{fields.location}}: {{fields.start | date('DD.MM.YYYY HH:mm')}} - {{fields.end | date('HH:mm')}}"
+            summary: "{{fields.locationId}}: {{fields.start | date('DD.MM.YYYY HH:mm')}} - {{fields.end | date('HH:mm')}}"
             widget: list
             fields:
               - {label: Start, name: start, widget: datetime}
               - {label: End, name: end, widget: datetime}
               - label: Ort
-                name: location
-                widget: select
-                options:
-                  - { label: "Züghusplatz", value: "zueghusplatz" }
-                  - { label: "Bellevue", value: "bellevue" }
-                  - { label: "Igelweid", value: "igelweid" }
-              - label: Stadt
-                name: city
-                widget: select
-                options:
-                  - { label: "Zürich", value: "zuerich" }
-                  - { label: "Aarau", value: "aarau" }
+                name: locationId
+                widget: relation
+                collection: events
+                file: locations
+                search_fields: ["locationsList.*.name"]
+                value_field: "locationsList.*.id"
+                display_fields: ["locationsList.*.name"]
               - label: Status
                 name: status
                 widget: select
@@ -63,6 +58,37 @@ collections:
                 widget: string
                 required: false
               - {label: "Swisstransfer Link läuft ab am", name: swissTransferLinkEnd, widget: datetime, required: false}
+      - file: "content/events/cities.json"
+        name: cities
+        label: "Cities"
+        fields:
+          - label: "Cities"
+            name: citiesList
+            summary: "{{fields.name}}"
+            widget: list
+            fields:
+              - {label: Name, name: name, widget: string}
+              - {label: Id, name: id, widget: uuid, prefix: city}
+      - file: "content/events/locations.json"
+        name: locations
+        label: "Locations"
+        fields:
+          - label: "Locations"
+            name: locationsList
+            summary: "{{fields.name}}"
+            widget: list
+            fields:
+              - {label: Name, name: name, widget: string}
+              - {label: Id, name: id, widget: uuid, prefix: location}
+              - {label: "Google Maps Link", name: googleMapsLink, widget: string}
+              - label: Stadt
+                name: cityRelation
+                widget: relation
+                collection: events
+                file: cities
+                search_fields: ["citiesList.*.name"]
+                value_field: "citiesList.*.id"
+                display_fields: ["citiesList.*.name"]
   - name: knowledge
     label: 'Knowledge'
     editor:

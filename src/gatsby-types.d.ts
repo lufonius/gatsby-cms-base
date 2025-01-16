@@ -343,196 +343,6 @@ type DirectorySortInput = {
   readonly uid: InputMaybe<SortOrderEnum>;
 };
 
-type EventsJson = Node & {
-  readonly children: ReadonlyArray<Node>;
-  readonly cubesList: Maybe<ReadonlyArray<Maybe<EventsJsonCubesList>>>;
-  readonly id: Scalars['ID'];
-  readonly internal: Internal;
-  readonly parent: Maybe<Node>;
-};
-
-type EventsJsonConnection = {
-  readonly distinct: ReadonlyArray<Scalars['String']>;
-  readonly edges: ReadonlyArray<EventsJsonEdge>;
-  readonly group: ReadonlyArray<EventsJsonGroupConnection>;
-  readonly max: Maybe<Scalars['Float']>;
-  readonly min: Maybe<Scalars['Float']>;
-  readonly nodes: ReadonlyArray<EventsJson>;
-  readonly pageInfo: PageInfo;
-  readonly sum: Maybe<Scalars['Float']>;
-  readonly totalCount: Scalars['Int'];
-};
-
-
-type EventsJsonConnection_distinctArgs = {
-  field: EventsJsonFieldSelector;
-};
-
-
-type EventsJsonConnection_groupArgs = {
-  field: EventsJsonFieldSelector;
-  limit: InputMaybe<Scalars['Int']>;
-  skip: InputMaybe<Scalars['Int']>;
-};
-
-
-type EventsJsonConnection_maxArgs = {
-  field: EventsJsonFieldSelector;
-};
-
-
-type EventsJsonConnection_minArgs = {
-  field: EventsJsonFieldSelector;
-};
-
-
-type EventsJsonConnection_sumArgs = {
-  field: EventsJsonFieldSelector;
-};
-
-type EventsJsonCubesList = {
-  readonly city: Maybe<Scalars['String']>;
-  readonly end: Maybe<Scalars['Date']>;
-  readonly location: Maybe<Scalars['String']>;
-  readonly start: Maybe<Scalars['Date']>;
-  readonly status: Maybe<Scalars['String']>;
-  readonly swissTransferLinkEnd: Maybe<Scalars['Date']>;
-  readonly swisstransferLink: Maybe<Scalars['String']>;
-};
-
-
-type EventsJsonCubesList_endArgs = {
-  difference: InputMaybe<Scalars['String']>;
-  formatString: InputMaybe<Scalars['String']>;
-  fromNow: InputMaybe<Scalars['Boolean']>;
-  locale: InputMaybe<Scalars['String']>;
-};
-
-
-type EventsJsonCubesList_startArgs = {
-  difference: InputMaybe<Scalars['String']>;
-  formatString: InputMaybe<Scalars['String']>;
-  fromNow: InputMaybe<Scalars['Boolean']>;
-  locale: InputMaybe<Scalars['String']>;
-};
-
-
-type EventsJsonCubesList_swissTransferLinkEndArgs = {
-  difference: InputMaybe<Scalars['String']>;
-  formatString: InputMaybe<Scalars['String']>;
-  fromNow: InputMaybe<Scalars['Boolean']>;
-  locale: InputMaybe<Scalars['String']>;
-};
-
-type EventsJsonCubesListFieldSelector = {
-  readonly city: InputMaybe<FieldSelectorEnum>;
-  readonly end: InputMaybe<FieldSelectorEnum>;
-  readonly location: InputMaybe<FieldSelectorEnum>;
-  readonly start: InputMaybe<FieldSelectorEnum>;
-  readonly status: InputMaybe<FieldSelectorEnum>;
-  readonly swissTransferLinkEnd: InputMaybe<FieldSelectorEnum>;
-  readonly swisstransferLink: InputMaybe<FieldSelectorEnum>;
-};
-
-type EventsJsonCubesListFilterInput = {
-  readonly city: InputMaybe<StringQueryOperatorInput>;
-  readonly end: InputMaybe<DateQueryOperatorInput>;
-  readonly location: InputMaybe<StringQueryOperatorInput>;
-  readonly start: InputMaybe<DateQueryOperatorInput>;
-  readonly status: InputMaybe<StringQueryOperatorInput>;
-  readonly swissTransferLinkEnd: InputMaybe<DateQueryOperatorInput>;
-  readonly swisstransferLink: InputMaybe<StringQueryOperatorInput>;
-};
-
-type EventsJsonCubesListFilterListInput = {
-  readonly elemMatch: InputMaybe<EventsJsonCubesListFilterInput>;
-};
-
-type EventsJsonCubesListSortInput = {
-  readonly city: InputMaybe<SortOrderEnum>;
-  readonly end: InputMaybe<SortOrderEnum>;
-  readonly location: InputMaybe<SortOrderEnum>;
-  readonly start: InputMaybe<SortOrderEnum>;
-  readonly status: InputMaybe<SortOrderEnum>;
-  readonly swissTransferLinkEnd: InputMaybe<SortOrderEnum>;
-  readonly swisstransferLink: InputMaybe<SortOrderEnum>;
-};
-
-type EventsJsonEdge = {
-  readonly next: Maybe<EventsJson>;
-  readonly node: EventsJson;
-  readonly previous: Maybe<EventsJson>;
-};
-
-type EventsJsonFieldSelector = {
-  readonly children: InputMaybe<NodeFieldSelector>;
-  readonly cubesList: InputMaybe<EventsJsonCubesListFieldSelector>;
-  readonly id: InputMaybe<FieldSelectorEnum>;
-  readonly internal: InputMaybe<InternalFieldSelector>;
-  readonly parent: InputMaybe<NodeFieldSelector>;
-};
-
-type EventsJsonFilterInput = {
-  readonly children: InputMaybe<NodeFilterListInput>;
-  readonly cubesList: InputMaybe<EventsJsonCubesListFilterListInput>;
-  readonly id: InputMaybe<StringQueryOperatorInput>;
-  readonly internal: InputMaybe<InternalFilterInput>;
-  readonly parent: InputMaybe<NodeFilterInput>;
-};
-
-type EventsJsonFilterListInput = {
-  readonly elemMatch: InputMaybe<EventsJsonFilterInput>;
-};
-
-type EventsJsonGroupConnection = {
-  readonly distinct: ReadonlyArray<Scalars['String']>;
-  readonly edges: ReadonlyArray<EventsJsonEdge>;
-  readonly field: Scalars['String'];
-  readonly fieldValue: Maybe<Scalars['String']>;
-  readonly group: ReadonlyArray<EventsJsonGroupConnection>;
-  readonly max: Maybe<Scalars['Float']>;
-  readonly min: Maybe<Scalars['Float']>;
-  readonly nodes: ReadonlyArray<EventsJson>;
-  readonly pageInfo: PageInfo;
-  readonly sum: Maybe<Scalars['Float']>;
-  readonly totalCount: Scalars['Int'];
-};
-
-
-type EventsJsonGroupConnection_distinctArgs = {
-  field: EventsJsonFieldSelector;
-};
-
-
-type EventsJsonGroupConnection_groupArgs = {
-  field: EventsJsonFieldSelector;
-  limit: InputMaybe<Scalars['Int']>;
-  skip: InputMaybe<Scalars['Int']>;
-};
-
-
-type EventsJsonGroupConnection_maxArgs = {
-  field: EventsJsonFieldSelector;
-};
-
-
-type EventsJsonGroupConnection_minArgs = {
-  field: EventsJsonFieldSelector;
-};
-
-
-type EventsJsonGroupConnection_sumArgs = {
-  field: EventsJsonFieldSelector;
-};
-
-type EventsJsonSortInput = {
-  readonly children: InputMaybe<NodeSortInput>;
-  readonly cubesList: InputMaybe<EventsJsonCubesListSortInput>;
-  readonly id: InputMaybe<SortOrderEnum>;
-  readonly internal: InputMaybe<InternalSortInput>;
-  readonly parent: InputMaybe<NodeSortInput>;
-};
-
 type FieldSelectorEnum =
   | 'SELECT';
 
@@ -550,15 +360,27 @@ type File = Node & {
   readonly blksize: Maybe<Scalars['Int']>;
   readonly blocks: Maybe<Scalars['Int']>;
   readonly changeTime: Scalars['Date'];
-  /** Returns the first child node of type EventsJson or null if there are no children of given type on this node */
-  readonly childEventsJson: Maybe<EventsJson>;
-  /** Returns the first child node of type KnowledgeJson or null if there are no children of given type on this node */
-  readonly childKnowledgeJson: Maybe<KnowledgeJson>;
+  /** Returns the first child node of type cities or null if there are no children of given type on this node */
+  readonly childCities: Maybe<cities>;
+  /** Returns the first child node of type cubes or null if there are no children of given type on this node */
+  readonly childCubes: Maybe<cubes>;
+  /** Returns the first child node of type journals or null if there are no children of given type on this node */
+  readonly childJournals: Maybe<journals>;
+  /** Returns the first child node of type locations or null if there are no children of given type on this node */
+  readonly childLocations: Maybe<locations>;
+  /** Returns the first child node of type science or null if there are no children of given type on this node */
+  readonly childScience: Maybe<science>;
   readonly children: ReadonlyArray<Node>;
-  /** Returns all children nodes filtered by type EventsJson */
-  readonly childrenEventsJson: Maybe<ReadonlyArray<Maybe<EventsJson>>>;
-  /** Returns all children nodes filtered by type KnowledgeJson */
-  readonly childrenKnowledgeJson: Maybe<ReadonlyArray<Maybe<KnowledgeJson>>>;
+  /** Returns all children nodes filtered by type cities */
+  readonly childrenCities: Maybe<ReadonlyArray<Maybe<cities>>>;
+  /** Returns all children nodes filtered by type cubes */
+  readonly childrenCubes: Maybe<ReadonlyArray<Maybe<cubes>>>;
+  /** Returns all children nodes filtered by type journals */
+  readonly childrenJournals: Maybe<ReadonlyArray<Maybe<journals>>>;
+  /** Returns all children nodes filtered by type locations */
+  readonly childrenLocations: Maybe<ReadonlyArray<Maybe<locations>>>;
+  /** Returns all children nodes filtered by type science */
+  readonly childrenScience: Maybe<ReadonlyArray<Maybe<science>>>;
   readonly ctime: Scalars['Date'];
   readonly ctimeMs: Scalars['Float'];
   readonly dev: Scalars['Int'];
@@ -701,11 +523,17 @@ type FileFieldSelector = {
   readonly blksize: InputMaybe<FieldSelectorEnum>;
   readonly blocks: InputMaybe<FieldSelectorEnum>;
   readonly changeTime: InputMaybe<FieldSelectorEnum>;
-  readonly childEventsJson: InputMaybe<EventsJsonFieldSelector>;
-  readonly childKnowledgeJson: InputMaybe<KnowledgeJsonFieldSelector>;
+  readonly childCities: InputMaybe<citiesFieldSelector>;
+  readonly childCubes: InputMaybe<cubesFieldSelector>;
+  readonly childJournals: InputMaybe<journalsFieldSelector>;
+  readonly childLocations: InputMaybe<locationsFieldSelector>;
+  readonly childScience: InputMaybe<scienceFieldSelector>;
   readonly children: InputMaybe<NodeFieldSelector>;
-  readonly childrenEventsJson: InputMaybe<EventsJsonFieldSelector>;
-  readonly childrenKnowledgeJson: InputMaybe<KnowledgeJsonFieldSelector>;
+  readonly childrenCities: InputMaybe<citiesFieldSelector>;
+  readonly childrenCubes: InputMaybe<cubesFieldSelector>;
+  readonly childrenJournals: InputMaybe<journalsFieldSelector>;
+  readonly childrenLocations: InputMaybe<locationsFieldSelector>;
+  readonly childrenScience: InputMaybe<scienceFieldSelector>;
   readonly ctime: InputMaybe<FieldSelectorEnum>;
   readonly ctimeMs: InputMaybe<FieldSelectorEnum>;
   readonly dev: InputMaybe<FieldSelectorEnum>;
@@ -746,11 +574,17 @@ type FileFilterInput = {
   readonly blksize: InputMaybe<IntQueryOperatorInput>;
   readonly blocks: InputMaybe<IntQueryOperatorInput>;
   readonly changeTime: InputMaybe<DateQueryOperatorInput>;
-  readonly childEventsJson: InputMaybe<EventsJsonFilterInput>;
-  readonly childKnowledgeJson: InputMaybe<KnowledgeJsonFilterInput>;
+  readonly childCities: InputMaybe<citiesFilterInput>;
+  readonly childCubes: InputMaybe<cubesFilterInput>;
+  readonly childJournals: InputMaybe<journalsFilterInput>;
+  readonly childLocations: InputMaybe<locationsFilterInput>;
+  readonly childScience: InputMaybe<scienceFilterInput>;
   readonly children: InputMaybe<NodeFilterListInput>;
-  readonly childrenEventsJson: InputMaybe<EventsJsonFilterListInput>;
-  readonly childrenKnowledgeJson: InputMaybe<KnowledgeJsonFilterListInput>;
+  readonly childrenCities: InputMaybe<citiesFilterListInput>;
+  readonly childrenCubes: InputMaybe<cubesFilterListInput>;
+  readonly childrenJournals: InputMaybe<journalsFilterListInput>;
+  readonly childrenLocations: InputMaybe<locationsFilterListInput>;
+  readonly childrenScience: InputMaybe<scienceFilterListInput>;
   readonly ctime: InputMaybe<DateQueryOperatorInput>;
   readonly ctimeMs: InputMaybe<FloatQueryOperatorInput>;
   readonly dev: InputMaybe<IntQueryOperatorInput>;
@@ -832,11 +666,17 @@ type FileSortInput = {
   readonly blksize: InputMaybe<SortOrderEnum>;
   readonly blocks: InputMaybe<SortOrderEnum>;
   readonly changeTime: InputMaybe<SortOrderEnum>;
-  readonly childEventsJson: InputMaybe<EventsJsonSortInput>;
-  readonly childKnowledgeJson: InputMaybe<KnowledgeJsonSortInput>;
+  readonly childCities: InputMaybe<citiesSortInput>;
+  readonly childCubes: InputMaybe<cubesSortInput>;
+  readonly childJournals: InputMaybe<journalsSortInput>;
+  readonly childLocations: InputMaybe<locationsSortInput>;
+  readonly childScience: InputMaybe<scienceSortInput>;
   readonly children: InputMaybe<NodeSortInput>;
-  readonly childrenEventsJson: InputMaybe<EventsJsonSortInput>;
-  readonly childrenKnowledgeJson: InputMaybe<KnowledgeJsonSortInput>;
+  readonly childrenCities: InputMaybe<citiesSortInput>;
+  readonly childrenCubes: InputMaybe<cubesSortInput>;
+  readonly childrenJournals: InputMaybe<journalsSortInput>;
+  readonly childrenLocations: InputMaybe<locationsSortInput>;
+  readonly childrenScience: InputMaybe<scienceSortInput>;
   readonly ctime: InputMaybe<SortOrderEnum>;
   readonly ctimeMs: InputMaybe<SortOrderEnum>;
   readonly dev: InputMaybe<SortOrderEnum>;
@@ -944,228 +784,6 @@ type JSONQueryOperatorInput = {
   readonly regex: InputMaybe<Scalars['JSON']>;
 };
 
-type KnowledgeJson = Node & {
-  readonly children: ReadonlyArray<Node>;
-  readonly id: Scalars['ID'];
-  readonly internal: Internal;
-  readonly journalList: Maybe<ReadonlyArray<Maybe<KnowledgeJsonJournalList>>>;
-  readonly parent: Maybe<Node>;
-  readonly studies: Maybe<ReadonlyArray<Maybe<KnowledgeJsonStudies>>>;
-};
-
-type KnowledgeJsonConnection = {
-  readonly distinct: ReadonlyArray<Scalars['String']>;
-  readonly edges: ReadonlyArray<KnowledgeJsonEdge>;
-  readonly group: ReadonlyArray<KnowledgeJsonGroupConnection>;
-  readonly max: Maybe<Scalars['Float']>;
-  readonly min: Maybe<Scalars['Float']>;
-  readonly nodes: ReadonlyArray<KnowledgeJson>;
-  readonly pageInfo: PageInfo;
-  readonly sum: Maybe<Scalars['Float']>;
-  readonly totalCount: Scalars['Int'];
-};
-
-
-type KnowledgeJsonConnection_distinctArgs = {
-  field: KnowledgeJsonFieldSelector;
-};
-
-
-type KnowledgeJsonConnection_groupArgs = {
-  field: KnowledgeJsonFieldSelector;
-  limit: InputMaybe<Scalars['Int']>;
-  skip: InputMaybe<Scalars['Int']>;
-};
-
-
-type KnowledgeJsonConnection_maxArgs = {
-  field: KnowledgeJsonFieldSelector;
-};
-
-
-type KnowledgeJsonConnection_minArgs = {
-  field: KnowledgeJsonFieldSelector;
-};
-
-
-type KnowledgeJsonConnection_sumArgs = {
-  field: KnowledgeJsonFieldSelector;
-};
-
-type KnowledgeJsonEdge = {
-  readonly next: Maybe<KnowledgeJson>;
-  readonly node: KnowledgeJson;
-  readonly previous: Maybe<KnowledgeJson>;
-};
-
-type KnowledgeJsonFieldSelector = {
-  readonly children: InputMaybe<NodeFieldSelector>;
-  readonly id: InputMaybe<FieldSelectorEnum>;
-  readonly internal: InputMaybe<InternalFieldSelector>;
-  readonly journalList: InputMaybe<KnowledgeJsonJournalListFieldSelector>;
-  readonly parent: InputMaybe<NodeFieldSelector>;
-  readonly studies: InputMaybe<KnowledgeJsonStudiesFieldSelector>;
-};
-
-type KnowledgeJsonFilterInput = {
-  readonly children: InputMaybe<NodeFilterListInput>;
-  readonly id: InputMaybe<StringQueryOperatorInput>;
-  readonly internal: InputMaybe<InternalFilterInput>;
-  readonly journalList: InputMaybe<KnowledgeJsonJournalListFilterListInput>;
-  readonly parent: InputMaybe<NodeFilterInput>;
-  readonly studies: InputMaybe<KnowledgeJsonStudiesFilterListInput>;
-};
-
-type KnowledgeJsonFilterListInput = {
-  readonly elemMatch: InputMaybe<KnowledgeJsonFilterInput>;
-};
-
-type KnowledgeJsonGroupConnection = {
-  readonly distinct: ReadonlyArray<Scalars['String']>;
-  readonly edges: ReadonlyArray<KnowledgeJsonEdge>;
-  readonly field: Scalars['String'];
-  readonly fieldValue: Maybe<Scalars['String']>;
-  readonly group: ReadonlyArray<KnowledgeJsonGroupConnection>;
-  readonly max: Maybe<Scalars['Float']>;
-  readonly min: Maybe<Scalars['Float']>;
-  readonly nodes: ReadonlyArray<KnowledgeJson>;
-  readonly pageInfo: PageInfo;
-  readonly sum: Maybe<Scalars['Float']>;
-  readonly totalCount: Scalars['Int'];
-};
-
-
-type KnowledgeJsonGroupConnection_distinctArgs = {
-  field: KnowledgeJsonFieldSelector;
-};
-
-
-type KnowledgeJsonGroupConnection_groupArgs = {
-  field: KnowledgeJsonFieldSelector;
-  limit: InputMaybe<Scalars['Int']>;
-  skip: InputMaybe<Scalars['Int']>;
-};
-
-
-type KnowledgeJsonGroupConnection_maxArgs = {
-  field: KnowledgeJsonFieldSelector;
-};
-
-
-type KnowledgeJsonGroupConnection_minArgs = {
-  field: KnowledgeJsonFieldSelector;
-};
-
-
-type KnowledgeJsonGroupConnection_sumArgs = {
-  field: KnowledgeJsonFieldSelector;
-};
-
-type KnowledgeJsonJournalList = {
-  readonly id: Maybe<Scalars['String']>;
-  readonly name: Maybe<Scalars['String']>;
-};
-
-type KnowledgeJsonJournalListFieldSelector = {
-  readonly id: InputMaybe<FieldSelectorEnum>;
-  readonly name: InputMaybe<FieldSelectorEnum>;
-};
-
-type KnowledgeJsonJournalListFilterInput = {
-  readonly id: InputMaybe<StringQueryOperatorInput>;
-  readonly name: InputMaybe<StringQueryOperatorInput>;
-};
-
-type KnowledgeJsonJournalListFilterListInput = {
-  readonly elemMatch: InputMaybe<KnowledgeJsonJournalListFilterInput>;
-};
-
-type KnowledgeJsonJournalListSortInput = {
-  readonly id: InputMaybe<SortOrderEnum>;
-  readonly name: InputMaybe<SortOrderEnum>;
-};
-
-type KnowledgeJsonSortInput = {
-  readonly children: InputMaybe<NodeSortInput>;
-  readonly id: InputMaybe<SortOrderEnum>;
-  readonly internal: InputMaybe<InternalSortInput>;
-  readonly journalList: InputMaybe<KnowledgeJsonJournalListSortInput>;
-  readonly parent: InputMaybe<NodeSortInput>;
-  readonly studies: InputMaybe<KnowledgeJsonStudiesSortInput>;
-};
-
-type KnowledgeJsonStudies = {
-  readonly authors: Maybe<Scalars['String']>;
-  readonly conclusion: Maybe<Scalars['String']>;
-  readonly conclusionShort: Maybe<Scalars['String']>;
-  readonly hypothesisOrGoal: Maybe<Scalars['String']>;
-  readonly id: Maybe<Scalars['String']>;
-  readonly interventalStudyType: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
-  readonly journal: Maybe<Scalars['String']>;
-  readonly link: Maybe<Scalars['String']>;
-  readonly published: Maybe<Scalars['Date']>;
-  readonly sampleSize: Maybe<Scalars['Int']>;
-  readonly statisticalSignificance: Maybe<Scalars['Boolean']>;
-  readonly title: Maybe<Scalars['String']>;
-};
-
-
-type KnowledgeJsonStudies_publishedArgs = {
-  difference: InputMaybe<Scalars['String']>;
-  formatString: InputMaybe<Scalars['String']>;
-  fromNow: InputMaybe<Scalars['Boolean']>;
-  locale: InputMaybe<Scalars['String']>;
-};
-
-type KnowledgeJsonStudiesFieldSelector = {
-  readonly authors: InputMaybe<FieldSelectorEnum>;
-  readonly conclusion: InputMaybe<FieldSelectorEnum>;
-  readonly conclusionShort: InputMaybe<FieldSelectorEnum>;
-  readonly hypothesisOrGoal: InputMaybe<FieldSelectorEnum>;
-  readonly id: InputMaybe<FieldSelectorEnum>;
-  readonly interventalStudyType: InputMaybe<FieldSelectorEnum>;
-  readonly journal: InputMaybe<FieldSelectorEnum>;
-  readonly link: InputMaybe<FieldSelectorEnum>;
-  readonly published: InputMaybe<FieldSelectorEnum>;
-  readonly sampleSize: InputMaybe<FieldSelectorEnum>;
-  readonly statisticalSignificance: InputMaybe<FieldSelectorEnum>;
-  readonly title: InputMaybe<FieldSelectorEnum>;
-};
-
-type KnowledgeJsonStudiesFilterInput = {
-  readonly authors: InputMaybe<StringQueryOperatorInput>;
-  readonly conclusion: InputMaybe<StringQueryOperatorInput>;
-  readonly conclusionShort: InputMaybe<StringQueryOperatorInput>;
-  readonly hypothesisOrGoal: InputMaybe<StringQueryOperatorInput>;
-  readonly id: InputMaybe<StringQueryOperatorInput>;
-  readonly interventalStudyType: InputMaybe<StringQueryOperatorInput>;
-  readonly journal: InputMaybe<StringQueryOperatorInput>;
-  readonly link: InputMaybe<StringQueryOperatorInput>;
-  readonly published: InputMaybe<DateQueryOperatorInput>;
-  readonly sampleSize: InputMaybe<IntQueryOperatorInput>;
-  readonly statisticalSignificance: InputMaybe<BooleanQueryOperatorInput>;
-  readonly title: InputMaybe<StringQueryOperatorInput>;
-};
-
-type KnowledgeJsonStudiesFilterListInput = {
-  readonly elemMatch: InputMaybe<KnowledgeJsonStudiesFilterInput>;
-};
-
-type KnowledgeJsonStudiesSortInput = {
-  readonly authors: InputMaybe<SortOrderEnum>;
-  readonly conclusion: InputMaybe<SortOrderEnum>;
-  readonly conclusionShort: InputMaybe<SortOrderEnum>;
-  readonly hypothesisOrGoal: InputMaybe<SortOrderEnum>;
-  readonly id: InputMaybe<SortOrderEnum>;
-  readonly interventalStudyType: InputMaybe<SortOrderEnum>;
-  readonly journal: InputMaybe<SortOrderEnum>;
-  readonly link: InputMaybe<SortOrderEnum>;
-  readonly published: InputMaybe<SortOrderEnum>;
-  readonly sampleSize: InputMaybe<SortOrderEnum>;
-  readonly statisticalSignificance: InputMaybe<SortOrderEnum>;
-  readonly title: InputMaybe<SortOrderEnum>;
-};
-
 /** Node Interface */
 type Node = {
   readonly children: ReadonlyArray<Node>;
@@ -1210,24 +828,46 @@ type PageInfo = {
 };
 
 type Query = {
+  readonly allCities: citiesConnection;
+  readonly allCubes: cubesConnection;
   readonly allDirectory: DirectoryConnection;
-  readonly allEventsJson: EventsJsonConnection;
   readonly allFile: FileConnection;
-  readonly allKnowledgeJson: KnowledgeJsonConnection;
+  readonly allJournals: journalsConnection;
+  readonly allLocations: locationsConnection;
+  readonly allScience: scienceConnection;
   readonly allSite: SiteConnection;
   readonly allSiteBuildMetadata: SiteBuildMetadataConnection;
   readonly allSiteFunction: SiteFunctionConnection;
   readonly allSitePage: SitePageConnection;
   readonly allSitePlugin: SitePluginConnection;
+  readonly cities: Maybe<cities>;
+  readonly cubes: Maybe<cubes>;
   readonly directory: Maybe<Directory>;
-  readonly eventsJson: Maybe<EventsJson>;
   readonly file: Maybe<File>;
-  readonly knowledgeJson: Maybe<KnowledgeJson>;
+  readonly journals: Maybe<journals>;
+  readonly locations: Maybe<locations>;
+  readonly science: Maybe<science>;
   readonly site: Maybe<Site>;
   readonly siteBuildMetadata: Maybe<SiteBuildMetadata>;
   readonly siteFunction: Maybe<SiteFunction>;
   readonly sitePage: Maybe<SitePage>;
   readonly sitePlugin: Maybe<SitePlugin>;
+};
+
+
+type Query_allCitiesArgs = {
+  filter: InputMaybe<citiesFilterInput>;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+  sort: InputMaybe<ReadonlyArray<InputMaybe<citiesSortInput>>>;
+};
+
+
+type Query_allCubesArgs = {
+  filter: InputMaybe<cubesFilterInput>;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+  sort: InputMaybe<ReadonlyArray<InputMaybe<cubesSortInput>>>;
 };
 
 
@@ -1239,14 +879,6 @@ type Query_allDirectoryArgs = {
 };
 
 
-type Query_allEventsJsonArgs = {
-  filter: InputMaybe<EventsJsonFilterInput>;
-  limit: InputMaybe<Scalars['Int']>;
-  skip: InputMaybe<Scalars['Int']>;
-  sort: InputMaybe<ReadonlyArray<InputMaybe<EventsJsonSortInput>>>;
-};
-
-
 type Query_allFileArgs = {
   filter: InputMaybe<FileFilterInput>;
   limit: InputMaybe<Scalars['Int']>;
@@ -1255,11 +887,27 @@ type Query_allFileArgs = {
 };
 
 
-type Query_allKnowledgeJsonArgs = {
-  filter: InputMaybe<KnowledgeJsonFilterInput>;
+type Query_allJournalsArgs = {
+  filter: InputMaybe<journalsFilterInput>;
   limit: InputMaybe<Scalars['Int']>;
   skip: InputMaybe<Scalars['Int']>;
-  sort: InputMaybe<ReadonlyArray<InputMaybe<KnowledgeJsonSortInput>>>;
+  sort: InputMaybe<ReadonlyArray<InputMaybe<journalsSortInput>>>;
+};
+
+
+type Query_allLocationsArgs = {
+  filter: InputMaybe<locationsFilterInput>;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+  sort: InputMaybe<ReadonlyArray<InputMaybe<locationsSortInput>>>;
+};
+
+
+type Query_allScienceArgs = {
+  filter: InputMaybe<scienceFilterInput>;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+  sort: InputMaybe<ReadonlyArray<InputMaybe<scienceSortInput>>>;
 };
 
 
@@ -1303,6 +951,24 @@ type Query_allSitePluginArgs = {
 };
 
 
+type Query_citiesArgs = {
+  children: InputMaybe<NodeFilterListInput>;
+  citiesList: InputMaybe<citiesCitiesListFilterListInput>;
+  id: InputMaybe<StringQueryOperatorInput>;
+  internal: InputMaybe<InternalFilterInput>;
+  parent: InputMaybe<NodeFilterInput>;
+};
+
+
+type Query_cubesArgs = {
+  children: InputMaybe<NodeFilterListInput>;
+  cubesList: InputMaybe<cubesCubesListFilterListInput>;
+  id: InputMaybe<StringQueryOperatorInput>;
+  internal: InputMaybe<InternalFilterInput>;
+  parent: InputMaybe<NodeFilterInput>;
+};
+
+
 type Query_directoryArgs = {
   absolutePath: InputMaybe<StringQueryOperatorInput>;
   accessTime: InputMaybe<DateQueryOperatorInput>;
@@ -1342,15 +1008,6 @@ type Query_directoryArgs = {
 };
 
 
-type Query_eventsJsonArgs = {
-  children: InputMaybe<NodeFilterListInput>;
-  cubesList: InputMaybe<EventsJsonCubesListFilterListInput>;
-  id: InputMaybe<StringQueryOperatorInput>;
-  internal: InputMaybe<InternalFilterInput>;
-  parent: InputMaybe<NodeFilterInput>;
-};
-
-
 type Query_fileArgs = {
   absolutePath: InputMaybe<StringQueryOperatorInput>;
   accessTime: InputMaybe<DateQueryOperatorInput>;
@@ -1363,11 +1020,17 @@ type Query_fileArgs = {
   blksize: InputMaybe<IntQueryOperatorInput>;
   blocks: InputMaybe<IntQueryOperatorInput>;
   changeTime: InputMaybe<DateQueryOperatorInput>;
-  childEventsJson: InputMaybe<EventsJsonFilterInput>;
-  childKnowledgeJson: InputMaybe<KnowledgeJsonFilterInput>;
+  childCities: InputMaybe<citiesFilterInput>;
+  childCubes: InputMaybe<cubesFilterInput>;
+  childJournals: InputMaybe<journalsFilterInput>;
+  childLocations: InputMaybe<locationsFilterInput>;
+  childScience: InputMaybe<scienceFilterInput>;
   children: InputMaybe<NodeFilterListInput>;
-  childrenEventsJson: InputMaybe<EventsJsonFilterListInput>;
-  childrenKnowledgeJson: InputMaybe<KnowledgeJsonFilterListInput>;
+  childrenCities: InputMaybe<citiesFilterListInput>;
+  childrenCubes: InputMaybe<cubesFilterListInput>;
+  childrenJournals: InputMaybe<journalsFilterListInput>;
+  childrenLocations: InputMaybe<locationsFilterListInput>;
+  childrenScience: InputMaybe<scienceFilterListInput>;
   ctime: InputMaybe<DateQueryOperatorInput>;
   ctimeMs: InputMaybe<FloatQueryOperatorInput>;
   dev: InputMaybe<IntQueryOperatorInput>;
@@ -1397,13 +1060,30 @@ type Query_fileArgs = {
 };
 
 
-type Query_knowledgeJsonArgs = {
+type Query_journalsArgs = {
   children: InputMaybe<NodeFilterListInput>;
   id: InputMaybe<StringQueryOperatorInput>;
   internal: InputMaybe<InternalFilterInput>;
-  journalList: InputMaybe<KnowledgeJsonJournalListFilterListInput>;
+  journalList: InputMaybe<journalsJournalListFilterListInput>;
   parent: InputMaybe<NodeFilterInput>;
-  studies: InputMaybe<KnowledgeJsonStudiesFilterListInput>;
+};
+
+
+type Query_locationsArgs = {
+  children: InputMaybe<NodeFilterListInput>;
+  id: InputMaybe<StringQueryOperatorInput>;
+  internal: InputMaybe<InternalFilterInput>;
+  locationsList: InputMaybe<locationsLocationsListFilterListInput>;
+  parent: InputMaybe<NodeFilterInput>;
+};
+
+
+type Query_scienceArgs = {
+  children: InputMaybe<NodeFilterListInput>;
+  id: InputMaybe<StringQueryOperatorInput>;
+  internal: InputMaybe<InternalFilterInput>;
+  parent: InputMaybe<NodeFilterInput>;
+  studies: InputMaybe<scienceStudiesFilterListInput>;
 };
 
 
@@ -2256,6 +1936,832 @@ type StringQueryOperatorInput = {
   readonly ne: InputMaybe<Scalars['String']>;
   readonly nin: InputMaybe<ReadonlyArray<InputMaybe<Scalars['String']>>>;
   readonly regex: InputMaybe<Scalars['String']>;
+};
+
+type cities = Node & {
+  readonly children: ReadonlyArray<Node>;
+  readonly citiesList: Maybe<ReadonlyArray<Maybe<citiesCitiesList>>>;
+  readonly id: Scalars['ID'];
+  readonly internal: Internal;
+  readonly parent: Maybe<Node>;
+};
+
+type citiesCitiesList = {
+  readonly id: Maybe<Scalars['String']>;
+  readonly name: Maybe<Scalars['String']>;
+};
+
+type citiesCitiesListFieldSelector = {
+  readonly id: InputMaybe<FieldSelectorEnum>;
+  readonly name: InputMaybe<FieldSelectorEnum>;
+};
+
+type citiesCitiesListFilterInput = {
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+};
+
+type citiesCitiesListFilterListInput = {
+  readonly elemMatch: InputMaybe<citiesCitiesListFilterInput>;
+};
+
+type citiesCitiesListSortInput = {
+  readonly id: InputMaybe<SortOrderEnum>;
+  readonly name: InputMaybe<SortOrderEnum>;
+};
+
+type citiesConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<citiesEdge>;
+  readonly group: ReadonlyArray<citiesGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<cities>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type citiesConnection_distinctArgs = {
+  field: citiesFieldSelector;
+};
+
+
+type citiesConnection_groupArgs = {
+  field: citiesFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type citiesConnection_maxArgs = {
+  field: citiesFieldSelector;
+};
+
+
+type citiesConnection_minArgs = {
+  field: citiesFieldSelector;
+};
+
+
+type citiesConnection_sumArgs = {
+  field: citiesFieldSelector;
+};
+
+type citiesEdge = {
+  readonly next: Maybe<cities>;
+  readonly node: cities;
+  readonly previous: Maybe<cities>;
+};
+
+type citiesFieldSelector = {
+  readonly children: InputMaybe<NodeFieldSelector>;
+  readonly citiesList: InputMaybe<citiesCitiesListFieldSelector>;
+  readonly id: InputMaybe<FieldSelectorEnum>;
+  readonly internal: InputMaybe<InternalFieldSelector>;
+  readonly parent: InputMaybe<NodeFieldSelector>;
+};
+
+type citiesFilterInput = {
+  readonly children: InputMaybe<NodeFilterListInput>;
+  readonly citiesList: InputMaybe<citiesCitiesListFilterListInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly internal: InputMaybe<InternalFilterInput>;
+  readonly parent: InputMaybe<NodeFilterInput>;
+};
+
+type citiesFilterListInput = {
+  readonly elemMatch: InputMaybe<citiesFilterInput>;
+};
+
+type citiesGroupConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<citiesEdge>;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+  readonly group: ReadonlyArray<citiesGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<cities>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type citiesGroupConnection_distinctArgs = {
+  field: citiesFieldSelector;
+};
+
+
+type citiesGroupConnection_groupArgs = {
+  field: citiesFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type citiesGroupConnection_maxArgs = {
+  field: citiesFieldSelector;
+};
+
+
+type citiesGroupConnection_minArgs = {
+  field: citiesFieldSelector;
+};
+
+
+type citiesGroupConnection_sumArgs = {
+  field: citiesFieldSelector;
+};
+
+type citiesSortInput = {
+  readonly children: InputMaybe<NodeSortInput>;
+  readonly citiesList: InputMaybe<citiesCitiesListSortInput>;
+  readonly id: InputMaybe<SortOrderEnum>;
+  readonly internal: InputMaybe<InternalSortInput>;
+  readonly parent: InputMaybe<NodeSortInput>;
+};
+
+type cubes = Node & {
+  readonly children: ReadonlyArray<Node>;
+  readonly cubesList: Maybe<ReadonlyArray<Maybe<cubesCubesList>>>;
+  readonly id: Scalars['ID'];
+  readonly internal: Internal;
+  readonly parent: Maybe<Node>;
+};
+
+type cubesConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<cubesEdge>;
+  readonly group: ReadonlyArray<cubesGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<cubes>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type cubesConnection_distinctArgs = {
+  field: cubesFieldSelector;
+};
+
+
+type cubesConnection_groupArgs = {
+  field: cubesFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type cubesConnection_maxArgs = {
+  field: cubesFieldSelector;
+};
+
+
+type cubesConnection_minArgs = {
+  field: cubesFieldSelector;
+};
+
+
+type cubesConnection_sumArgs = {
+  field: cubesFieldSelector;
+};
+
+type cubesCubesList = {
+  readonly end: Maybe<Scalars['Date']>;
+  readonly locationId: Maybe<Scalars['String']>;
+  readonly start: Maybe<Scalars['Date']>;
+  readonly status: Maybe<Scalars['String']>;
+  readonly swissTransferLinkEnd: Maybe<Scalars['Date']>;
+  readonly swisstransferLink: Maybe<Scalars['String']>;
+};
+
+
+type cubesCubesList_endArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type cubesCubesList_startArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+
+type cubesCubesList_swissTransferLinkEndArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+type cubesCubesListFieldSelector = {
+  readonly end: InputMaybe<FieldSelectorEnum>;
+  readonly locationId: InputMaybe<FieldSelectorEnum>;
+  readonly start: InputMaybe<FieldSelectorEnum>;
+  readonly status: InputMaybe<FieldSelectorEnum>;
+  readonly swissTransferLinkEnd: InputMaybe<FieldSelectorEnum>;
+  readonly swisstransferLink: InputMaybe<FieldSelectorEnum>;
+};
+
+type cubesCubesListFilterInput = {
+  readonly end: InputMaybe<DateQueryOperatorInput>;
+  readonly locationId: InputMaybe<StringQueryOperatorInput>;
+  readonly start: InputMaybe<DateQueryOperatorInput>;
+  readonly status: InputMaybe<StringQueryOperatorInput>;
+  readonly swissTransferLinkEnd: InputMaybe<DateQueryOperatorInput>;
+  readonly swisstransferLink: InputMaybe<StringQueryOperatorInput>;
+};
+
+type cubesCubesListFilterListInput = {
+  readonly elemMatch: InputMaybe<cubesCubesListFilterInput>;
+};
+
+type cubesCubesListSortInput = {
+  readonly end: InputMaybe<SortOrderEnum>;
+  readonly locationId: InputMaybe<SortOrderEnum>;
+  readonly start: InputMaybe<SortOrderEnum>;
+  readonly status: InputMaybe<SortOrderEnum>;
+  readonly swissTransferLinkEnd: InputMaybe<SortOrderEnum>;
+  readonly swisstransferLink: InputMaybe<SortOrderEnum>;
+};
+
+type cubesEdge = {
+  readonly next: Maybe<cubes>;
+  readonly node: cubes;
+  readonly previous: Maybe<cubes>;
+};
+
+type cubesFieldSelector = {
+  readonly children: InputMaybe<NodeFieldSelector>;
+  readonly cubesList: InputMaybe<cubesCubesListFieldSelector>;
+  readonly id: InputMaybe<FieldSelectorEnum>;
+  readonly internal: InputMaybe<InternalFieldSelector>;
+  readonly parent: InputMaybe<NodeFieldSelector>;
+};
+
+type cubesFilterInput = {
+  readonly children: InputMaybe<NodeFilterListInput>;
+  readonly cubesList: InputMaybe<cubesCubesListFilterListInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly internal: InputMaybe<InternalFilterInput>;
+  readonly parent: InputMaybe<NodeFilterInput>;
+};
+
+type cubesFilterListInput = {
+  readonly elemMatch: InputMaybe<cubesFilterInput>;
+};
+
+type cubesGroupConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<cubesEdge>;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+  readonly group: ReadonlyArray<cubesGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<cubes>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type cubesGroupConnection_distinctArgs = {
+  field: cubesFieldSelector;
+};
+
+
+type cubesGroupConnection_groupArgs = {
+  field: cubesFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type cubesGroupConnection_maxArgs = {
+  field: cubesFieldSelector;
+};
+
+
+type cubesGroupConnection_minArgs = {
+  field: cubesFieldSelector;
+};
+
+
+type cubesGroupConnection_sumArgs = {
+  field: cubesFieldSelector;
+};
+
+type cubesSortInput = {
+  readonly children: InputMaybe<NodeSortInput>;
+  readonly cubesList: InputMaybe<cubesCubesListSortInput>;
+  readonly id: InputMaybe<SortOrderEnum>;
+  readonly internal: InputMaybe<InternalSortInput>;
+  readonly parent: InputMaybe<NodeSortInput>;
+};
+
+type journals = Node & {
+  readonly children: ReadonlyArray<Node>;
+  readonly id: Scalars['ID'];
+  readonly internal: Internal;
+  readonly journalList: Maybe<ReadonlyArray<Maybe<journalsJournalList>>>;
+  readonly parent: Maybe<Node>;
+};
+
+type journalsConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<journalsEdge>;
+  readonly group: ReadonlyArray<journalsGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<journals>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type journalsConnection_distinctArgs = {
+  field: journalsFieldSelector;
+};
+
+
+type journalsConnection_groupArgs = {
+  field: journalsFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type journalsConnection_maxArgs = {
+  field: journalsFieldSelector;
+};
+
+
+type journalsConnection_minArgs = {
+  field: journalsFieldSelector;
+};
+
+
+type journalsConnection_sumArgs = {
+  field: journalsFieldSelector;
+};
+
+type journalsEdge = {
+  readonly next: Maybe<journals>;
+  readonly node: journals;
+  readonly previous: Maybe<journals>;
+};
+
+type journalsFieldSelector = {
+  readonly children: InputMaybe<NodeFieldSelector>;
+  readonly id: InputMaybe<FieldSelectorEnum>;
+  readonly internal: InputMaybe<InternalFieldSelector>;
+  readonly journalList: InputMaybe<journalsJournalListFieldSelector>;
+  readonly parent: InputMaybe<NodeFieldSelector>;
+};
+
+type journalsFilterInput = {
+  readonly children: InputMaybe<NodeFilterListInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly internal: InputMaybe<InternalFilterInput>;
+  readonly journalList: InputMaybe<journalsJournalListFilterListInput>;
+  readonly parent: InputMaybe<NodeFilterInput>;
+};
+
+type journalsFilterListInput = {
+  readonly elemMatch: InputMaybe<journalsFilterInput>;
+};
+
+type journalsGroupConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<journalsEdge>;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+  readonly group: ReadonlyArray<journalsGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<journals>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type journalsGroupConnection_distinctArgs = {
+  field: journalsFieldSelector;
+};
+
+
+type journalsGroupConnection_groupArgs = {
+  field: journalsFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type journalsGroupConnection_maxArgs = {
+  field: journalsFieldSelector;
+};
+
+
+type journalsGroupConnection_minArgs = {
+  field: journalsFieldSelector;
+};
+
+
+type journalsGroupConnection_sumArgs = {
+  field: journalsFieldSelector;
+};
+
+type journalsJournalList = {
+  readonly id: Maybe<Scalars['String']>;
+  readonly name: Maybe<Scalars['String']>;
+};
+
+type journalsJournalListFieldSelector = {
+  readonly id: InputMaybe<FieldSelectorEnum>;
+  readonly name: InputMaybe<FieldSelectorEnum>;
+};
+
+type journalsJournalListFilterInput = {
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+};
+
+type journalsJournalListFilterListInput = {
+  readonly elemMatch: InputMaybe<journalsJournalListFilterInput>;
+};
+
+type journalsJournalListSortInput = {
+  readonly id: InputMaybe<SortOrderEnum>;
+  readonly name: InputMaybe<SortOrderEnum>;
+};
+
+type journalsSortInput = {
+  readonly children: InputMaybe<NodeSortInput>;
+  readonly id: InputMaybe<SortOrderEnum>;
+  readonly internal: InputMaybe<InternalSortInput>;
+  readonly journalList: InputMaybe<journalsJournalListSortInput>;
+  readonly parent: InputMaybe<NodeSortInput>;
+};
+
+type locations = Node & {
+  readonly children: ReadonlyArray<Node>;
+  readonly id: Scalars['ID'];
+  readonly internal: Internal;
+  readonly locationsList: Maybe<ReadonlyArray<Maybe<locationsLocationsList>>>;
+  readonly parent: Maybe<Node>;
+};
+
+type locationsConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<locationsEdge>;
+  readonly group: ReadonlyArray<locationsGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<locations>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type locationsConnection_distinctArgs = {
+  field: locationsFieldSelector;
+};
+
+
+type locationsConnection_groupArgs = {
+  field: locationsFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type locationsConnection_maxArgs = {
+  field: locationsFieldSelector;
+};
+
+
+type locationsConnection_minArgs = {
+  field: locationsFieldSelector;
+};
+
+
+type locationsConnection_sumArgs = {
+  field: locationsFieldSelector;
+};
+
+type locationsEdge = {
+  readonly next: Maybe<locations>;
+  readonly node: locations;
+  readonly previous: Maybe<locations>;
+};
+
+type locationsFieldSelector = {
+  readonly children: InputMaybe<NodeFieldSelector>;
+  readonly id: InputMaybe<FieldSelectorEnum>;
+  readonly internal: InputMaybe<InternalFieldSelector>;
+  readonly locationsList: InputMaybe<locationsLocationsListFieldSelector>;
+  readonly parent: InputMaybe<NodeFieldSelector>;
+};
+
+type locationsFilterInput = {
+  readonly children: InputMaybe<NodeFilterListInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly internal: InputMaybe<InternalFilterInput>;
+  readonly locationsList: InputMaybe<locationsLocationsListFilterListInput>;
+  readonly parent: InputMaybe<NodeFilterInput>;
+};
+
+type locationsFilterListInput = {
+  readonly elemMatch: InputMaybe<locationsFilterInput>;
+};
+
+type locationsGroupConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<locationsEdge>;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+  readonly group: ReadonlyArray<locationsGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<locations>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type locationsGroupConnection_distinctArgs = {
+  field: locationsFieldSelector;
+};
+
+
+type locationsGroupConnection_groupArgs = {
+  field: locationsFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type locationsGroupConnection_maxArgs = {
+  field: locationsFieldSelector;
+};
+
+
+type locationsGroupConnection_minArgs = {
+  field: locationsFieldSelector;
+};
+
+
+type locationsGroupConnection_sumArgs = {
+  field: locationsFieldSelector;
+};
+
+type locationsLocationsList = {
+  readonly cityRelation: Maybe<Scalars['String']>;
+  readonly googleMapsLink: Maybe<Scalars['String']>;
+  readonly id: Maybe<Scalars['String']>;
+  readonly name: Maybe<Scalars['String']>;
+};
+
+type locationsLocationsListFieldSelector = {
+  readonly cityRelation: InputMaybe<FieldSelectorEnum>;
+  readonly googleMapsLink: InputMaybe<FieldSelectorEnum>;
+  readonly id: InputMaybe<FieldSelectorEnum>;
+  readonly name: InputMaybe<FieldSelectorEnum>;
+};
+
+type locationsLocationsListFilterInput = {
+  readonly cityRelation: InputMaybe<StringQueryOperatorInput>;
+  readonly googleMapsLink: InputMaybe<StringQueryOperatorInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly name: InputMaybe<StringQueryOperatorInput>;
+};
+
+type locationsLocationsListFilterListInput = {
+  readonly elemMatch: InputMaybe<locationsLocationsListFilterInput>;
+};
+
+type locationsLocationsListSortInput = {
+  readonly cityRelation: InputMaybe<SortOrderEnum>;
+  readonly googleMapsLink: InputMaybe<SortOrderEnum>;
+  readonly id: InputMaybe<SortOrderEnum>;
+  readonly name: InputMaybe<SortOrderEnum>;
+};
+
+type locationsSortInput = {
+  readonly children: InputMaybe<NodeSortInput>;
+  readonly id: InputMaybe<SortOrderEnum>;
+  readonly internal: InputMaybe<InternalSortInput>;
+  readonly locationsList: InputMaybe<locationsLocationsListSortInput>;
+  readonly parent: InputMaybe<NodeSortInput>;
+};
+
+type science = Node & {
+  readonly children: ReadonlyArray<Node>;
+  readonly id: Scalars['ID'];
+  readonly internal: Internal;
+  readonly parent: Maybe<Node>;
+  readonly studies: Maybe<ReadonlyArray<Maybe<scienceStudies>>>;
+};
+
+type scienceConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<scienceEdge>;
+  readonly group: ReadonlyArray<scienceGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<science>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type scienceConnection_distinctArgs = {
+  field: scienceFieldSelector;
+};
+
+
+type scienceConnection_groupArgs = {
+  field: scienceFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type scienceConnection_maxArgs = {
+  field: scienceFieldSelector;
+};
+
+
+type scienceConnection_minArgs = {
+  field: scienceFieldSelector;
+};
+
+
+type scienceConnection_sumArgs = {
+  field: scienceFieldSelector;
+};
+
+type scienceEdge = {
+  readonly next: Maybe<science>;
+  readonly node: science;
+  readonly previous: Maybe<science>;
+};
+
+type scienceFieldSelector = {
+  readonly children: InputMaybe<NodeFieldSelector>;
+  readonly id: InputMaybe<FieldSelectorEnum>;
+  readonly internal: InputMaybe<InternalFieldSelector>;
+  readonly parent: InputMaybe<NodeFieldSelector>;
+  readonly studies: InputMaybe<scienceStudiesFieldSelector>;
+};
+
+type scienceFilterInput = {
+  readonly children: InputMaybe<NodeFilterListInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly internal: InputMaybe<InternalFilterInput>;
+  readonly parent: InputMaybe<NodeFilterInput>;
+  readonly studies: InputMaybe<scienceStudiesFilterListInput>;
+};
+
+type scienceFilterListInput = {
+  readonly elemMatch: InputMaybe<scienceFilterInput>;
+};
+
+type scienceGroupConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<scienceEdge>;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+  readonly group: ReadonlyArray<scienceGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<science>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type scienceGroupConnection_distinctArgs = {
+  field: scienceFieldSelector;
+};
+
+
+type scienceGroupConnection_groupArgs = {
+  field: scienceFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type scienceGroupConnection_maxArgs = {
+  field: scienceFieldSelector;
+};
+
+
+type scienceGroupConnection_minArgs = {
+  field: scienceFieldSelector;
+};
+
+
+type scienceGroupConnection_sumArgs = {
+  field: scienceFieldSelector;
+};
+
+type scienceSortInput = {
+  readonly children: InputMaybe<NodeSortInput>;
+  readonly id: InputMaybe<SortOrderEnum>;
+  readonly internal: InputMaybe<InternalSortInput>;
+  readonly parent: InputMaybe<NodeSortInput>;
+  readonly studies: InputMaybe<scienceStudiesSortInput>;
+};
+
+type scienceStudies = {
+  readonly authors: Maybe<Scalars['String']>;
+  readonly conclusion: Maybe<Scalars['String']>;
+  readonly conclusionShort: Maybe<Scalars['String']>;
+  readonly hypothesisOrGoal: Maybe<Scalars['String']>;
+  readonly id: Maybe<Scalars['String']>;
+  readonly interventalStudyType: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+  readonly journal: Maybe<Scalars['String']>;
+  readonly link: Maybe<Scalars['String']>;
+  readonly published: Maybe<Scalars['Date']>;
+  readonly sampleSize: Maybe<Scalars['Int']>;
+  readonly statisticalSignificance: Maybe<Scalars['Boolean']>;
+  readonly title: Maybe<Scalars['String']>;
+};
+
+
+type scienceStudies_publishedArgs = {
+  difference: InputMaybe<Scalars['String']>;
+  formatString: InputMaybe<Scalars['String']>;
+  fromNow: InputMaybe<Scalars['Boolean']>;
+  locale: InputMaybe<Scalars['String']>;
+};
+
+type scienceStudiesFieldSelector = {
+  readonly authors: InputMaybe<FieldSelectorEnum>;
+  readonly conclusion: InputMaybe<FieldSelectorEnum>;
+  readonly conclusionShort: InputMaybe<FieldSelectorEnum>;
+  readonly hypothesisOrGoal: InputMaybe<FieldSelectorEnum>;
+  readonly id: InputMaybe<FieldSelectorEnum>;
+  readonly interventalStudyType: InputMaybe<FieldSelectorEnum>;
+  readonly journal: InputMaybe<FieldSelectorEnum>;
+  readonly link: InputMaybe<FieldSelectorEnum>;
+  readonly published: InputMaybe<FieldSelectorEnum>;
+  readonly sampleSize: InputMaybe<FieldSelectorEnum>;
+  readonly statisticalSignificance: InputMaybe<FieldSelectorEnum>;
+  readonly title: InputMaybe<FieldSelectorEnum>;
+};
+
+type scienceStudiesFilterInput = {
+  readonly authors: InputMaybe<StringQueryOperatorInput>;
+  readonly conclusion: InputMaybe<StringQueryOperatorInput>;
+  readonly conclusionShort: InputMaybe<StringQueryOperatorInput>;
+  readonly hypothesisOrGoal: InputMaybe<StringQueryOperatorInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly interventalStudyType: InputMaybe<StringQueryOperatorInput>;
+  readonly journal: InputMaybe<StringQueryOperatorInput>;
+  readonly link: InputMaybe<StringQueryOperatorInput>;
+  readonly published: InputMaybe<DateQueryOperatorInput>;
+  readonly sampleSize: InputMaybe<IntQueryOperatorInput>;
+  readonly statisticalSignificance: InputMaybe<BooleanQueryOperatorInput>;
+  readonly title: InputMaybe<StringQueryOperatorInput>;
+};
+
+type scienceStudiesFilterListInput = {
+  readonly elemMatch: InputMaybe<scienceStudiesFilterInput>;
+};
+
+type scienceStudiesSortInput = {
+  readonly authors: InputMaybe<SortOrderEnum>;
+  readonly conclusion: InputMaybe<SortOrderEnum>;
+  readonly conclusionShort: InputMaybe<SortOrderEnum>;
+  readonly hypothesisOrGoal: InputMaybe<SortOrderEnum>;
+  readonly id: InputMaybe<SortOrderEnum>;
+  readonly interventalStudyType: InputMaybe<SortOrderEnum>;
+  readonly journal: InputMaybe<SortOrderEnum>;
+  readonly link: InputMaybe<SortOrderEnum>;
+  readonly published: InputMaybe<SortOrderEnum>;
+  readonly sampleSize: InputMaybe<SortOrderEnum>;
+  readonly statisticalSignificance: InputMaybe<SortOrderEnum>;
+  readonly title: InputMaybe<SortOrderEnum>;
 };
 
 

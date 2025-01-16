@@ -3,20 +3,18 @@
     {
       "start": "2025-01-12T13:45:00.000Z",
       "end": "2025-01-12T17:00:00.000Z",
-      "location": "zueghusplatz",
-      "city": "aarau",
       "status": "confirmed",
       "swisstransferLink": "https://www.swisstransfer.com/d/da0d0267-713b-4764-b440-d973595b84f6",
-      "swissTransferLinkEnd": "2025-01-18T16:06:00.000Z"
+      "swissTransferLinkEnd": "2025-01-18T16:06:00.000Z",
+      "locationId": "location-dXVG31fHYQ"
     },
     {
       "start": "2025-02-13T13:45:00.000Z",
       "end": "2025-02-13T17:00:00.000Z",
-      "location": "bellevue",
-      "city": "zuerich",
       "status": "confirmed",
       "swisstransferLink": "",
-      "swissTransferLinkEnd": ""
+      "swissTransferLinkEnd": "",
+      "locationId": "location-vROzJ3_54f"
     }
   ]
 }

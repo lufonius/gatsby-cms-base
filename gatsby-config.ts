@@ -14,7 +14,13 @@ const config: GatsbyConfig = {
         modulePath: `${__dirname}/src/cms/cms.js`, // Path to your CMS customization file
       },
     },
-    `gatsby-transformer-json`,
+    {
+      resolve: `gatsby-transformer-json`,
+      options: {
+        // for each file a graphQl node is created
+        typeName: ({ node, object, isArray }) => node.name
+      }
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
