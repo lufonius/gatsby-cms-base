@@ -1,9 +1,10 @@
 import { useState } from "react";
 import * as React from "react";
 import { PageProps, useStaticQuery, graphql } from "gatsby"
-import CustomSelect from '../components/custom-select';
+import Select from '../components/select';
 import { Dialog, DialogPanel, DialogTitle, Description, DialogBackdrop, Field, Label, Switch } from '@headlessui/react';
 import { motion, AnimatePresence } from "framer-motion";
+import CubeEvent from '../components/event';
 
 const IndexPage = ({ path }: PageProps) => {
     const data = useStaticQuery(graphql`
@@ -18,7 +19,7 @@ const IndexPage = ({ path }: PageProps) => {
                         start
                         status
                         swisstransferLink
-                        swissTransferLinkEnd(fromNow: true, locale: "de")
+                        swissTransferLinkEnd
                     }
                 }
             }
@@ -50,8 +51,8 @@ const IndexPage = ({ path }: PageProps) => {
 
   return (
     <main>
-        <h1 className="font-heading text-4xl">AARS Kalender</h1>
-      <CustomSelect 
+        <h1 className="font-heading text-6xl">AARS Kalender</h1>
+      <Select 
         items={[{label: "Zürich", value: "zuerich"}, {label: "Aarau", value: "aar"}]}
         name="city"
         label="Stadt"
@@ -80,14 +81,15 @@ const IndexPage = ({ path }: PageProps) => {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
             layout
-            className="overflow-hidden"
+            
           >
-            <div className="cursor-pointer transform transition duration-100 opacity-100 hover:scale-101 hover:bg-gray-800 p-4">
-                <p>{cube.city}</p>
-                <p>{cube.start}</p>
-                <p>{cube.end}</p>
-                <input type="text"></input>
-            </div>
+
+            <CubeEvent
+                city="Zürich"
+                swissTransferLink={cube.swisstransferLink}
+                swissTransferLinkValidUntil={cube.swissTransferLinkEnd}
+            ></CubeEvent>
+
           </motion.li>
         ))}
     </AnimatePresence>
