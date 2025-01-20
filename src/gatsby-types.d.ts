@@ -2136,8 +2136,8 @@ type cubesCubesList = {
   readonly locationId: Maybe<Scalars['String']>;
   readonly start: Maybe<Scalars['Date']>;
   readonly status: Maybe<Scalars['String']>;
+  readonly swissTransferLink: Maybe<Scalars['String']>;
   readonly swissTransferLinkEnd: Maybe<Scalars['Date']>;
-  readonly swisstransferLink: Maybe<Scalars['String']>;
 };
 
 
@@ -2169,8 +2169,8 @@ type cubesCubesListFieldSelector = {
   readonly locationId: InputMaybe<FieldSelectorEnum>;
   readonly start: InputMaybe<FieldSelectorEnum>;
   readonly status: InputMaybe<FieldSelectorEnum>;
+  readonly swissTransferLink: InputMaybe<FieldSelectorEnum>;
   readonly swissTransferLinkEnd: InputMaybe<FieldSelectorEnum>;
-  readonly swisstransferLink: InputMaybe<FieldSelectorEnum>;
 };
 
 type cubesCubesListFilterInput = {
@@ -2178,8 +2178,8 @@ type cubesCubesListFilterInput = {
   readonly locationId: InputMaybe<StringQueryOperatorInput>;
   readonly start: InputMaybe<DateQueryOperatorInput>;
   readonly status: InputMaybe<StringQueryOperatorInput>;
+  readonly swissTransferLink: InputMaybe<StringQueryOperatorInput>;
   readonly swissTransferLinkEnd: InputMaybe<DateQueryOperatorInput>;
-  readonly swisstransferLink: InputMaybe<StringQueryOperatorInput>;
 };
 
 type cubesCubesListFilterListInput = {
@@ -2191,8 +2191,8 @@ type cubesCubesListSortInput = {
   readonly locationId: InputMaybe<SortOrderEnum>;
   readonly start: InputMaybe<SortOrderEnum>;
   readonly status: InputMaybe<SortOrderEnum>;
+  readonly swissTransferLink: InputMaybe<SortOrderEnum>;
   readonly swissTransferLinkEnd: InputMaybe<SortOrderEnum>;
-  readonly swisstransferLink: InputMaybe<SortOrderEnum>;
 };
 
 type cubesEdge = {
@@ -2531,21 +2531,21 @@ type locationsGroupConnection_sumArgs = {
 };
 
 type locationsLocationsList = {
-  readonly cityRelation: Maybe<Scalars['String']>;
+  readonly cityId: Maybe<Scalars['String']>;
   readonly googleMapsLink: Maybe<Scalars['String']>;
   readonly id: Maybe<Scalars['String']>;
   readonly name: Maybe<Scalars['String']>;
 };
 
 type locationsLocationsListFieldSelector = {
-  readonly cityRelation: InputMaybe<FieldSelectorEnum>;
+  readonly cityId: InputMaybe<FieldSelectorEnum>;
   readonly googleMapsLink: InputMaybe<FieldSelectorEnum>;
   readonly id: InputMaybe<FieldSelectorEnum>;
   readonly name: InputMaybe<FieldSelectorEnum>;
 };
 
 type locationsLocationsListFilterInput = {
-  readonly cityRelation: InputMaybe<StringQueryOperatorInput>;
+  readonly cityId: InputMaybe<StringQueryOperatorInput>;
   readonly googleMapsLink: InputMaybe<StringQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
   readonly name: InputMaybe<StringQueryOperatorInput>;
@@ -2556,7 +2556,7 @@ type locationsLocationsListFilterListInput = {
 };
 
 type locationsLocationsListSortInput = {
-  readonly cityRelation: InputMaybe<SortOrderEnum>;
+  readonly cityId: InputMaybe<SortOrderEnum>;
   readonly googleMapsLink: InputMaybe<SortOrderEnum>;
   readonly id: InputMaybe<SortOrderEnum>;
   readonly name: InputMaybe<SortOrderEnum>;

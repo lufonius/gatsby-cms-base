@@ -2,9 +2,14 @@ import { useState } from "react";
 import * as React from "react";
 import { PageProps, useStaticQuery, graphql } from "gatsby"
 import Select from '../components/select';
-import { Dialog, DialogPanel, DialogTitle, Description, DialogBackdrop, Field, Label, Switch } from '@headlessui/react';
+import { Field, Label, Switch } from '@headlessui/react';
 import { motion, AnimatePresence } from "framer-motion";
 import CubeEvent from '../components/event';
+import { CubeDto } from "../model/cube.dto";
+import { CityDto } from "../model/city.dto";
+import { LocationDto } from "../model/location.dto";
+import { ModelMapper } from "../model/model.mapper";
+import { Cube } from "../model/cube";
 
 const IndexPage = ({ path }: PageProps) => {
     const data = useStaticQuery(graphql`
@@ -25,14 +30,14 @@ const IndexPage = ({ path }: PageProps) => {
                         start
                         status
                         swissTransferLinkEnd
-                        swisstransferLink
+                        swissTransferLink
                     }
                 }
             }
             allLocations {
                 nodes {
                     locationsList {
-                        cityRelation
+                        cityId
                         googleMapsLink
                         id
                         name
@@ -42,16 +47,19 @@ const IndexPage = ({ path }: PageProps) => {
         }
     `);
 
-    const allCubes = data.allCubes.nodes[0].cubesList;
-    const allCities = data.allCities.nodes[0].citiesList;
+    const allCubes = data.allCubes.nodes[0].cubesList as CubeDto[];
+    const allCities = data.allCities.nodes[0].citiesList as CityDto[];
     const allCitiesMapped = allCities.map((city: any) => ({ label: city.name, value: city.id }));
-    const allLocations = data.allLocations.nodes[0].locationsList;
+    const allLocations = data.allLocations.nodes[0].locationsList as LocationDto[];
+
+    const mapper = new ModelMapper();
+    const cubes = mapper.mapFromData(allCubes, allCities, allLocations);
 
     const [selectedFilter, setSelectedFilter] = useState('All');
     const [enabled, setEnabled] = useState(false);
   
     // State for filtered items
-    const [filteredItems, setFilteredItems] = useState(allCubes);
+    const [filteredItems, setFilteredItems] = useState(cubes);
   
     // Handle filter change
     const handleFilterChange = (event: any) => {
@@ -60,23 +68,13 @@ const IndexPage = ({ path }: PageProps) => {
   
       // Filter the list based on the selected option
       if (filter === 'All') {
-        setFilteredItems(allCubes);
+        setFilteredItems(cubes);
       } else {
-        setFilteredItems(allCubes.filter((item: any) => item.cityRelation.includes(filter)));
+        setFilteredItems(cubes.filter((item: Cube) => item.location.city.id === filter));
       }
     };
 
     let [isOpen, setIsOpen] = useState(false);
-
-    const findLocation = (locationId: string) => {
-        return allLocations.find((location: any) => location.id === locationId);
-    };
-
-    const findCity = (locationId: string) => {
-        const location = findLocation(locationId);
-        const city = allCities.find((city: any) => city.id === location.cityRelation);
-        return city;
-    }
 
   return (
     <main>
@@ -102,45 +100,19 @@ const IndexPage = ({ path }: PageProps) => {
       <br />
 
     <AnimatePresence>
-        {filteredItems.map((cube: any) => (
+        {filteredItems.map((cube: Cube) => (
             <motion.li
-                key={cube.id}
+                key={cube.location.name + cube.start}
                 initial={{ opacity: 0, height: 0}}
                 animate={{ opacity: 1, height: "auto"}}
                 exit={{ opacity: 0, height: 0 }}
                 transition={{ duration: 0.2 }}
                 layout
           >
-            {cube.locationId}
-            <CubeEvent
-                //city={findCity(cube.locationId).name}
-                swissTransferLink={cube.swisstransferLink}
-                swissTransferLinkValidUntil={cube.swissTransferLinkEnd}
-            ></CubeEvent>
-
+            <CubeEvent cube={cube} />
           </motion.li>
         ))}
     </AnimatePresence>
-
-    <button onClick={() => setIsOpen(true)} className="bg-gray-50 rounded p-2 mt-10">Open dialog</button>
-    <Dialog open={isOpen} onClose={() => setIsOpen(false)}
-        transition
-        className="relative z-50 transition duration-300 ease-out">
-    <DialogBackdrop className="fixed inset-0 bg-black/30 backdrop-blur-sm backdrop-brightness-50" />
-
-    <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
-        <DialogPanel className="max-w-lg space-y-4 bg-gray-800 p-12 rounded">
-        <DialogTitle className="font-bold">Deactivate account</DialogTitle>
-        <Description>This will permanently deactivate your account</Description>
-        <p>Are you sure you want to deactivate your account? All of your data will be permanently removed.</p>
-        <div className="flex gap-4">
-            <button onClick={() => setIsOpen(false)} className="bg-gray-50 rounded p-2">Cancel</button>
-            <button onClick={() => setIsOpen(false)} className="bg-red-800 text-gray-50 rounded p-2">Deactivate</button>
-        </div>
-        </DialogPanel>
-    </div>
-    </Dialog>
-
     </main>
   )
 }

@@ -54,7 +54,7 @@ collections:
                   - { label: "In Planung", value: "in-planning" }
                   - { label: "Cancelled", value: "cancelled" }
               - label: "Swisstransfer Link"
-                name: swisstransferLink
+                name: swissTransferLink
                 widget: string
                 required: false
               - {label: "Swisstransfer Link läuft ab am", name: swissTransferLinkEnd, widget: datetime, required: false}
@@ -82,7 +82,7 @@ collections:
               - {label: Id, name: id, widget: uuid, prefix: location}
               - {label: "Google Maps Link", name: googleMapsLink, widget: string}
               - label: Stadt
-                name: cityRelation
+                name: cityId
                 widget: relation
                 collection: events
                 file: cities

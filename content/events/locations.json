@@ -3,25 +3,20 @@
     {
       "id": "location-gGSreWN5vd",
       "name": "Bellevue",
-      "cityRelation": "city-tDzO5fDGiN",
+      "cityId": "city-tDzO5fDGiN",
       "googleMapsLink": "https://maps.app.goo.gl/5ScmWtzyHMCZkdXN8"
     },
     {
       "id": "location-dXVG31fHYQ",
       "name": "Züghusplatz",
-      "cityRelation": "city-tDzO5fDGiN",
+      "cityId": "city-tDzO5fDGiN",
       "googleMapsLink": "https://maps.app.goo.gl/W9KZhHAPymBhCQvx9"
     },
     {
       "id": "location-vROzJ3_54f",
       "name": "Igelweid",
       "googleMapsLink": "https://maps.app.goo.gl/BcUb21iXsZisyWkH7",
-      "cityRelation": "city-H-mRnpgGXq"
-    },
-    {
-      "id": "location-1zGD-PmWqh",
-      "name": "dsadas",
-      "cityRelation": "city-tDzO5fDGiN"
+      "cityId": "city-H-mRnpgGXq"
     }
   ]
 }

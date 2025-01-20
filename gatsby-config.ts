@@ -18,7 +18,7 @@ const config: GatsbyConfig = {
       resolve: `gatsby-transformer-json`,
       options: {
         // for each file a graphQl node is created
-        typeName: ({ node, object, isArray }) => node.name
+        typeName: ({ node }) => node.name
       }
     },
     {

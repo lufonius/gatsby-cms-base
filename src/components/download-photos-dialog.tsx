@@ -2,19 +2,13 @@ import * as React from "react";
 import { Dialog, DialogPanel, DialogTitle, Description, DialogBackdrop } from '@headlessui/react';
 import dayjs from 'dayjs';
 import LinkButton from "./link-button";
+import { Cube } from "../model/cube";
 
 const DownloadPhotosDialog: React.FC<{
   isOpen: boolean,
   onClosed: () => void,
-  swissTransferLink: string,
-  swissTransferLinkValidUntil: Date
-}> = ({ isOpen, swissTransferLink, swissTransferLinkValidUntil, onClosed }) => {
-
-  const daysUntilLinkExpires = () => {
-    const now = dayjs();
-    const expiryDate = dayjs(swissTransferLinkValidUntil);
-    return expiryDate.diff(now, 'day');
-  };
+  cube: Cube
+}> = ({ isOpen, cube, onClosed }) => {
 
   return (
     <Dialog open={isOpen} onClose={() => onClosed()}
@@ -30,8 +24,8 @@ const DownloadPhotosDialog: React.FC<{
                 <p>Die Fotos speichern wir bei einem Schweizer Anbieter (Infomaniak / Swisstransfer)</p>
             </Description>
             <div className="flex gap-4 items-center mt-4">
-              <LinkButton className="mr-2" href={swissTransferLink} onClick={() => onClosed()} type='full'>Herunterladen</LinkButton>
-              <p className="text-red-500"><b>Link läuft in {daysUntilLinkExpires()} Tage(n) ab!</b></p>
+              {!!cube.swissTransferLink && <LinkButton className="mr-2" href={cube.swissTransferLink} onClick={() => onClosed()} type='full'>Herunterladen</LinkButton>}
+              <p className="text-red-500"><b>Link läuft in {cube.getDaysUntilSwissTransferLinkExpired()} Tage(n) ab!</b></p>
             </div>
             </DialogPanel>
         </div>

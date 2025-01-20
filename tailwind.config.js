@@ -17,7 +17,9 @@ module.exports = {
         white: colors.white,
         gray: colors.neutral,
         red: colors.red,
-        green: colors.green
+        green: colors.green,
+        blue: colors.blue,
+        orange: colors.orange
     },
     extend: {
       borderRadius: {
