@@ -1,6 +1,6 @@
 import * as React from "react";
 import {useState} from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { twMerge } from "tailwind-merge";
 import FeatherIcon from "feather-icons-react";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
@@ -14,30 +14,48 @@ const Navbar: React.FC<{
     <div className="flex flex-row items-start overflow-auto h-screen">
         <header className="flex flex-row items-center sticky self-start top-0 mr-6 pr-3">
             <nav>
-                <ol className="hidden md:flex md:flex-col">
+                <motion.ol className="hidden md:flex md:flex-col">
                     <li className="mb-6">
                         <div>
                             <img className="h-16" src="/logo.png" />
                         </div>
                     </li>
-                    <NavItem isSelected={selectedNavItem === "home"}>Home</NavItem>
-                    <NavItemDropDown
-                        isSelected={selectedNavItem === "vegan-leben"}
-                        selectedSubItem={selectedSubItem ?? ""}
-                        subItems={[
-                            {displayText: "Warum vegan leben?", value: "vegan-warum", href: "/warum-vegan"},
-                            {displayText: "Wie vegan leben?", value: "vegan-wie", href: "/wie-vegan"}
-                        ]}
-                    >
-                        Vegan leben
-                    </NavItemDropDown>
-                    <NavItem isSelected={selectedNavItem === "aktiv-werden"}>Aktiv werden</NavItem>
-                    <NavItem isSelected={selectedNavItem === "wissen"}>Wissen</NavItem>
-                    <NavItem isSelected={selectedNavItem === "wissen"}>Galerie</NavItem>
-                    <NavItem isSelected={selectedNavItem === "team"}>Über uns</NavItem>
-                    <NavItem isSelected={selectedNavItem === "team"}>Team</NavItem>
-                    <NavItem isSelected={selectedNavItem === "kontakt"}>Kontakt</NavItem>
-                </ol>
+                    <AnimatePresence>
+                        <NavItem isSelected={selectedNavItem === "home"} display="Home"/>
+                        <NavItem isSelected={selectedNavItem === "aktiv-werden"} display="Eventkalender" />
+                        <NavItemDropDown
+                            display="Aktivist:in werden"
+                            isSelected={selectedNavItem === "aktivistin-werden"}
+                            selectedSubItem={selectedSubItem ?? ""}
+                            subItems={[
+                                {displayText: "Getting started", value: "getting-started", href: "/getting-started"},
+                                {displayText: "Cube guide", value: "cube-guide", href: "/cube-guide"},
+                                {displayText: "Wie macht man Outreach?", value: "cube-guide", href: "/cube-guide"},
+                            ]}
+                        />
+                        <NavItemDropDown
+                            display="Vegan leben"
+                            isSelected={selectedNavItem === "vegan-leben"}
+                            selectedSubItem={selectedSubItem ?? ""}
+                            subItems={[
+                                {displayText: "Warum umsteigen?", value: "vegan-warum", href: "/warum-vegan"},
+                                {displayText: "Wo beginne ich?", value: "vegan-wie", href: "/wie-vegan"}
+                            ]}
+                        />
+                        <NavItem isSelected={selectedNavItem === "wissen"} display="Wissen" />
+                        <NavItem isSelected={selectedNavItem === "galerie"} display="Galerie" />
+                        <NavItemDropDown
+                            display="Über uns"
+                            isSelected={selectedNavItem === "ueber-uns"}
+                            selectedSubItem={selectedSubItem ?? ""}
+                            subItems={[
+                                {displayText: "Unsere Werte", value: "our-values", href: "/our-values"},
+                                {displayText: "Wir, das Team", value: "team", href: "/team"}
+                            ]}
+                        />
+                        <NavItem isSelected={selectedNavItem === "contact"} display="Kontakt" />
+                    </AnimatePresence>
+                </motion.ol>
                 <div className="block md:hidden text-gray-50">
                     <FeatherIcon icon="menu" size={36}></FeatherIcon>
                 </div>
@@ -50,54 +68,73 @@ const Navbar: React.FC<{
 
 const asSelected = (isSelected: boolean) => {    
     return (classes: string) => {
-        if (isSelected) return twMerge("bg-gray-50 text-gray-950", classes);
+        if (isSelected) return twMerge(classes, "bg-gray-50 text-gray-950");
         return classes;
     };
 };
 
-const NavItem: React.FC<{children: any, isSelected: boolean}> = ({ children, isSelected }) => {
-    return (<li className={asSelected(isSelected)("rounded bg-gray-900 hover:border-2 hover:border-gray-900 text-gray-50 px-4 hover:bg-gray-50 border-bottom-2 border-gray-900 hover:text-gray-900 py-4 cursor-pointer mt-1")}>{children}</li>);
+const NavItem: React.FC<{display: string, isSelected: boolean, visible?: boolean, indented?: boolean}> = ({ display, isSelected, indented }) => {
+    const isIndented = (isIndented: boolean) => {    
+        return (classes: string) => {
+            if (isIndented) return twMerge(classes, "pl-6");
+            return classes;
+        };
+    };
+
+    const className = "rounded min-w-52 overflow-hidden bg-gray-900 text-gray-50 px-4 hover:bg-gray-50 border-gray-900 hover:text-gray-900 py-4 cursor-pointer mt-1";
+
+    return (<motion.li
+        className={isIndented(indented ?? false)(asSelected(isSelected)(className))}
+        key={display}
+        initial={{ height: 0, paddingTop: 0}}
+        animate={{ height: "3.5rem", paddingTop: "1rem"}}
+        exit={{ height: 0, paddingTop: 0}}
+        transition={{ duration: 0.125 }}
+        
+    >{display}</motion.li>);
 };
 
 const NavItemDropDown: React.FC<{
-    children: any,
+    display: string,
     subItems: {displayText: string, value: string, href: string}[],
     isSelected: boolean,
     selectedSubItem: string
-}> = ({ children, subItems, isSelected, selectedSubItem }) => {
+}> = ({ display, subItems, isSelected, selectedSubItem }) => {
+    let [isOpen, setIsOpen] = useState(isSelected);
 
-    const withRounded = (array: any[], index: number) => {
-        return (classes: string) => {
-            if (index === 0) return twMerge("rounded-t", classes);
-            else if (index === array.length - 1) return twMerge("rounded-b", classes);
-            else return classes;
-        };
-    }
+    return (<>
+        <DropDownItem onToggle={(showItems) => setIsOpen(showItems)} isSelected={isSelected || isOpen}>{display}</DropDownItem>
+        <AnimatePresence propagate>
+            {isOpen && subItems.map(item => <NavItem display={item.displayText} indented={true} isSelected={selectedSubItem === item.value} />)}
+        </AnimatePresence>
+    </>);
+};
 
-    const withBorder = (array: any[], index: number) => {
-        return (classes: string) => {
-            if (index === array.length - 1) return twMerge("border-b-2 border-t-2 border-l-2 border-r-2", classes);
-            else return twMerge("border-t-2 border-l-2 border-r-2", classes);
-        };
-    }
+const DropDownItem: React.FC<{
+    children: any,
+    isSelected: boolean,
+    onToggle: (isOpen: boolean) => void
+}> = ({ children, isSelected, onToggle }) => {
+    let [isOpen, setIsOpen] = useState(false);
 
-    const menuButtonClasses = "rounded w-full bg-gray-900 hover:border-2 hover:border-gray-900 text-gray-50 px-4 hover:bg-gray-50 hover:text-gray-900 py-4 cursor-pointer mt-1";
-    const menuItemClasses = "block bg-gray-900 border-gray-50 text-gray-50 px-4 hover:bg-gray-50 border-bottom-2 border-gray-50 hover:text-gray-900 py-4 cursor-pointer ml-1";
+    const onClick = () => {
+        let toggledIsOpen = !isOpen;
+        setIsOpen(toggledIsOpen );
+        onToggle(toggledIsOpen);
+    };
 
-    return (
-        <li>
-            <Menu>
-                <MenuButton className={asSelected(isSelected)(menuButtonClasses)}>{children}</MenuButton>
-                <MenuItems anchor="right" >
-                    {subItems.map((item, i) => (
-                        <MenuItem>
-                            <a className={withBorder(subItems, i)(asSelected(item.value === selectedSubItem)(withRounded(subItems, i)(menuItemClasses)))} href={item.href}>{item.displayText}</a>
-                        </MenuItem>
-                    ))}
-                </MenuItems>
-            </Menu>     
-        </li>
-    );
+    return (<motion.li
+            onClick={onClick}
+            className={asSelected(isSelected)("rounded bg-gray-900 text-gray-50 px-4 hover:bg-gray-50 border-bottom-2 border-gray-900 hover:text-gray-900 py-4 cursor-pointer mt-1")}
+            key={children}
+            initial={{ height: 0, paddingTop: 0}}
+            animate={{ height: "3.5rem", paddingTop: "1rem"}}
+            exit={{ height: 0, paddingTop: 0}}
+            transition={{ duration: 0.125 }}
+            
+        >
+            {children}
+        </motion.li>);
 };
 
 export default Navbar;

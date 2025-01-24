@@ -78,7 +78,7 @@ const IndexPage = ({ path }: PageProps) => {
     let [isOpen, setIsOpen] = useState(false);
 
   return (
-    <Navbar selectedNavItem="vegan-leben">
+    <Navbar selectedNavItem="vegan-leben" selectedSubItem="vegan-wie">
         <h1 className="font-heading text-6xl mb-4">Kalender</h1>
         <Select 
             items={allCitiesMapped}
