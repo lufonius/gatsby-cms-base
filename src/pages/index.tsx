@@ -10,6 +10,7 @@ import { CityDto } from "../model/city.dto";
 import { LocationDto } from "../model/location.dto";
 import { ModelMapper } from "../model/model.mapper";
 import { Cube } from "../model/cube";
+import Navbar from "../components/navbar";
 
 const IndexPage = ({ path }: PageProps) => {
     const data = useStaticQuery(graphql`
@@ -77,43 +78,43 @@ const IndexPage = ({ path }: PageProps) => {
     let [isOpen, setIsOpen] = useState(false);
 
   return (
-    <main>
-        <h1 className="font-heading text-6xl">AARS Kalender</h1>
-      <Select 
-        items={allCitiesMapped}
-        name="city"
-        label="Stadt"
-        onChange={handleFilterChange}
-    /> 
+    <Navbar selectedNavItem="vegan-leben">
+        <h1 className="font-heading text-6xl mb-4">Kalender</h1>
+        <Select 
+            items={allCitiesMapped}
+            name="city"
+            label="Stadt"
+            onChange={handleFilterChange}
+        /> 
 
-    <Field className="mt-5">
-      <Label className="block">Nur bestätigte Cubes anzeigen</Label>
-      <Switch
-        checked={enabled}
-        onChange={setEnabled}
-        className="group inline-flex h-6 w-11 items-center rounded-full bg-gray-200 transition data-[checked]:bg-green-600"
-      >
-        <span className="size-4 translate-x-1 rounded-full bg-white transition group-data-[checked]:translate-x-6" />
-      </Switch>
-    </Field>
+        <Field className="mt-5">
+        <Label className="block">Nur bestätigte Cubes anzeigen</Label>
+        <Switch
+            checked={enabled}
+            onChange={setEnabled}
+            className="group inline-flex h-6 w-11 items-center rounded-full bg-gray-200 transition data-[checked]:bg-green-600"
+        >
+            <span className="size-4 translate-x-1 rounded-full bg-white transition group-data-[checked]:translate-x-6" />
+        </Switch>
+        </Field>
 
-      <br />
+        <br />
 
-    <AnimatePresence>
-        {filteredItems.map((cube: Cube) => (
-            <motion.li
-                key={cube.location.name + cube.start}
-                initial={{ opacity: 0, height: 0}}
-                animate={{ opacity: 1, height: "auto"}}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.2 }}
-                layout
-          >
-            <CubeEvent cube={cube} />
-          </motion.li>
-        ))}
-    </AnimatePresence>
-    </main>
+        <AnimatePresence>
+            {filteredItems.map((cube: Cube) => (
+                <motion.li
+                    key={cube.location.name + cube.start}
+                    initial={{ opacity: 0, height: 0}}
+                    animate={{ opacity: 1, height: "auto"}}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.2 }}
+                    layout
+            >
+                <CubeEvent cube={cube} />
+            </motion.li>
+            ))}
+        </AnimatePresence>
+    </Navbar>
   )
 }
 
