@@ -35,15 +35,7 @@ const Navbar: React.FC<{
                                     {displayText: "Wie macht man Outreach?", value: "cube-guide", href: "/cube-guide"},
                                 ]}
                             />
-                            <NavItemDropDown
-                                display="Vegan leben"
-                                isSelected={selectedNavItem === "vegan-leben"}
-                                selectedSubItem={selectedSubItem ?? ""}
-                                subItems={[
-                                    {displayText: "Warum umsteigen?", value: "vegan-warum", href: "/warum-vegan"},
-                                    {displayText: "Wo beginne ich?", value: "vegan-wie", href: "/wie-vegan"}
-                                ]}
-                            />
+                            <NavItem isSelected={selectedNavItem === "vegan-leben"} display="Vegan leben" />
                             <NavItem isSelected={selectedNavItem === "wissen"} display="Wissen" />
                             <NavItem isSelected={selectedNavItem === "galerie"} display="Galerie" />
                             <NavItemDropDown
