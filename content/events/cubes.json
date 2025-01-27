@@ -6,7 +6,8 @@
       "status": "in-planning",
       "swissTransferLink": "https://www.swisstransfer.com/d/da0d0267-713b-4764-b440-d973595b84f6",
       "swissTransferLinkEnd": "2025-02-25T16:06:00.000Z",
-      "locationId": "location-dXVG31fHYQ"
+      "locationId": "location-dXVG31fHYQ",
+      "id": "cube-1MSog5pbb"
     },
     {
       "start": "2025-02-13T13:45:00.000Z",
@@ -14,13 +15,15 @@
       "status": "cancelled",
       "swissTransferLink": "",
       "swissTransferLinkEnd": "",
-      "locationId": "location-vROzJ3_54f"
+      "locationId": "location-vROzJ3_54f",
+      "id": "cube-ZBY0YPoIG"
     },
     {
       "start": "2025-03-22T13:45:00.000Z",
       "end": "2025-03-22T17:00:00.000Z",
       "locationId": "location-dXVG31fHYQ",
-      "status": "confirmed"
+      "status": "confirmed",
+      "id": "cube-m_5GCz3Ih"
     }
   ]
 }

@@ -36,6 +36,7 @@ collections:
             summary: "{{fields.locationId}}: {{fields.start | date('DD.MM.YYYY HH:mm')}} - {{fields.end | date('HH:mm')}}"
             widget: list
             fields:
+              - {label: Id, name: id, widget: uuid, prefix: cube}
               - {label: Start, name: start, widget: datetime}
               - {label: End, name: end, widget: datetime}
               - label: Ort

@@ -24,7 +24,7 @@ const Navbar: React.FC<{
                         </li>
                         <AnimatePresence>
                             <NavItem isSelected={selectedNavItem === "home"} display="Home"/>
-                            <NavItem isSelected={selectedNavItem === "aktiv-werden"} display="Eventkalender" />
+                            <NavItem isSelected={selectedNavItem === "kalender"} display="Eventkalender" />
                             <NavItemDropDown
                                 display="Aktivist:in werden"
                                 isSelected={selectedNavItem === "aktivistin-werden"}

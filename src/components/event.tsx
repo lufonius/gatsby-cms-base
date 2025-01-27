@@ -8,6 +8,7 @@ import DownloadPhotosDialog from "./download-photos-dialog";
 import Button from "./button";
 import { Cube } from "../model/cube";
 import Badge from "./badge";
+import LinkButton from "./link-button";
 
 const CubeEvent: React.FC<{
   cube: Cube
@@ -63,7 +64,7 @@ const CubeEvent: React.FC<{
                 {cube.hasActiveSwissTransferlink() &&
                     <Button className="mr-2" onClick={() => setIsOpen(true)} type="skinny">Fotos herunterladen</Button>
                 }
-                <Button type="full">Mehr Infos</Button>
+                <LinkButton type="full" href={"/events/" + cube.id} target="_self">Mehr Infos</LinkButton>
             </div>
         </div>
 

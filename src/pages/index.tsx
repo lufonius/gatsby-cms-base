@@ -26,6 +26,7 @@ const IndexPage = ({ path }: PageProps) => {
             allCubes {
                 nodes {
                     cubesList {
+                        id
                         end
                         locationId
                         start
@@ -78,7 +79,7 @@ const IndexPage = ({ path }: PageProps) => {
     let [isOpen, setIsOpen] = useState(false);
 
   return (
-    <Navbar selectedNavItem="vegan-leben" selectedSubItem="vegan-wie">
+    <Navbar selectedNavItem="kalender">
         <h1 className="font-heading text-6xl mt-6">Eventkalender</h1>
         <div className="hidden">
         <Select 

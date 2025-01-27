@@ -2133,6 +2133,7 @@ type cubesConnection_sumArgs = {
 
 type cubesCubesList = {
   readonly end: Maybe<Scalars['Date']>;
+  readonly id: Maybe<Scalars['String']>;
   readonly locationId: Maybe<Scalars['String']>;
   readonly start: Maybe<Scalars['Date']>;
   readonly status: Maybe<Scalars['String']>;
@@ -2166,6 +2167,7 @@ type cubesCubesList_swissTransferLinkEndArgs = {
 
 type cubesCubesListFieldSelector = {
   readonly end: InputMaybe<FieldSelectorEnum>;
+  readonly id: InputMaybe<FieldSelectorEnum>;
   readonly locationId: InputMaybe<FieldSelectorEnum>;
   readonly start: InputMaybe<FieldSelectorEnum>;
   readonly status: InputMaybe<FieldSelectorEnum>;
@@ -2175,6 +2177,7 @@ type cubesCubesListFieldSelector = {
 
 type cubesCubesListFilterInput = {
   readonly end: InputMaybe<DateQueryOperatorInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
   readonly locationId: InputMaybe<StringQueryOperatorInput>;
   readonly start: InputMaybe<DateQueryOperatorInput>;
   readonly status: InputMaybe<StringQueryOperatorInput>;
@@ -2188,6 +2191,7 @@ type cubesCubesListFilterListInput = {
 
 type cubesCubesListSortInput = {
   readonly end: InputMaybe<SortOrderEnum>;
+  readonly id: InputMaybe<SortOrderEnum>;
   readonly locationId: InputMaybe<SortOrderEnum>;
   readonly start: InputMaybe<SortOrderEnum>;
   readonly status: InputMaybe<SortOrderEnum>;
@@ -2763,6 +2767,11 @@ type scienceStudiesSortInput = {
   readonly statisticalSignificance: InputMaybe<SortOrderEnum>;
   readonly title: InputMaybe<SortOrderEnum>;
 };
+
+type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type Unnamed_1_Query = { readonly allCubes: { readonly nodes: ReadonlyArray<{ readonly cubesList: ReadonlyArray<{ readonly id: string | null, readonly end: string | null, readonly locationId: string | null, readonly start: string | null, readonly status: string | null, readonly swissTransferLinkEnd: string | null, readonly swissTransferLink: string | null } | null> | null }> } };
 
 
 }
