@@ -15,7 +15,7 @@ const Navbar: React.FC<{
     <div className="flex flex-col md:flex-row items-start overflow-auto h-screen">
         <header className="flex flex-row items-start sticky h-screen self-start top-0 z-10">
             <div>
-                <nav aria-label="desktop-navigation" className="p-4">
+                <nav aria-label="desktop-navigation" className="p-4 hidden md:block">
                     <motion.ol className="hidden md:flex md:flex-col">
                         <li className="mb-6">
                             <div className="flex justify-center mt-4">
