@@ -24,7 +24,7 @@ const CubeEvent: React.FC<{
   }
 
   return (
-    <div className="flex flex-col p-4 cursor-pointer transform transition duration-100 opacity-100 hover:bg-gray-800 mt-6 max-w-lg">
+    <div className="rounded flex flex-col p-4 cursor-pointer transform transition duration-100 opacity-100 hover:bg-gray-800 mt-6 max-w-lg">
         <div className="flex flex-row">
             <div className="flex flex-col">
                 <div className="rounded bg-white p-4 text-2xl text-gray-900 text-center">{cube.getDay()}</div>

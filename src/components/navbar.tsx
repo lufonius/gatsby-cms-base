@@ -12,11 +12,11 @@ const Navbar: React.FC<{
 }> = ({children, selectedNavItem, selectedSubItem}) => {
   return (
     <div className="flex flex-row items-start overflow-auto h-screen">
-        <header className="flex flex-row items-center sticky self-start top-0 mr-6 pr-3">
+        <header className="flex flex-row items-start sticky h-screen self-start top-0 mr-6 p-5 ">
             <nav>
                 <motion.ol className="hidden md:flex md:flex-col">
                     <li className="mb-6">
-                        <div>
+                        <div className="flex justify-center mt-4">
                             <img className="h-16" src="/logo.png" />
                         </div>
                     </li>
@@ -81,7 +81,7 @@ const NavItem: React.FC<{display: string, isSelected: boolean, visible?: boolean
         };
     };
 
-    const className = "rounded min-w-52 overflow-hidden bg-gray-900 text-gray-50 px-4 hover:bg-gray-50 border-gray-900 hover:text-gray-900 py-4 cursor-pointer mt-1";
+    const className = "rounded min-w-52 overflow-hidden bg-gray-900 text-gray-50 px-4 border-gray-900 py-4 cursor-pointer mt-1 transform transition duration-100 hover:bg-gray-800 hover:text-gray-100";
 
     return (<motion.li
         className={isIndented(indented ?? false)(asSelected(isSelected)(className))}
@@ -125,7 +125,7 @@ const DropDownItem: React.FC<{
 
     return (<motion.li
             onClick={onClick}
-            className={asSelected(isSelected)("rounded bg-gray-900 text-gray-50 px-4 hover:bg-gray-50 border-bottom-2 border-gray-900 hover:text-gray-900 py-4 cursor-pointer mt-1")}
+            className={asSelected(isSelected)("rounded bg-gray-900 text-gray-50 px-4 border-bottom-2 border-gray-900 py-4 cursor-pointer mt-1 transform transition duration-100 hover:bg-gray-800 hover:text-gray-100")}
             key={children}
             initial={{ height: 0, paddingTop: 0}}
             animate={{ height: "3.5rem", paddingTop: "1rem"}}

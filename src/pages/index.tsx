@@ -79,7 +79,8 @@ const IndexPage = ({ path }: PageProps) => {
 
   return (
     <Navbar selectedNavItem="vegan-leben" selectedSubItem="vegan-wie">
-        <h1 className="font-heading text-6xl mb-4">Kalender</h1>
+        <h1 className="font-heading text-6xl mt-6">Eventkalender</h1>
+        <div className="hidden">
         <Select 
             items={allCitiesMapped}
             name="city"
@@ -97,8 +98,7 @@ const IndexPage = ({ path }: PageProps) => {
             <span className="size-4 translate-x-1 rounded-full bg-white transition group-data-[checked]:translate-x-6" />
         </Switch>
         </Field>
-
-        <br />
+        </div>
 
         <AnimatePresence>
             {filteredItems.map((cube: Cube) => (
