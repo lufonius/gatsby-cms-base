@@ -16,41 +16,39 @@ const Navbar: React.FC<{
         <header className="flex flex-row items-start sticky h-screen self-start top-0 z-10">
             <div>
                 <nav aria-label="desktop-navigation" className="p-4 hidden md:block">
-                    <motion.ol className="hidden md:flex md:flex-col">
+                    <ol className="hidden md:flex md:flex-col">
                         <li className="mb-6">
                             <div className="flex justify-center mt-4">
                                 <img className="h-16" src="/logo.png" />
                             </div>
                         </li>
-                        <AnimatePresence>
-                            <NavItem isSelected={selectedNavItem === "home"} display="Home"/>
-                            <NavItem isSelected={selectedNavItem === "kalender"} display="Eventkalender" />
-                            <NavItemDropDown
-                                display="Aktivist:in werden"
-                                isSelected={selectedNavItem === "aktivistin-werden"}
-                                selectedSubItem={selectedSubItem ?? ""}
-                                subItems={[
-                                    {displayText: "Getting started", value: "getting-started", href: "/getting-started"},
-                                    {displayText: "Cube guide", value: "cube-guide", href: "/cube-guide"},
-                                    {displayText: "Wie macht man Outreach?", value: "cube-guide", href: "/cube-guide"},
-                                ]}
-                            />
-                            <NavItem isSelected={selectedNavItem === "vegan-leben"} display="Vegan leben" />
-                            <NavItem isSelected={selectedNavItem === "wissen"} display="Wissen" />
-                            <NavItem isSelected={selectedNavItem === "galerie"} display="Galerie" />
-                            <NavItemDropDown
-                                display="Über uns"
-                                isSelected={selectedNavItem === "ueber-uns"}
-                                selectedSubItem={selectedSubItem ?? ""}
-                                subItems={[
-                                    {displayText: "Unsere Werte", value: "our-values", href: "/our-values"},
-                                    {displayText: "Wir, das Team", value: "team", href: "/team"}
-                                ]}
-                            />
-                            <NavItem isSelected={selectedNavItem === "contact"} display="Kontakt" />
-                            <NavItem isSelected={selectedNavItem === "shop"} display="Merchshop" />
-                        </AnimatePresence>
-                    </motion.ol>
+                        <NavItem isSelected={selectedNavItem === "home"} display="Home"/>
+                        <NavItem isSelected={selectedNavItem === "kalender"} display="Eventkalender" />
+                        <NavItemDropDown
+                            display="Aktivist:in werden"
+                            isSelected={selectedNavItem === "aktivistin-werden"}
+                            selectedSubItem={selectedSubItem ?? ""}
+                            subItems={[
+                                {displayText: "Getting started", value: "getting-started", href: "/getting-started"},
+                                {displayText: "Cube guide", value: "cube-guide", href: "/cube-guide"},
+                                {displayText: "Wie macht man Outreach?", value: "cube-guide", href: "/cube-guide"},
+                            ]}
+                        />
+                        <NavItem isSelected={selectedNavItem === "vegan-leben"} display="Vegan leben" />
+                        <NavItem isSelected={selectedNavItem === "wissen"} display="Wissen" />
+                        <NavItem isSelected={selectedNavItem === "galerie"} display="Galerie" />
+                        <NavItemDropDown
+                            display="Über uns"
+                            isSelected={selectedNavItem === "ueber-uns"}
+                            selectedSubItem={selectedSubItem ?? ""}
+                            subItems={[
+                                {displayText: "Unsere Werte", value: "our-values", href: "/our-values"},
+                                {displayText: "Wir, das Team", value: "team", href: "/team"}
+                            ]}
+                        />
+                        <NavItem isSelected={selectedNavItem === "contact"} display="Kontakt" />
+                        <NavItem isSelected={selectedNavItem === "shop"} display="Merchshop" />
+                    </ol>
                 </nav>
                 <nav aria-label="mobile-navigation" className="flex flex-row w-screen md:hidden text-gray-50 bg-gray-900 p-5 items-center">
                     <div className="">
@@ -84,15 +82,7 @@ const NavItem: React.FC<{display: string, isSelected: boolean, visible?: boolean
 
     const className = "rounded min-w-52 overflow-hidden bg-gray-900 text-gray-50 px-4 border-gray-900 py-4 cursor-pointer mt-1 transform transition duration-100 hover:bg-gray-800 hover:text-gray-100";
 
-    return (<motion.li
-        className={isIndented(indented ?? false)(asSelected(isSelected)(className))}
-        key={display}
-        initial={{ height: 0, paddingTop: 0}}
-        animate={{ height: "3.5rem", paddingTop: "1rem"}}
-        exit={{ height: 0, paddingTop: 0}}
-        transition={{ duration: 0.125 }}
-        
-    >{display}</motion.li>);
+    return (<li className={isIndented(indented ?? false)(asSelected(isSelected)(className))}>{display}</li>);
 };
 
 const NavItemDropDown: React.FC<{
@@ -105,9 +95,7 @@ const NavItemDropDown: React.FC<{
 
     return (<>
         <DropDownItem onToggle={(showItems) => setIsOpen(showItems)} isSelected={isSelected || isOpen}>{display}</DropDownItem>
-        <AnimatePresence propagate>
-            {isOpen && subItems.map(item => <NavItem display={item.displayText} indented={true} isSelected={selectedSubItem === item.value} />)}
-        </AnimatePresence>
+        {isOpen && subItems.map(item => <NavItem display={item.displayText} indented={true} isSelected={selectedSubItem === item.value} />)}
     </>);
 };
 
@@ -124,18 +112,12 @@ const DropDownItem: React.FC<{
         onToggle(toggledIsOpen);
     };
 
-    return (<motion.li
+    return (<li
             onClick={onClick}
             className={asSelected(isSelected)("rounded bg-gray-900 text-gray-50 px-4 border-bottom-2 border-gray-900 py-4 cursor-pointer mt-1 transform transition duration-100 hover:bg-gray-800 hover:text-gray-100")}
-            key={children}
-            initial={{ height: 0, paddingTop: 0}}
-            animate={{ height: "3.5rem", paddingTop: "1rem"}}
-            exit={{ height: 0, paddingTop: 0}}
-            transition={{ duration: 0.125 }}
-            
         >
             {children}
-        </motion.li>);
+        </li>);
 };
 
 const FullScreenDialog: React.FC<{children: any, isOpen: boolean}> = ({children, isOpen}) => {

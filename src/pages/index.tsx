@@ -103,16 +103,7 @@ const IndexPage = ({ path }: PageProps) => {
 
         <AnimatePresence>
             {filteredItems.map((cube: Cube) => (
-                <motion.li
-                    key={cube.location.name + cube.start}
-                    initial={{ opacity: 0, height: 0}}
-                    animate={{ opacity: 1, height: "auto"}}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.2 }}
-                    layout
-            >
-                <CubeEvent cube={cube} />
-            </motion.li>
+                <li><CubeEvent cube={cube} /></li>
             ))}
         </AnimatePresence>
     </Navbar>

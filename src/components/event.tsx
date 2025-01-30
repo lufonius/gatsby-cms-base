@@ -1,9 +1,6 @@
 import * as React from "react";
 import FeatherIcon from 'feather-icons-react';
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Dialog, Input, DialogPanel, DialogTitle, Description, DialogBackdrop, Field, Label, Switch } from '@headlessui/react';
-import dayjs from 'dayjs';
 import DownloadPhotosDialog from "./download-photos-dialog";
 import Button from "./button";
 import { Cube } from "../model/cube";
