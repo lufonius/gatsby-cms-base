@@ -7,7 +7,7 @@ import { LocationDto } from './location.dto';
 
 
 export class ModelMapper {
-    mapFromData(cubes: CubeDto[], cities: CityDto[], locations: LocationDto[]) {
+    mapFromData(cubes: CubeDto[], cities: CityDto[], locations: LocationDto[]): Cube[] {
 
         const locationsAsMap = this.convertArrayToIdObjectMap(locations);
         const citiesAsMap = this.convertArrayToIdObjectMap(cities);
@@ -18,7 +18,6 @@ export class ModelMapper {
         const citiesCopy = this.makeDeepCopyOfArrayOrObject(citiesAsMap);
 
         const mappedEvents = cubes.map(({id, start, end, locationId, status, swissTransferLink, swissTransferLinkEnd}) => {
-            console.log(typeof start);
             const mappedLocation = this.mapLocation(locationsCopy[locationId], citiesCopy);
             const startDateAsCET = new Date(start.slice(0, -1));
             const endDateAsCET = new Date(end.slice(0, -1));

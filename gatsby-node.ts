@@ -20,13 +20,13 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `);
 
-  const eventPageTemplate = path.resolve(`src/templates/event-page-template.tsx`);
-  queryResults.data.allCubes.nodes[0].cubesList.forEach((node: any) => {
+  const eventPageTemplate = path.resolve(`src/templates/cube-event-page-template.tsx`);
+  queryResults.data.allCubes.nodes[0].cubesList.forEach((cube: any) => {
     createPage({
-      path: `/events/${node.id}`,
+      path: `/events/${cube.id}`,
       component: eventPageTemplate,
       context: {
-        cube: node,
+        cubeId: cube.id,
       },
     });
   });

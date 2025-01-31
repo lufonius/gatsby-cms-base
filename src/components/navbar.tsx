@@ -13,7 +13,7 @@ const Navbar: React.FC<{
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   return (
     <div className="flex flex-col md:flex-row items-start overflow-auto h-screen">
-        <header className="flex flex-row items-start sticky h-screen self-start top-0 z-10">
+        <header className="flex flex-row items-start sticky md:h-screen self-start top-0 z-10">
             <div>
                 <nav aria-label="desktop-navigation" className="p-4 hidden md:block">
                     <ol className="hidden md:flex md:flex-col">
@@ -30,8 +30,8 @@ const Navbar: React.FC<{
                             selectedSubItem={selectedSubItem ?? ""}
                             subItems={[
                                 {displayText: "Getting started", value: "getting-started", href: "/getting-started"},
-                                {displayText: "Cube guide", value: "cube-guide", href: "/cube-guide"},
-                                {displayText: "Wie macht man Outreach?", value: "cube-guide", href: "/cube-guide"},
+                                {displayText: "Event guide", value: "cube-guide", href: "/cube-guide"},
+                                {displayText: "Gespräche führen", value: "cube-guide", href: "/cube-guide"},
                             ]}
                         />
                         <NavItem isSelected={selectedNavItem === "vegan-leben"} display="Vegan leben" />
@@ -60,7 +60,7 @@ const Navbar: React.FC<{
                 </nav>
             </div>
         </header>
-        <main className="p-4">{children}</main>
+        <main>{children}</main>
     </div>
   );
 }
