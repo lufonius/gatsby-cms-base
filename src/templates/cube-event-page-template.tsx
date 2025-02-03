@@ -93,7 +93,7 @@ const queryAndBuildPageData = (selectedCubeId: string): { selectedCube?: Cube, h
         allFile(filter: {relativeDirectory: {eq: "photos/static/event-page-heading"}}) {
           nodes {
             childImageSharp {
-              gatsbyImageData(width: 1200)
+              gatsbyImageData
             }
           }
         }
