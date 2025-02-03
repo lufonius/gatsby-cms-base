@@ -1,5 +1,5 @@
 import * as React from "react"
-import { graphql, useStaticQuery, type PageProps } from "gatsby"
+import { graphql, useStaticQuery } from "gatsby"
 import Navbar from "../components/navbar";
 import { Cube } from "../model/cube";
 import FeatherIcon from "feather-icons-react";
@@ -7,19 +7,23 @@ import { CubeDto } from "../model/cube.dto";
 import { CityDto } from "../model/city.dto";
 import { LocationDto } from "../model/location.dto";
 import { ModelMapper } from "../model/model.mapper";
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
+import { FileNode } from "gatsby-plugin-image/dist/src/components/hooks";
 
 const CubeEventPageTemplate: React.FC <{pageContext: { cubeId: string }}>= ({ pageContext: { cubeId } }) => {
 
   const imgHeight = { height: "calc(100vh - 104px - 250px)" };
   const lineHeight = { lineHeight: 1.6 };
 
-  const cube = getCube(cubeId);
-  console.log(cube);
+  const {selectedCube: cube, headerImages} = queryAndBuildPageData(cubeId); 
 
   return (
     <Navbar selectedNavItem="kalender" selectedSubItem="vegan-wie">
-        <div style={imgHeight} className="bg-[url(/cube-photo-1.jpg)] bg-cover bg-center w-screen flex flex-col">
-          <div className="w-screen flex-grow"></div>
+      {/* defer the script load fonts of google with Gatsby Script API */}
+        <div className="w-screen flex flex-col">
+          <div style={imgHeight} className="w-screen">
+            <GatsbyImage style={imgHeight} image={getImage(headerImages[0])} alt="Cube-Formation, vier Maskierte Menschen" />
+          </div>
           {cube?.isCancelled() && <div className="flex flex-row px-5 py-3 items-center bg-red-700 w-screen">
             <div>
               <FeatherIcon className="text-gray-50 inline" icon="alert-triangle" />
@@ -52,42 +56,49 @@ const CubeEventPageTemplate: React.FC <{pageContext: { cubeId: string }}>= ({ pa
   )
 }
 
-const getCube = (id: string): Cube | undefined => {
+const queryAndBuildPageData = (selectedCubeId: string): { selectedCube?: Cube, headerImages: FileNode[] } => {
   const data = useStaticQuery(graphql`
-      query {
-          allCities {
-              nodes {
-                  citiesList {
-                      id
-                      name
-                  }
+    query {
+        allCities {
+            nodes {
+                citiesList {
+                    id
+                    name
+                }
+          }
+        }
+        allCubes {
+            nodes {
+                cubesList {
+                    id
+                    end
+                    locationId
+                    start
+                    status
+                    swissTransferLinkEnd
+                    swissTransferLink
+                }
+            }
+        }
+        allLocations {
+            nodes {
+                locationsList {
+                    cityId
+                    googleMapsLink
+                    id
+                    name
+                }
+            }
+        }
+        allFile(filter: {relativeDirectory: {eq: "photos/static/event-page-heading"}}) {
+          nodes {
+            childImageSharp {
+              gatsbyImageData(width: 1200)
             }
           }
-          allCubes {
-              nodes {
-                  cubesList {
-                      id
-                      end
-                      locationId
-                      start
-                      status
-                      swissTransferLinkEnd
-                      swissTransferLink
-                  }
-              }
-          }
-          allLocations {
-              nodes {
-                  locationsList {
-                      cityId
-                      googleMapsLink
-                      id
-                      name
-                  }
-              }
-          }
-      }
-  `);
+        }
+    }
+`);
 
   const allCubes = data.allCubes.nodes[0].cubesList as CubeDto[];
   const allCities = data.allCities.nodes[0].citiesList as CityDto[];
@@ -96,7 +107,12 @@ const getCube = (id: string): Cube | undefined => {
   const mapper = new ModelMapper();
   const cubes = mapper.mapFromData(allCubes, allCities, allLocations);
 
-  return cubes.find((cube: Cube) => cube.id === id);
+  const selectedCube = cubes.find((cube: Cube) => cube.id === selectedCubeId);
+
+  return {
+    selectedCube,
+    headerImages: data.allFile.nodes
+  };
 };
 
 export default CubeEventPageTemplate;
