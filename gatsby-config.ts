@@ -31,6 +31,16 @@ const config: GatsbyConfig = {
         path: `${__dirname}/content/`,
       },
     },
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [
+          `Bebas Neue`, // Add fonts you want to use
+          `Epilogue\:400,700`, // Example of adding multiple fonts
+        ],
+        display: 'swap', // This is optional but helps with font rendering
+      },
+    }
   ]
 };
 
