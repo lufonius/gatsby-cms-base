@@ -19,12 +19,17 @@ const CubeEventPageTemplate: React.FC <{pageContext: { cubeId: string }}>= ({ pa
 
   const {selectedCube: cube, headerImages} = queryAndBuildPageData(cubeId); 
 
+  const getRandomHeaderImage = () => {
+    const randomIndex = Math.floor(Math.random() * headerImages.length);
+    return headerImages[randomIndex];
+  };
+
   return (
     <Navbar selectedNavItem="kalender" selectedSubItem="vegan-wie">
         <div className="max-w-screen-lg">
           <div className="flex flex-col">
             <div style={imgHeight}>
-              <GatsbyImage style={imgHeight} image={getImage(headerImages[0])} alt="Cube-Formation, vier Maskierte Menschen" />
+              <GatsbyImage style={imgHeight} image={getImage(getRandomHeaderImage())} placeholder="blurred" alt="Cube-Formation, vier Maskierte Menschen" />
             </div>
             {cube?.isCancelled() && <div className="flex flex-row px-5 py-3 items-center bg-red-700 w-screen">
               <div>
