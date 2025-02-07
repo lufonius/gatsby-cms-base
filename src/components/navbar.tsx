@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { twMerge } from "tailwind-merge";
 import FeatherIcon from "feather-icons-react";
 import { Dialog as HeadlessUIDialog, DialogPanel, DialogBackdrop } from '@headlessui/react';
+import { StaticImage } from "gatsby-plugin-image";
 
 const Navbar: React.FC<{
     children: any,
@@ -19,7 +20,7 @@ const Navbar: React.FC<{
                     <ol className="hidden md:flex md:flex-col">
                         <li className="mb-6">
                             <div className="flex justify-center mt-4">
-                                <img className="h-16" src="/logo.png" />
+                            <StaticImage className="h-16" height={64} src="../logo.png" alt="Anonymous for Animal Rights Logo" />
                             </div>
                         </li>
                         <NavItem isSelected={selectedNavItem === "home"} display="Home"/>
@@ -133,5 +134,7 @@ const FullScreenDialog: React.FC<{children: any, isOpen: boolean}> = ({children,
     </HeadlessUIDialog>
     </>);
 };
+
+
 
 export default Navbar;
