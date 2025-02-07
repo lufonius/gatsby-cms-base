@@ -23,9 +23,9 @@ const LinkButton: React.FC<{
 
     const getClasses = () => {
         if (type === 'skinny') {
-            return twMerge("transform transition duration-100 hover:scale-105 hover:bg-gray-50 hover:text-gray-950 transparent text-gray-50 rounded border-2 border-white p-2", className);
+            return twMerge("inline-block transform transition duration-100 hover:scale-105 hover:bg-gray-50 hover:text-gray-950 transparent text-gray-50 rounded border-2 border-white p-2", className);
         } else if (type === 'full') {
-            return twMerge("transform transition duration-100 hover:scale-105 hover:bg-gray-800 hover:text-gray-50 transparent text-gray-950 bg-gray-50 rounded border-2 border-white p-2", className);
+            return twMerge("inline-block transform transition duration-100 hover:scale-105 hover:bg-gray-800 hover:text-gray-50 transparent text-gray-950 bg-gray-50 rounded border-2 border-white p-2", className);
         }
     };
 
@@ -34,10 +34,10 @@ const LinkButton: React.FC<{
         href={href}
         target={target ?? "_blank"}
         className={getClasses()}
-            onClick={handleClick}
-            animate={isClicked ? { scale: 1.1 } : { scale: 1 }}
-            transition={{ duration: 0.125, ease: "easeOut" }}>
-            {children}
+        onClick={handleClick}
+        animate={isClicked ? { scale: 1.1 } : { scale: 1 }}
+        transition={{ duration: 0.125, ease: "easeOut" }}>
+        {children}
     </motion.a>
   );
 }
