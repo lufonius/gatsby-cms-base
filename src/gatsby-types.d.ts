@@ -384,6 +384,8 @@ type File = Node & {
   readonly childCities: Maybe<cities>;
   /** Returns the first child node of type cubes or null if there are no children of given type on this node */
   readonly childCubes: Maybe<cubes>;
+  /** Returns the first child node of type eventpage or null if there are no children of given type on this node */
+  readonly childEventpage: Maybe<eventpage>;
   /** Returns the first child node of type ImageSharp or null if there are no children of given type on this node */
   readonly childImageSharp: Maybe<ImageSharp>;
   /** Returns the first child node of type journals or null if there are no children of given type on this node */
@@ -397,6 +399,8 @@ type File = Node & {
   readonly childrenCities: Maybe<ReadonlyArray<Maybe<cities>>>;
   /** Returns all children nodes filtered by type cubes */
   readonly childrenCubes: Maybe<ReadonlyArray<Maybe<cubes>>>;
+  /** Returns all children nodes filtered by type eventpage */
+  readonly childrenEventpage: Maybe<ReadonlyArray<Maybe<eventpage>>>;
   /** Returns all children nodes filtered by type ImageSharp */
   readonly childrenImageSharp: Maybe<ReadonlyArray<Maybe<ImageSharp>>>;
   /** Returns all children nodes filtered by type journals */
@@ -549,6 +553,7 @@ type FileFieldSelector = {
   readonly changeTime: InputMaybe<FieldSelectorEnum>;
   readonly childCities: InputMaybe<citiesFieldSelector>;
   readonly childCubes: InputMaybe<cubesFieldSelector>;
+  readonly childEventpage: InputMaybe<eventpageFieldSelector>;
   readonly childImageSharp: InputMaybe<ImageSharpFieldSelector>;
   readonly childJournals: InputMaybe<journalsFieldSelector>;
   readonly childLocations: InputMaybe<locationsFieldSelector>;
@@ -556,6 +561,7 @@ type FileFieldSelector = {
   readonly children: InputMaybe<NodeFieldSelector>;
   readonly childrenCities: InputMaybe<citiesFieldSelector>;
   readonly childrenCubes: InputMaybe<cubesFieldSelector>;
+  readonly childrenEventpage: InputMaybe<eventpageFieldSelector>;
   readonly childrenImageSharp: InputMaybe<ImageSharpFieldSelector>;
   readonly childrenJournals: InputMaybe<journalsFieldSelector>;
   readonly childrenLocations: InputMaybe<locationsFieldSelector>;
@@ -602,6 +608,7 @@ type FileFilterInput = {
   readonly changeTime: InputMaybe<DateQueryOperatorInput>;
   readonly childCities: InputMaybe<citiesFilterInput>;
   readonly childCubes: InputMaybe<cubesFilterInput>;
+  readonly childEventpage: InputMaybe<eventpageFilterInput>;
   readonly childImageSharp: InputMaybe<ImageSharpFilterInput>;
   readonly childJournals: InputMaybe<journalsFilterInput>;
   readonly childLocations: InputMaybe<locationsFilterInput>;
@@ -609,6 +616,7 @@ type FileFilterInput = {
   readonly children: InputMaybe<NodeFilterListInput>;
   readonly childrenCities: InputMaybe<citiesFilterListInput>;
   readonly childrenCubes: InputMaybe<cubesFilterListInput>;
+  readonly childrenEventpage: InputMaybe<eventpageFilterListInput>;
   readonly childrenImageSharp: InputMaybe<ImageSharpFilterListInput>;
   readonly childrenJournals: InputMaybe<journalsFilterListInput>;
   readonly childrenLocations: InputMaybe<locationsFilterListInput>;
@@ -696,6 +704,7 @@ type FileSortInput = {
   readonly changeTime: InputMaybe<SortOrderEnum>;
   readonly childCities: InputMaybe<citiesSortInput>;
   readonly childCubes: InputMaybe<cubesSortInput>;
+  readonly childEventpage: InputMaybe<eventpageSortInput>;
   readonly childImageSharp: InputMaybe<ImageSharpSortInput>;
   readonly childJournals: InputMaybe<journalsSortInput>;
   readonly childLocations: InputMaybe<locationsSortInput>;
@@ -703,6 +712,7 @@ type FileSortInput = {
   readonly children: InputMaybe<NodeSortInput>;
   readonly childrenCities: InputMaybe<citiesSortInput>;
   readonly childrenCubes: InputMaybe<cubesSortInput>;
+  readonly childrenEventpage: InputMaybe<eventpageSortInput>;
   readonly childrenImageSharp: InputMaybe<ImageSharpSortInput>;
   readonly childrenJournals: InputMaybe<journalsSortInput>;
   readonly childrenLocations: InputMaybe<locationsSortInput>;
@@ -1359,6 +1369,7 @@ type Query = {
   readonly allCities: citiesConnection;
   readonly allCubes: cubesConnection;
   readonly allDirectory: DirectoryConnection;
+  readonly allEventpage: eventpageConnection;
   readonly allFile: FileConnection;
   readonly allImageSharp: ImageSharpConnection;
   readonly allJournals: journalsConnection;
@@ -1373,6 +1384,7 @@ type Query = {
   readonly cities: Maybe<cities>;
   readonly cubes: Maybe<cubes>;
   readonly directory: Maybe<Directory>;
+  readonly eventpage: Maybe<eventpage>;
   readonly file: Maybe<File>;
   readonly imageSharp: Maybe<ImageSharp>;
   readonly journals: Maybe<journals>;
@@ -1408,6 +1420,14 @@ type Query_allDirectoryArgs = {
   limit: InputMaybe<Scalars['Int']>;
   skip: InputMaybe<Scalars['Int']>;
   sort: InputMaybe<ReadonlyArray<InputMaybe<DirectorySortInput>>>;
+};
+
+
+type Query_allEventpageArgs = {
+  filter: InputMaybe<eventpageFilterInput>;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+  sort: InputMaybe<ReadonlyArray<InputMaybe<eventpageSortInput>>>;
 };
 
 
@@ -1556,6 +1576,19 @@ type Query_directoryArgs = {
 };
 
 
+type Query_eventpageArgs = {
+  children: InputMaybe<NodeFilterListInput>;
+  id: InputMaybe<StringQueryOperatorInput>;
+  internal: InputMaybe<InternalFilterInput>;
+  linkList: InputMaybe<eventpageLinkListFilterListInput>;
+  parent: InputMaybe<NodeFilterInput>;
+  sectionList: InputMaybe<eventpageSectionListFilterListInput>;
+  summary: InputMaybe<StringQueryOperatorInput>;
+  videoDownloadLink: InputMaybe<StringQueryOperatorInput>;
+  videoDownloadLinkText: InputMaybe<StringQueryOperatorInput>;
+};
+
+
 type Query_fileArgs = {
   absolutePath: InputMaybe<StringQueryOperatorInput>;
   accessTime: InputMaybe<DateQueryOperatorInput>;
@@ -1570,6 +1603,7 @@ type Query_fileArgs = {
   changeTime: InputMaybe<DateQueryOperatorInput>;
   childCities: InputMaybe<citiesFilterInput>;
   childCubes: InputMaybe<cubesFilterInput>;
+  childEventpage: InputMaybe<eventpageFilterInput>;
   childImageSharp: InputMaybe<ImageSharpFilterInput>;
   childJournals: InputMaybe<journalsFilterInput>;
   childLocations: InputMaybe<locationsFilterInput>;
@@ -1577,6 +1611,7 @@ type Query_fileArgs = {
   children: InputMaybe<NodeFilterListInput>;
   childrenCities: InputMaybe<citiesFilterListInput>;
   childrenCubes: InputMaybe<cubesFilterListInput>;
+  childrenEventpage: InputMaybe<eventpageFilterListInput>;
   childrenImageSharp: InputMaybe<ImageSharpFilterListInput>;
   childrenJournals: InputMaybe<journalsFilterListInput>;
   childrenLocations: InputMaybe<locationsFilterListInput>;
@@ -3196,6 +3231,220 @@ type cubesSortInput = {
   readonly parent: InputMaybe<NodeSortInput>;
 };
 
+type eventpage = Node & {
+  readonly children: ReadonlyArray<Node>;
+  readonly id: Scalars['ID'];
+  readonly internal: Internal;
+  readonly linkList: Maybe<ReadonlyArray<Maybe<eventpageLinkList>>>;
+  readonly parent: Maybe<Node>;
+  readonly sectionList: Maybe<ReadonlyArray<Maybe<eventpageSectionList>>>;
+  readonly summary: Maybe<Scalars['String']>;
+  readonly videoDownloadLink: Maybe<Scalars['String']>;
+  readonly videoDownloadLinkText: Maybe<Scalars['String']>;
+};
+
+type eventpageConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<eventpageEdge>;
+  readonly group: ReadonlyArray<eventpageGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<eventpage>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type eventpageConnection_distinctArgs = {
+  field: eventpageFieldSelector;
+};
+
+
+type eventpageConnection_groupArgs = {
+  field: eventpageFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type eventpageConnection_maxArgs = {
+  field: eventpageFieldSelector;
+};
+
+
+type eventpageConnection_minArgs = {
+  field: eventpageFieldSelector;
+};
+
+
+type eventpageConnection_sumArgs = {
+  field: eventpageFieldSelector;
+};
+
+type eventpageEdge = {
+  readonly next: Maybe<eventpage>;
+  readonly node: eventpage;
+  readonly previous: Maybe<eventpage>;
+};
+
+type eventpageFieldSelector = {
+  readonly children: InputMaybe<NodeFieldSelector>;
+  readonly id: InputMaybe<FieldSelectorEnum>;
+  readonly internal: InputMaybe<InternalFieldSelector>;
+  readonly linkList: InputMaybe<eventpageLinkListFieldSelector>;
+  readonly parent: InputMaybe<NodeFieldSelector>;
+  readonly sectionList: InputMaybe<eventpageSectionListFieldSelector>;
+  readonly summary: InputMaybe<FieldSelectorEnum>;
+  readonly videoDownloadLink: InputMaybe<FieldSelectorEnum>;
+  readonly videoDownloadLinkText: InputMaybe<FieldSelectorEnum>;
+};
+
+type eventpageFilterInput = {
+  readonly children: InputMaybe<NodeFilterListInput>;
+  readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly internal: InputMaybe<InternalFilterInput>;
+  readonly linkList: InputMaybe<eventpageLinkListFilterListInput>;
+  readonly parent: InputMaybe<NodeFilterInput>;
+  readonly sectionList: InputMaybe<eventpageSectionListFilterListInput>;
+  readonly summary: InputMaybe<StringQueryOperatorInput>;
+  readonly videoDownloadLink: InputMaybe<StringQueryOperatorInput>;
+  readonly videoDownloadLinkText: InputMaybe<StringQueryOperatorInput>;
+};
+
+type eventpageFilterListInput = {
+  readonly elemMatch: InputMaybe<eventpageFilterInput>;
+};
+
+type eventpageGroupConnection = {
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly edges: ReadonlyArray<eventpageEdge>;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+  readonly group: ReadonlyArray<eventpageGroupConnection>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly nodes: ReadonlyArray<eventpage>;
+  readonly pageInfo: PageInfo;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly totalCount: Scalars['Int'];
+};
+
+
+type eventpageGroupConnection_distinctArgs = {
+  field: eventpageFieldSelector;
+};
+
+
+type eventpageGroupConnection_groupArgs = {
+  field: eventpageFieldSelector;
+  limit: InputMaybe<Scalars['Int']>;
+  skip: InputMaybe<Scalars['Int']>;
+};
+
+
+type eventpageGroupConnection_maxArgs = {
+  field: eventpageFieldSelector;
+};
+
+
+type eventpageGroupConnection_minArgs = {
+  field: eventpageFieldSelector;
+};
+
+
+type eventpageGroupConnection_sumArgs = {
+  field: eventpageFieldSelector;
+};
+
+type eventpageLinkList = {
+  readonly link: Maybe<Scalars['String']>;
+  readonly linkText: Maybe<Scalars['String']>;
+};
+
+type eventpageLinkListFieldSelector = {
+  readonly link: InputMaybe<FieldSelectorEnum>;
+  readonly linkText: InputMaybe<FieldSelectorEnum>;
+};
+
+type eventpageLinkListFilterInput = {
+  readonly link: InputMaybe<StringQueryOperatorInput>;
+  readonly linkText: InputMaybe<StringQueryOperatorInput>;
+};
+
+type eventpageLinkListFilterListInput = {
+  readonly elemMatch: InputMaybe<eventpageLinkListFilterInput>;
+};
+
+type eventpageLinkListSortInput = {
+  readonly link: InputMaybe<SortOrderEnum>;
+  readonly linkText: InputMaybe<SortOrderEnum>;
+};
+
+type eventpageSectionList = {
+  readonly sectionLinkList: Maybe<ReadonlyArray<Maybe<eventpageSectionListSectionLinkList>>>;
+  readonly sectionText: Maybe<Scalars['String']>;
+  readonly sectionTitle: Maybe<Scalars['String']>;
+};
+
+type eventpageSectionListFieldSelector = {
+  readonly sectionLinkList: InputMaybe<eventpageSectionListSectionLinkListFieldSelector>;
+  readonly sectionText: InputMaybe<FieldSelectorEnum>;
+  readonly sectionTitle: InputMaybe<FieldSelectorEnum>;
+};
+
+type eventpageSectionListFilterInput = {
+  readonly sectionLinkList: InputMaybe<eventpageSectionListSectionLinkListFilterListInput>;
+  readonly sectionText: InputMaybe<StringQueryOperatorInput>;
+  readonly sectionTitle: InputMaybe<StringQueryOperatorInput>;
+};
+
+type eventpageSectionListFilterListInput = {
+  readonly elemMatch: InputMaybe<eventpageSectionListFilterInput>;
+};
+
+type eventpageSectionListSectionLinkList = {
+  readonly sectionLink: Maybe<Scalars['String']>;
+  readonly sectionLinkText: Maybe<Scalars['String']>;
+};
+
+type eventpageSectionListSectionLinkListFieldSelector = {
+  readonly sectionLink: InputMaybe<FieldSelectorEnum>;
+  readonly sectionLinkText: InputMaybe<FieldSelectorEnum>;
+};
+
+type eventpageSectionListSectionLinkListFilterInput = {
+  readonly sectionLink: InputMaybe<StringQueryOperatorInput>;
+  readonly sectionLinkText: InputMaybe<StringQueryOperatorInput>;
+};
+
+type eventpageSectionListSectionLinkListFilterListInput = {
+  readonly elemMatch: InputMaybe<eventpageSectionListSectionLinkListFilterInput>;
+};
+
+type eventpageSectionListSectionLinkListSortInput = {
+  readonly sectionLink: InputMaybe<SortOrderEnum>;
+  readonly sectionLinkText: InputMaybe<SortOrderEnum>;
+};
+
+type eventpageSectionListSortInput = {
+  readonly sectionLinkList: InputMaybe<eventpageSectionListSectionLinkListSortInput>;
+  readonly sectionText: InputMaybe<SortOrderEnum>;
+  readonly sectionTitle: InputMaybe<SortOrderEnum>;
+};
+
+type eventpageSortInput = {
+  readonly children: InputMaybe<NodeSortInput>;
+  readonly id: InputMaybe<SortOrderEnum>;
+  readonly internal: InputMaybe<InternalSortInput>;
+  readonly linkList: InputMaybe<eventpageLinkListSortInput>;
+  readonly parent: InputMaybe<NodeSortInput>;
+  readonly sectionList: InputMaybe<eventpageSectionListSortInput>;
+  readonly summary: InputMaybe<SortOrderEnum>;
+  readonly videoDownloadLink: InputMaybe<SortOrderEnum>;
+  readonly videoDownloadLinkText: InputMaybe<SortOrderEnum>;
+};
+
 type journals = Node & {
   readonly children: ReadonlyArray<Node>;
   readonly id: Scalars['ID'];
@@ -3460,6 +3709,7 @@ type locationsLocationsList = {
   readonly cityId: Maybe<Scalars['String']>;
   readonly googleMapsLink: Maybe<Scalars['String']>;
   readonly id: Maybe<Scalars['String']>;
+  readonly meetingPointSummary: Maybe<Scalars['String']>;
   readonly name: Maybe<Scalars['String']>;
 };
 
@@ -3467,6 +3717,7 @@ type locationsLocationsListFieldSelector = {
   readonly cityId: InputMaybe<FieldSelectorEnum>;
   readonly googleMapsLink: InputMaybe<FieldSelectorEnum>;
   readonly id: InputMaybe<FieldSelectorEnum>;
+  readonly meetingPointSummary: InputMaybe<FieldSelectorEnum>;
   readonly name: InputMaybe<FieldSelectorEnum>;
 };
 
@@ -3474,6 +3725,7 @@ type locationsLocationsListFilterInput = {
   readonly cityId: InputMaybe<StringQueryOperatorInput>;
   readonly googleMapsLink: InputMaybe<StringQueryOperatorInput>;
   readonly id: InputMaybe<StringQueryOperatorInput>;
+  readonly meetingPointSummary: InputMaybe<StringQueryOperatorInput>;
   readonly name: InputMaybe<StringQueryOperatorInput>;
 };
 
@@ -3485,6 +3737,7 @@ type locationsLocationsListSortInput = {
   readonly cityId: InputMaybe<SortOrderEnum>;
   readonly googleMapsLink: InputMaybe<SortOrderEnum>;
   readonly id: InputMaybe<SortOrderEnum>;
+  readonly meetingPointSummary: InputMaybe<SortOrderEnum>;
   readonly name: InputMaybe<SortOrderEnum>;
 };
 

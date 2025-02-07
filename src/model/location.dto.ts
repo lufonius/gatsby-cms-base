@@ -3,4 +3,5 @@ export interface LocationDto {
     name: string;
     cityId: string;
     googleMapsLink: string;
+    meetingPointSummary: string;
 }

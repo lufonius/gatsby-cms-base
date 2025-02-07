@@ -1,0 +1,45 @@
+{
+  "videoDownloadLinkText": "Cube-Video download",
+  "videoDownloadLink": "https://drive.usercontent.google.com/download?id=1d5qn27noY-JxSZWIbTCMe429KWJ7F6_C&export=download&authuser=0",
+  "summary": "An unseren Events zeigen wir Videos aus der Tierindustrie und klären die Bevölkerung über die Ausbeutung nicht-menschlicher Tiere auf. Unser Ziel ist es, die Passanten mehr an das Thema “Veganismus” heranzuführen. In der Kommunikation sind wir direkt, aber respektvoll. Wir setzen auf dabei gewaltlose Kommunikation und kritisches Hinterfragen.",
+  "sectionList": [
+    {
+      "sectionTitle": "Ablauf",
+      "sectionText": "Wir treffen uns kurz vor Start beim Bellevue, wo wir uns herzlich begrüssen und mit einem Briefing starten. Wir verteilen die Masken und Kärtchen. Danach gehen ein paar Aktivist:innen mit den Bildschirmen in die Formation während andere sich am Rand aufstellen, um mit interessierten Passanten ein Gespräch zu führen. Persönliche Gespräche reduzieren wir auf ein minimum. Mehr Infos findest du im Cube-Guide.",
+      "sectionLinkList": [
+        {
+          "sectionLinkText": "Cube Guide",
+          "sectionLink": "/cube-guide"
+        }
+      ]
+    },
+    {
+      "sectionTitle": "Vorbereitung & Regeln",
+      "sectionText": "Unser Cube hat ein ganz spezifisches Format. Dies bedeutet, damit dieses Format funktioniert, benötigt es ein paar Regeln.\n\n**Muss:**\n\n* Du musst vegan leben\n* Am Event musst du unsere Werte vertreten\n* Ziehe schwarze bzw. dunkle Kleider an\n* Vermeide das Tragen von Tierrechtmessages auf deiner Kleidung\n* Du hast den Cube Guide und Outreach Guide gelesen\n* Du begegnest anderen Menschen mit Respekt und Toleranz\n\n\n**Optional:**\n\n* Bringe deinen geladenen Laptop mit\n* Lade das Bildmateral (Videos) herunter\n* Teste vor dem Cube, ob du das Video in einer Endlosschlaufe abspielen kannst (Wir empfehlen den VLC-Player)"
+    },
+    {
+      "sectionTitle": "Dein erster Cube?",
+      "sectionText": "Es ist dein erster Cube? Das freut uns! Wir verstehen, dass du vielleicht nervös bist. Aber keine angst, unsere Events sind alle legal und die Passanten sind fast immer freundlich. Du darfst selber dein Tempo bestimmen. Du darfst auch einfach mal vorbei kommen und zuschauen, oder auch schon in die Formation stehen.\n\nBei neuen Aktivist:innen möchten wir allerdings, dass du bei erfahreren Aktivist:innen zuerst einmal bei Gesprächen zuhörst. Bei deinem zweiten Event darfst du dich gerne mal an ein Gespräch trauen. Wir helfen dir gerne weiter und geben dir Feedback.",
+      "sectionLinkList": [
+        {
+          "sectionLinkText": "FAQ",
+          "sectionLink": "/faq"
+        },
+        {
+          "sectionLinkText": "Kontaktformular",
+          "sectionLink": "/contact"
+        }
+      ]
+    }
+  ],
+  "linkList": [
+    {
+      "linkText": "Cube Guide",
+      "link": "/cube-guide"
+    },
+    {
+      "linkText": "Outreach Guide",
+      "link": "/outreach-guide"
+    }
+  ]
+}

@@ -82,6 +82,7 @@ collections:
               - {label: Name, name: name, widget: string}
               - {label: Id, name: id, widget: uuid, prefix: location}
               - {label: "Google Maps Link", name: googleMapsLink, widget: string}
+              - {label: 'Beschreibung Treffpunkt', name: meetingPointSummary, required: false, widget: string}
               - label: Stadt
                 name: cityId
                 widget: relation
@@ -90,6 +91,39 @@ collections:
                 search_fields: ["citiesList.*.name"]
                 value_field: "citiesList.*.id"
                 display_fields: ["citiesList.*.name"]
+  - name: 'eventPage'
+    label: 'Event-Seite'
+    editor:
+      preview: false
+    files:
+      - file: "content/eventPage/eventpage.json"
+        name: eventPage
+        label: "eventPage"
+        fields:
+          - {label: 'Video Downloadlink Text', name: videoDownloadLinkText, widget: string}
+          - {label: 'Video Downloadlink', name: videoDownloadLink, widget: string}
+          - {label: 'Zusammenfassung', name: summary, widget: text}
+          - label: 'Links (Cube Guide, Outreach Guide etc.)'
+            name: linkList
+            summary: "{{fields.link}}"
+            widget: list
+            fields:
+              - {label: Linktext, name: linkText, widget: string}
+              - {label: Link, name: link, widget: string}
+          - label: 'Abschnitte'
+            name: sectionList
+            summary: "{{fields.sectionTitle}}"
+            widget: list
+            fields:
+              - {label: 'Titel', name: sectionTitle, widget: string}
+              - {label: 'Text', name: sectionText, widget: markdown}
+              - label: 'Links zur Sektion'
+                name: sectionLinkList
+                summary: "{{fields.link}}"
+                widget: list
+                fields:
+                  - {label: LinkText, name: sectionLinkText, widget: string}
+                  - {label: Link, name: sectionLink, widget: string}
   - name: knowledge
     label: 'Knowledge'
     editor:

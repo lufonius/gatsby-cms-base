@@ -45,7 +45,7 @@ export class ModelMapper {
     private mapLocation(location: LocationDto, cities: {[id: string]: CityDto}): Location {
         const {id: cityId, name: cityName} = cities[location.cityId];
         const city = new City(cityId, cityName);
-        return new Location(location.id, location.name, location.googleMapsLink, city);
+        return new Location(location.id, location.name, location.googleMapsLink, location.meetingPointSummary, city);
     }
 
     private makeDeepCopyOfArrayOrObject<T>(arr: T): T {

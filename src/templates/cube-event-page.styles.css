@@ -2,7 +2,3 @@
     /* 104px is the size of the header */
     height: calc(100vh - 104px - 250px);
 }
-
-.cube-img-bg {
-    background-image: url('cube-photo-1.jpg');
-}
