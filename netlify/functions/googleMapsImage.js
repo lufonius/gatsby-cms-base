@@ -28,7 +28,7 @@ exports.handler = async (event, context) => {
 
   // have a map here that keeps all the possible combinations (400x400 => bellevue, 120x120x => bellevue) etc.
 
-  const apiUrl = `${googleMapsApiUrl}?center=47.366498,8.544507&markers=47.366498,%208.544507&zoom=18&size=400x400&key=${process.env.GOOGLE_MAPS_API_KEY}&signature=MFUUl_iLtR9HZFssTPyQehQBhyA=`;
+  const apiUrl = `${googleMapsApiUrl}?center=47.366498,8.544507&markers=47.366498,%208.544507&zoom=18&size=400x400&key=null&signature=MFUUl_iLtR9HZFssTPyQehQBhyA=`;
 
   try {
     const response = await fetch(apiUrl);
