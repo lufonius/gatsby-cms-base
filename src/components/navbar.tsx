@@ -20,7 +20,7 @@ const Navbar: React.FC<{
                     <ol className="hidden md:flex md:flex-col">
                         <li className="mb-6">
                             <div className="flex justify-center mt-4">
-                            <StaticImage className="h-16" height={64} src="../logo.png" alt="Anonymous for Animal Rights Logo" />
+                                <StaticImage className="h-16" height={64} src="../logo.png" alt="Anonymous for Animal Rights Logo" />
                             </div>
                         </li>
                         <NavItem isSelected={selectedNavItem === "home"} display="Home"/>
@@ -53,11 +53,46 @@ const Navbar: React.FC<{
                 </nav>
                 <nav aria-label="mobile-navigation" className="flex flex-row w-screen md:hidden text-gray-50 bg-gray-900 p-5 items-center">
                     <div className="">
-                        <img className="h-16" src="/logo.png" />
+                        <StaticImage className="h-16" height={64} src="../logo.png" alt="Anonymous for Animal Rights Logo" />
                     </div>
                     <div className="h-1 flex flex-grow"></div>
                     <div onClick={() => setMobileMenuOpen(true)}><FeatherIcon icon="menu" size={36} /></div>
-                    <FullScreenDialog isOpen={mobileMenuOpen}><h1>hoooi</h1></FullScreenDialog>
+                    <FullScreenDialog isOpen={mobileMenuOpen}>
+                    <ol className="flex flex-col">
+                        <div className="flex items-center text-gray-50 mb-5">
+                            <StaticImage className="h-16" height={64} src="../logo.png" alt="Anonymous for Animal Rights Logo" />
+                            <div className="h-1 flex-grow"></div>
+                            <div onClick={() => setMobileMenuOpen(false)}><FeatherIcon icon="x" size={36} /></div>
+                        </div>
+
+                        <NavItem isSelected={selectedNavItem === "home"} display="Home"/>
+                        <NavItem isSelected={selectedNavItem === "kalender"} display="Eventkalender" />
+                        <NavItemDropDown
+                            display="Aktivist:in werden"
+                            isSelected={selectedNavItem === "aktivistin-werden"}
+                            selectedSubItem={selectedSubItem ?? ""}
+                            subItems={[
+                                {displayText: "Getting started", value: "getting-started", href: "/getting-started"},
+                                {displayText: "Event guide", value: "cube-guide", href: "/cube-guide"},
+                                {displayText: "Gespräche führen", value: "cube-guide", href: "/cube-guide"},
+                            ]}
+                        />
+                        <NavItem isSelected={selectedNavItem === "vegan-leben"} display="Vegan leben" />
+                        <NavItem isSelected={selectedNavItem === "wissen"} display="Wissen" />
+                        <NavItem isSelected={selectedNavItem === "galerie"} display="Galerie" />
+                        <NavItemDropDown
+                            display="Über uns"
+                            isSelected={selectedNavItem === "ueber-uns"}
+                            selectedSubItem={selectedSubItem ?? ""}
+                            subItems={[
+                                {displayText: "Unsere Werte", value: "our-values", href: "/our-values"},
+                                {displayText: "Wir, das Team", value: "team", href: "/team"}
+                            ]}
+                        />
+                        <NavItem isSelected={selectedNavItem === "contact"} display="Kontakt" />
+                        <NavItem isSelected={selectedNavItem === "shop"} display="Merchshop" />
+                    </ol>
+                    </FullScreenDialog>
                 </nav>
             </div>
         </header>
@@ -126,8 +161,8 @@ const FullScreenDialog: React.FC<{children: any, isOpen: boolean}> = ({children,
         <HeadlessUIDialog open={isOpen} onClose={() => {}}
         transition
         className="relative z-50 transition duration-300 ease-out">
-        <div className="fixed inset-0 flex w-screen h-screen">
-            <DialogPanel className="w-screen space-y-4 bg-gray-900 p-12">
+        <div className="fixed inset-0 flex w-screen min-h-screen">
+            <DialogPanel className="w-screen space-y-4 bg-gray-900 p-5 overflow-x-auto">
                 {children}
             </DialogPanel>
         </div>
