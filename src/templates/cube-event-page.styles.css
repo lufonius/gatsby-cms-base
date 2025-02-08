@@ -1,4 +1,0 @@
-.cube-img-h {
-    /* 104px is the size of the header */
-    height: calc(100vh - 104px - 250px);
-}

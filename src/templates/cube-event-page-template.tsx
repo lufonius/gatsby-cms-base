@@ -14,6 +14,7 @@ import LinkButton from "../components/link-button";
 import DownloadPhotosDialog from "../components/download-photos-dialog";
 import { useState } from "react";
 import ReactMarkdown from 'react-markdown';
+import MarkdownRenderer from "../components/markdown-renderer/markdown-renderer";
 
 
 const CubeEventPageTemplate: React.FC <{pageContext: { cubeId: string }}>= ({ pageContext: { cubeId } }) => {
@@ -80,7 +81,7 @@ const CubeEventPageTemplate: React.FC <{pageContext: { cubeId: string }}>= ({ pa
                     <picture>
                       <source media="(width < 48rem)" srcset="" />
                       <source media="(width >= 48rem)" srcset="" />
-                      <img className="rounded min-w-20 w-20 md:min-w-28 md:w-28" alt="Picture of a map where the cube takes place" />
+                      <img className="rounded min-w-20 w-20 md:min-w-28 md:w-28 text-lg text-gray-50" alt="Picture of a geographical map showing the location of the event" />
                     </picture>
                   </a>
                   <span className="ml-3 text-lg max-w-60">{cube?.location.meetingPointSummary}</span>
@@ -165,28 +166,31 @@ const EventActions: React.FC <{ cube: Cube, eventPage: Queries.eventpage }>= ({ 
 };
 
 const InfoSection: React.FC<{ section: Queries.eventpageSectionList }> = ({ section }) => {
+  const [collapsed, setCollapsed] = useState(true);
+
   return(
-  <div className="flex flex-col w-full mt-6 cursor-pointer">
-    <div className="flex">
-      <h3 className="text-2xl"><b>{section.sectionTitle}</b></h3>
-      <div className="h-1 flex-grow"></div>
-      <FeatherIcon className="text-gray-50" icon="chevron-down" />
-    </div>
-    <div className="border-t-2 border-solid border-gray-50"></div>
+    <div className="flex flex-col w-full mt-6 cursor-pointer">
+      <div className="flex" onClick={() => setCollapsed(!collapsed)}>
+        <h3 className="text-2xl"><b>{section.sectionTitle}</b></h3>
+        <div className="h-1 flex-grow"></div>
+        <div style={{display: collapsed ? "none" : "block"}}><FeatherIcon className="text-gray-50" icon="chevron-down" /></div>
+        <div style={{display: collapsed ? "block" : "none"}}><FeatherIcon className="text-gray-50" icon="chevron-up" /></div>
+      </div>
+      <div className="border-t-2 border-solid border-gray-50"></div>
 
-    <div className="mt-3 text-gray-50">
-      <ReactMarkdown >{section.sectionText}</ReactMarkdown>
+      <div style={{display: collapsed ? "none" : "block"}} className="mt-3 text-gray-50">
+        <MarkdownRenderer>{section.sectionText}</MarkdownRenderer>
 
-      {section.sectionLinkList?.length && section.sectionLinkList.length > 0 && <div className="flex w-full">
-        <div className="flex-grow h-1"></div>
-        {section.sectionLinkList.map(link => {
-          return (<>
-            {link?.sectionLink && <LinkButton className="mr-2" href={link?.sectionLink} type="skinny">{link.sectionLinkText}</LinkButton>}
-          </>);
-        })}
-      </div>}
+        {section.sectionLinkList?.length && section.sectionLinkList.length > 0 && <div className="flex w-full">
+          <div className="flex-grow h-1"></div>
+          {section.sectionLinkList.map(link => {
+            return (<>
+              {link?.sectionLink && <LinkButton className="mr-2" href={link?.sectionLink} type="skinny">{link.sectionLinkText}</LinkButton>}
+            </>);
+          })}
+        </div>}
+      </div>
     </div>
-  </div>
   );
 };
 
