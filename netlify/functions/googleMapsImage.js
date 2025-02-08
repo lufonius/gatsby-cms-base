@@ -5,7 +5,7 @@ exports.handler = async (event, context) => {
   // Restrict access to specific origins
   const allowedOrigins = ['localhost:8888', 'anonymousforanimalrights.ch', 'gatsby-cms-base.netlify.app/'];
   const origin = event.headers.origin;
-console.log(event.headers["client-ip"]);
+console.log(event.headers);
   if (event.headers["client-ip"] !== "::1" && !allowedOrigins.includes(origin)) {
     return {
       statusCode: 403,
