@@ -43,6 +43,16 @@ const CubeEventPageTemplate: React.FC <{pageContext: { cubeId: string }}>= ({ pa
                 <p><b>Achtung: </b>Der Cube wurde abgesagt!</p>
               </div>
             </div>}
+
+            {cube?.isInPlanning() && <div className="flex flex-row px-5 py-3 items-center bg-orange-700 w-screen">
+              <div>
+                <FeatherIcon className="text-gray-50 inline" icon="alert-triangle" />
+              </div>
+              <div className="ml-4">
+                <p><b>Achtung: </b>Dieser Cube wurde von den Behörden noch nicht bestätigt. Meistens ist das aber kein Problem.</p>
+              </div>
+            </div>}
+
           </div>
           <div className="p-5">
             <div className="flex flex-row mt-4">

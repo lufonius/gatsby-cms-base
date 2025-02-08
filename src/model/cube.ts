@@ -97,6 +97,10 @@ export class Cube {
         return this.eventStatus === "in-planning" || this.eventStatus === "cancelled";
     }
 
+    isInPlanning(): boolean {
+        return this.eventStatus === "in-planning";
+    }
+
     isConfirmed(): boolean {
         return !this.isInPlanningOrCancelled();
     }
