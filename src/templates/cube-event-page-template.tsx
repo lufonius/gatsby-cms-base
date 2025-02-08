@@ -13,7 +13,6 @@ import Button from "../components/button";
 import LinkButton from "../components/link-button";
 import DownloadPhotosDialog from "../components/download-photos-dialog";
 import { useState } from "react";
-import ReactMarkdown from 'react-markdown';
 import MarkdownRenderer from "../components/markdown-renderer/markdown-renderer";
 
 
@@ -30,7 +29,7 @@ const CubeEventPageTemplate: React.FC <{pageContext: { cubeId: string }}>= ({ pa
   };
 
   return (
-    <Navbar selectedNavItem="kalender" selectedSubItem="vegan-wie">
+    <Navbar selectedNavItem="events">
         <div className="max-w-screen-lg">
           <div className="flex flex-col">
             <div style={imgHeight}>

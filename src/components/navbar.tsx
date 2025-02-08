@@ -23,32 +23,10 @@ const Navbar: React.FC<{
                                 <StaticImage className="h-16" height={64} src="../logo.png" alt="Anonymous for Animal Rights Logo" />
                             </div>
                         </li>
-                        <NavItem isSelected={selectedNavItem === "home"} display="Home"/>
-                        <NavItem isSelected={selectedNavItem === "kalender"} display="Eventkalender" />
-                        <NavItemDropDown
-                            display="Aktivist:in werden"
-                            isSelected={selectedNavItem === "aktivistin-werden"}
-                            selectedSubItem={selectedSubItem ?? ""}
-                            subItems={[
-                                {displayText: "Getting started", value: "getting-started", href: "/getting-started"},
-                                {displayText: "Event guide", value: "cube-guide", href: "/cube-guide"},
-                                {displayText: "Gespräche führen", value: "cube-guide", href: "/cube-guide"},
-                            ]}
-                        />
-                        <NavItem isSelected={selectedNavItem === "vegan-leben"} display="Vegan leben" />
-                        <NavItem isSelected={selectedNavItem === "wissen"} display="Wissen" />
-                        <NavItem isSelected={selectedNavItem === "galerie"} display="Galerie" />
-                        <NavItemDropDown
-                            display="Über uns"
-                            isSelected={selectedNavItem === "ueber-uns"}
-                            selectedSubItem={selectedSubItem ?? ""}
-                            subItems={[
-                                {displayText: "Unsere Werte", value: "our-values", href: "/our-values"},
-                                {displayText: "Wir, das Team", value: "team", href: "/team"}
-                            ]}
-                        />
-                        <NavItem isSelected={selectedNavItem === "contact"} display="Kontakt" />
-                        <NavItem isSelected={selectedNavItem === "shop"} display="Merchshop" />
+                        
+                        <NavigationList
+                            selectedNavItem={selectedNavItem}
+                            selectedSubItem={selectedSubItem} />
                     </ol>
                 </nav>
                 <nav aria-label="mobile-navigation" className="flex flex-row w-screen md:hidden text-gray-50 bg-gray-900 p-5 items-center">
@@ -64,33 +42,11 @@ const Navbar: React.FC<{
                             <div className="h-1 flex-grow"></div>
                             <div onClick={() => setMobileMenuOpen(false)}><FeatherIcon icon="x" size={36} /></div>
                         </div>
-
-                        <NavItem isSelected={selectedNavItem === "home"} display="Home"/>
-                        <NavItem isSelected={selectedNavItem === "kalender"} display="Eventkalender" />
-                        <NavItemDropDown
-                            display="Aktivist:in werden"
-                            isSelected={selectedNavItem === "aktivistin-werden"}
-                            selectedSubItem={selectedSubItem ?? ""}
-                            subItems={[
-                                {displayText: "Getting started", value: "getting-started", href: "/getting-started"},
-                                {displayText: "Event guide", value: "cube-guide", href: "/cube-guide"},
-                                {displayText: "Gespräche führen", value: "cube-guide", href: "/cube-guide"},
-                            ]}
-                        />
-                        <NavItem isSelected={selectedNavItem === "vegan-leben"} display="Vegan leben" />
-                        <NavItem isSelected={selectedNavItem === "wissen"} display="Wissen" />
-                        <NavItem isSelected={selectedNavItem === "galerie"} display="Galerie" />
-                        <NavItemDropDown
-                            display="Über uns"
-                            isSelected={selectedNavItem === "ueber-uns"}
-                            selectedSubItem={selectedSubItem ?? ""}
-                            subItems={[
-                                {displayText: "Unsere Werte", value: "our-values", href: "/our-values"},
-                                {displayText: "Wir, das Team", value: "team", href: "/team"}
-                            ]}
-                        />
-                        <NavItem isSelected={selectedNavItem === "contact"} display="Kontakt" />
-                        <NavItem isSelected={selectedNavItem === "shop"} display="Merchshop" />
+                    
+                    <NavigationList
+                        selectedNavItem={selectedNavItem}
+                        selectedSubItem={selectedSubItem} />
+                        
                     </ol>
                     </FullScreenDialog>
                 </nav>
@@ -108,7 +64,38 @@ const asSelected = (isSelected: boolean) => {
     };
 };
 
-const NavItem: React.FC<{display: string, isSelected: boolean, visible?: boolean, indented?: boolean}> = ({ display, isSelected, indented }) => {
+const NavigationList: React.FC<{selectedNavItem: string, selectedSubItem?: string}> = ({ selectedNavItem, selectedSubItem }) => {
+    return (<>
+        <NavItem href="/" isSelected={selectedNavItem === "home"} display="Home"/>
+        <NavItem href="/events" isSelected={selectedNavItem === "events"} display="Eventkalender" />
+        <NavItemDropDown
+            display="Aktivist:in werden"
+            isSelected={selectedNavItem === "aktivistin-werden"}
+            selectedSubItem={selectedSubItem ?? ""}
+            subItems={[
+                {displayText: "Getting started", value: "getting-started", href: "/getting-started"},
+                {displayText: "Event guide", value: "cube-guide", href: "/cube-guide"},
+                {displayText: "Gespräche führen", value: "cube-guide", href: "/cube-guide"},
+            ]}
+        />
+        <NavItem isSelected={selectedNavItem === "vegan-leben"} display="Vegan leben" />
+        <NavItem isSelected={selectedNavItem === "wissen"} display="Wissen" />
+        <NavItem isSelected={selectedNavItem === "galerie"} display="Galerie" />
+        <NavItemDropDown
+            display="Über uns"
+            isSelected={selectedNavItem === "ueber-uns"}
+            selectedSubItem={selectedSubItem ?? ""}
+            subItems={[
+                {displayText: "Unsere Werte", value: "our-values", href: "/our-values"},
+                {displayText: "Wir, das Team", value: "team", href: "/team"}
+            ]}
+        />
+        <NavItem isSelected={selectedNavItem === "contact"} display="Kontakt" />
+        <NavItem isSelected={selectedNavItem === "shop"} display="Merchshop" />
+    </>);
+};
+
+const NavItem: React.FC<{display: string, isSelected: boolean, href?: string, visible?: boolean, indented?: boolean}> = ({ display, isSelected, href, indented }) => {
     const isIndented = (isIndented: boolean) => {    
         return (classes: string) => {
             if (isIndented) return twMerge(classes, "pl-6");
@@ -116,9 +103,15 @@ const NavItem: React.FC<{display: string, isSelected: boolean, visible?: boolean
         };
     };
 
-    const className = "rounded min-w-52 overflow-hidden bg-gray-900 text-gray-50 px-4 border-gray-900 py-4 cursor-pointer mt-1 transform transition duration-100 hover:bg-gray-800 hover:text-gray-100";
+    const className = "rounded min-w-52 max-w-72 overflow-hidden bg-gray-900 text-gray-50 px-4 border-gray-900 py-4 cursor-pointer mt-1 transform transition duration-100 hover:bg-gray-800 hover:text-gray-100";
 
-    return (<li className={isIndented(indented ?? false)(asSelected(isSelected)(className))}>{display}</li>);
+    return (
+    <a href={href ?? ""}>
+        <li className={isIndented(indented ?? false)(asSelected(isSelected)(className))}>
+            {display}
+        </li>
+    </a>
+    );
 };
 
 const NavItemDropDown: React.FC<{
@@ -150,7 +143,7 @@ const DropDownItem: React.FC<{
 
     return (<li
             onClick={onClick}
-            className={asSelected(isSelected)("rounded bg-gray-900 text-gray-50 px-4 border-bottom-2 border-gray-900 py-4 cursor-pointer mt-1 transform transition duration-100 hover:bg-gray-800 hover:text-gray-100")}
+            className={asSelected(isSelected)("rounded bg-gray-900 max-w-72 text-gray-50 px-4 border-bottom-2 border-gray-900 py-4 cursor-pointer mt-1 transform transition duration-100 hover:bg-gray-800 hover:text-gray-100")}
         >
             {children}
         </li>);
