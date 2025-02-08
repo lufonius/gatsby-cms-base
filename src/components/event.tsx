@@ -22,11 +22,11 @@ const CubeEvent: React.FC<{
   }
 
   return (
-    <div className="rounded flex flex-col p-4 cursor-pointer transform transition duration-100 opacity-100 hover:bg-gray-800 mt-6 max-w-lg">
+    <div className="rounded flex flex-col p-5 cursor-pointer transform transition duration-100 opacity-100 bg-gray-800 mt-2 max-w-lg">
         <div className="flex flex-row">
             <div className="flex flex-col">
-                <div className="rounded bg-white p-4 text-2xl text-gray-900 text-center">{cube.getDay()}</div>
-                <div className="text-xl text-gray-50 text-center w-full mt-2">{cube.getMonthAbbreviation()}</div>
+                <div className="rounded bg-white p-4 text-2xl text-gray-900 text-center w-16 h-16"><b>{cube.getDay()}</b></div>
+                <div className="text-xl text-gray-50 text-center w-full mt-2"><b>{cube.getMonthAbbreviation()}</b></div>
             </div>
             <div className="flex flex-col pl-6">
                 <div className="text-2xl"><span className={cube.isCancelled() ? "line-through" : ""}><b>Cube in {cube.location.city.name}, {cube.location.name}</b></span></div>
@@ -57,7 +57,7 @@ const CubeEvent: React.FC<{
         </div>
         <div className="flex">
             <div className="flex flex-grow h-1"></div>
-            <div className="mt-4">
+            <div className="mt-8">
                 {cube.hasActiveSwissTransferlink() &&
                     <Button className="mr-2" onClick={() => setIsOpen(true)} type="skinny">Fotos herunterladen</Button>
                 }
