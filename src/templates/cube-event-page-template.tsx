@@ -35,7 +35,7 @@ const CubeEventPageTemplate: React.FC <{pageContext: { cubeId: string }}>= ({ pa
             <div style={imgHeight}>
               <GatsbyImage style={imgHeight} image={getImage(getRandomHeaderImage())} placeholder="blurred" alt="Cube-Formation, vier Maskierte Menschen" />
             </div>
-            {cube?.isCancelled() && <div className="flex flex-row px-5 py-3 items-center bg-red-700 w-screen">
+            {cube?.isCancelled() && <div className="flex flex-row px-5 py-3 items-center bg-red-700">
               <div>
                 <FeatherIcon className="text-gray-50 inline" icon="alert-triangle" />
               </div>
@@ -44,7 +44,7 @@ const CubeEventPageTemplate: React.FC <{pageContext: { cubeId: string }}>= ({ pa
               </div>
             </div>}
 
-            {cube?.isInPlanning() && <div className="flex flex-row px-5 py-3 items-center bg-orange-700 w-screen">
+            {cube?.isInPlanning() && <div className="flex flex-row px-5 py-3 items-center bg-orange-700">
               <div>
                 <FeatherIcon className="text-gray-50 inline" icon="alert-triangle" />
               </div>
