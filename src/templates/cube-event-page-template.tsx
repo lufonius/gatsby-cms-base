@@ -98,13 +98,13 @@ const CubeEventPageTemplate: React.FC <{pageContext: { cubeId: string }}>= ({ pa
                   <picture>
                     <source media="(width < 48rem)" srcset={buildGoogleMapsImageLink(cube.location.googleMapsLocationKey, "thumbnailMobile")} />
                     <source media="(width >= 48rem)" srcset={buildGoogleMapsImageLink(cube.location.googleMapsLocationKey, "thumbnailDesktop")} />
-                    <img className="rounded min-w-20 w-20 md:min-w-28 md:w-28 text-lg text-gray-50" onClick={() => setMapDialogOpen(true)} alt="Picture of a geographical map showing the location of the event" />
+                    <img className="cursor-pointer rounded min-w-20 w-20 md:min-w-28 md:w-28 text-lg text-gray-50" onClick={() => setMapDialogOpen(true)} alt="Picture of a geographical map showing the location of the event" />
                   </picture>}
                   
                   <Dialog isOpen={mapDialogOpen} onClosed={() => setMapDialogOpen(false)}>
                     <DialogTitle>Treffpunkt vom Cube beim {cube?.location.name}</DialogTitle>
                     <p>{cube?.location.meetingPointSummary}</p>
-                    {cube && <img className="rounded" src={buildGoogleMapsImageLink(cube.location.googleMapsLocationKey, "full")} alt="Picture of a geographical map showing the location of the event" />}
+                    {cube && <img className="rounded mt-4" src={buildGoogleMapsImageLink(cube.location.googleMapsLocationKey, "full")} alt="Picture of a geographical map showing the location of the event" />}
                     <DialogActions>
                       <div className="h-1 flex-grow"></div>
                       {cube && <LinkButton target="_blank" type="full" href={cube?.location.googleMapsLink}>
@@ -152,14 +152,14 @@ const EventActions: React.FC <{ cube: Cube, eventPage: Queries.eventpage }>= ({ 
   const [isDownloadPhotoDialogOpen, setIsDownloadPhotoDialogOpen] = useState(false);
 
   return (<>
-    <Button className="mr-2 mt-2" type="full" onClick={() => { setIsDownloadPhotoDialogOpen(true) }}>
+    {cube?.hasActiveSwissTransferlink() && <Button className="mr-2 mt-2" type="full" onClick={() => { setIsDownloadPhotoDialogOpen(true) }}>
       <div className="flex">
         <span className="text-gray-950">Fotos herunterladen</span>
         <FeatherIcon className="ml-2" icon="download" />
       </div>
-    </Button>
+    </Button>}
 
-    {eventPage.videoDownloadLink && <LinkButton className="mt-2" href={eventPage.videoDownloadLink} type="skinny">
+    {eventPage.videoDownloadLink && <LinkButton className="mt-2 mr-2" href={eventPage.videoDownloadLink} type="skinny">
       <div className="flex">
         <span>{eventPage.videoDownloadLinkText}</span>
         <FeatherIcon className="ml-2" icon="download" />

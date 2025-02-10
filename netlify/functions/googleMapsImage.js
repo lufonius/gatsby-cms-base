@@ -14,12 +14,11 @@ exports.handler = async (event, context) => {
   }
 
   const referer = event.headers.referer;
-
-  const hasAllowedReferer = !!allowedOrigins.find((allowedOrigin) => {
+  const foundAllowedOrigin = allowedOrigins.find((allowedOrigin) => {
     return referer.includes(allowedOrigin);
   });
 
-  if (!hasAllowedReferer) {
+  if (!foundAllowedOrigin) {
     return {
       statusCode: 403,
       body: 'Forbidden: Access is denied.',
@@ -68,7 +67,9 @@ exports.handler = async (event, context) => {
     return {
       statusCode: 200,
       headers: {
-        'Content-Type': 'image/png'
+        'Content-Type': 'image/png',
+        'Cache-Control': 'max-age=2592000, immutable',
+        'Access-Control-Allow-Origin': foundAllowedOrigin
       },
       body: imageBuffer.toString('base64'),
       isBase64Encoded: true,
