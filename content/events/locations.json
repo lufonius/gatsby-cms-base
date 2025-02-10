@@ -4,6 +4,7 @@
       "id": "location-gGSreWN5vd",
       "name": "Bellevue",
       "cityId": "city-tDzO5fDGiN",
+      "googleMapsLocationKey": "bellevue",
       "googleMapsLink": "https://maps.app.goo.gl/5ScmWtzyHMCZkdXN8",
       "meetingPointSummary": "Treffpunkt ist neben der Bushaltestelle an der Promenade"
     },
@@ -11,14 +12,32 @@
       "id": "location-dXVG31fHYQ",
       "name": "Züghusplatz",
       "cityId": "city-tDzO5fDGiN",
+      "googleMapsLocationKey": "zueghusplatz",
       "googleMapsLink": "https://maps.app.goo.gl/W9KZhHAPymBhCQvx9",
       "meetingPointSummary": "Der Treffpunkt ist direkt neben dem Brunnen"
     },
     {
       "id": "location-vROzJ3_54f",
       "name": "Igelweid",
+      "googleMapsLocationKey": "igelweid",
       "googleMapsLink": "https://maps.app.goo.gl/BcUb21iXsZisyWkH7",
       "cityId": "city-H-mRnpgGXq"
+    },
+    {
+      "id": "location-z4Xx9KS6pk",
+      "name": "Hirschenplatz",
+      "googleMapsLocationKey": "hirschenplatz",
+      "googleMapsLink": "https://maps.app.goo.gl/zyYBtzNhvyrUyrYD7",
+      "meetingPointSummary": "Treffpunkt ist in der Mitte des Platzes",
+      "cityId": "city-tDzO5fDGiN"
+    },
+    {
+      "id": "location-oZ6CZFkCPN",
+      "name": "Schifflände",
+      "googleMapsLocationKey": "schifflaende",
+      "meetingPointSummary": "Treffpunkt ist am Anfang der Brücke am Eck bei der Statue",
+      "cityId": "city-VmPlgbCSy5",
+      "googleMapsLink": "https://maps.app.goo.gl/8n8Pwcs7kQXFAwq86"
     }
   ]
 }

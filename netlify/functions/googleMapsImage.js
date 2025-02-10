@@ -3,32 +3,63 @@ require('dotenv').config();
 
 exports.handler = async (event, context) => {
   // Restrict access to specific origins
-  const allowedOrigins = ['localhost:8888', 'anonymousforanimalrights.ch', 'gatsby-cms-base.netlify.app'];
-  const origin = event.headers.host;
+  const allowedOrigins = ['localhost:8000', 'anonymousforanimalrights.ch', 'gatsby-cms-base.netlify.app'];
+  const host = event.headers.host;
 
-  if (!allowedOrigins.includes(origin)) {
+  if (!allowedOrigins.includes(host)) {
     return {
       statusCode: 403,
       body: 'Forbidden: Access is denied.',
     };
   }
 
-  // Extract the 'location' parameter from the query string
-  // const { location } = event.queryStringParameters;
+  const referer = event.headers.referer;
 
-  /*if (!location) {
+  const hasAllowedReferer = !!allowedOrigins.find((allowedOrigin) => {
+    return referer.includes(allowedOrigin);
+  });
+
+  if (!hasAllowedReferer) {
     return {
-      statusCode: 400,
-      body: 'Bad Request: Missing location parameter.',
+      statusCode: 403,
+      body: 'Forbidden: Access is denied.',
     };
-  }*/
+  }
 
   // Google Maps Static API endpoint
   const googleMapsApiUrl = 'https://maps.googleapis.com/maps/api/staticmap';
 
   // have a map here that keeps all the possible combinations (400x400 => bellevue, 120x120x => bellevue) etc.
+  const sizesByType = {
+    "thumbnailMobile": "120x120",
+    "thumbnailDesktop": "400x400",
+    "full": "800x800"
+  };
 
-  const apiUrl = `${googleMapsApiUrl}?center=47.366498,8.544507&markers=47.366498,%208.544507&zoom=18&size=400x400&key=null&signature=MFUUl_iLtR9HZFssTPyQehQBhyA=`;
+  const locationCoordinates = {
+    "bellevue": "47.366498,8.544507",
+    "zueghusplatz": "47.370140,8.539364",
+    "hirschenplatz": "47.373345,8.543805",
+    "igelweid": "47.391979,8.046259",
+    "schifflaende": "47.5596752,7.5886046"
+  };
+
+  const zoomByType = {
+    "thumbnailMobile": "17",
+    "thumbnailDesktop": "19",
+    "full": "18"
+  };
+
+  const { mapType, location } = event.queryStringParameters;
+
+  if (!(sizesByType[mapType] && locationCoordinates[location] && zoomByType[mapType])) {
+    return {
+      statusCode: 400,
+      body: 'Bad Request: Input params invalid',
+    };
+  }
+
+  const apiUrl = `${googleMapsApiUrl}?center=${locationCoordinates[location]}&markers=${locationCoordinates[location]}&zoom=${zoomByType[mapType]}&size=${sizesByType[mapType]}&key=${process.env.GOOGLE_MAPS_API_KEY}`;
 
   try {
     const response = await fetch(apiUrl);

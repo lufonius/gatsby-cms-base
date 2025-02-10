@@ -81,6 +81,7 @@ collections:
             fields:
               - {label: Name, name: name, widget: string}
               - {label: Id, name: id, widget: uuid, prefix: location}
+              - {label: "Google Maps Location key", name: googleMapsLocationKey, widget: string, hint: "Dieses Feld darfst du nicht editieren! Frag bei einem IT-Heini nach."}
               - {label: "Google Maps Link", name: googleMapsLink, widget: string}
               - {label: 'Beschreibung Treffpunkt', name: meetingPointSummary, required: false, widget: string}
               - label: Stadt

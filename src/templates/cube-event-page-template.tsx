@@ -14,6 +14,7 @@ import LinkButton from "../components/link-button";
 import DownloadPhotosDialog from "../components/download-photos-dialog";
 import { useState } from "react";
 import MarkdownRenderer from "../components/markdown-renderer/markdown-renderer";
+import { Dialog, DialogActions, DialogTitle } from "../components/dialog";
 
 
 const CubeEventPageTemplate: React.FC <{pageContext: { cubeId: string }}>= ({ pageContext: { cubeId } }) => {
@@ -26,6 +27,12 @@ const CubeEventPageTemplate: React.FC <{pageContext: { cubeId: string }}>= ({ pa
   const getRandomHeaderImage = () => {
     const randomIndex = Math.floor(Math.random() * headerImages.length);
     return headerImages[randomIndex];
+  };
+
+  const [mapDialogOpen, setMapDialogOpen] = useState(false);
+
+  const buildGoogleMapsImageLink = (googleMapsLocationKey: string, mapType: string) => {
+    return `/.netlify/functions/googleMapsImage?location=${googleMapsLocationKey}&mapType=${mapType}`;
   };
 
   return (
@@ -86,13 +93,26 @@ const CubeEventPageTemplate: React.FC <{pageContext: { cubeId: string }}>= ({ pa
                 </div>
 
                 <div className="mt-4 flex">
-                  <a href={cube?.location.googleMapsLink} target="_blank">
-                    <picture>
-                      <source media="(width < 48rem)" srcset="" />
-                      <source media="(width >= 48rem)" srcset="" />
-                      <img className="rounded min-w-20 w-20 md:min-w-28 md:w-28 text-lg text-gray-50" alt="Picture of a geographical map showing the location of the event" />
-                    </picture>
-                  </a>
+                  
+                  {cube &&
+                  <picture>
+                    <source media="(width < 48rem)" srcset={buildGoogleMapsImageLink(cube.location.googleMapsLocationKey, "thumbnailMobile")} />
+                    <source media="(width >= 48rem)" srcset={buildGoogleMapsImageLink(cube.location.googleMapsLocationKey, "thumbnailDesktop")} />
+                    <img className="rounded min-w-20 w-20 md:min-w-28 md:w-28 text-lg text-gray-50" onClick={() => setMapDialogOpen(true)} alt="Picture of a geographical map showing the location of the event" />
+                  </picture>}
+                  
+                  <Dialog isOpen={mapDialogOpen} onClosed={() => setMapDialogOpen(false)}>
+                    <DialogTitle>Treffpunkt vom Cube beim {cube?.location.name}</DialogTitle>
+                    <p>{cube?.location.meetingPointSummary}</p>
+                    {cube && <img className="rounded" src={buildGoogleMapsImageLink(cube.location.googleMapsLocationKey, "full")} alt="Picture of a geographical map showing the location of the event" />}
+                    <DialogActions>
+                      <div className="h-1 flex-grow"></div>
+                      {cube && <LinkButton target="_blank" type="full" href={cube?.location.googleMapsLink}>
+                        <span className="inline-block text-gray-950">Auf Google Maps ansehen</span>
+                        <FeatherIcon className="inline-block ml-2" icon="external-link" />
+                      </LinkButton>}
+                    </DialogActions>
+                  </Dialog>
                   <span className="ml-3 text-lg max-w-60">{cube?.location.meetingPointSummary}</span>
                 </div>
 
@@ -231,6 +251,7 @@ const queryAndBuildPageData = (selectedCubeId: string): { selectedCube?: Cube, h
             nodes {
                 locationsList {
                     cityId
+                    googleMapsLocationKey
                     googleMapsLink
                     id
                     name

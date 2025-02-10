@@ -41,7 +41,11 @@ const config: GatsbyConfig = {
         display: 'swap', // This is optional but helps with font rendering
       },
     }
-  ]
+  ],
+  proxy: {
+    prefix: "/.netlify",
+    url: "http://localhost:8888",
+  },
 };
 
 export default config;

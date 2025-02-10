@@ -41,6 +41,7 @@ const EventsPage = ({ path }: PageProps) => {
                 nodes {
                     locationsList {
                         cityId
+                        googleMapsLocationKey
                         googleMapsLink
                         id
                         name
