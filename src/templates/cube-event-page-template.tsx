@@ -12,7 +12,7 @@ import { FileNode } from "gatsby-plugin-image/dist/src/components/hooks";
 import Button from "../components/button";
 import LinkButton from "../components/link-button";
 import DownloadPhotosDialog from "../components/download-photos-dialog";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MarkdownRenderer from "../components/markdown-renderer/markdown-renderer";
 import { Dialog, DialogActions, DialogTitle } from "../components/dialog";
 
@@ -24,10 +24,12 @@ const CubeEventPageTemplate: React.FC <{pageContext: { cubeId: string }}>= ({ pa
 
   const {selectedCube: cube, headerImages, eventPageData} = queryAndBuildPageData(cubeId); 
 
-  const getRandomHeaderImage = () => {
-    const randomIndex = Math.floor(Math.random() * headerImages.length);
-    return headerImages[randomIndex];
-  };
+
+  let randomIndex = 0;
+  // only run once when the component mounts
+  useEffect(() => {
+      randomIndex = Math.floor(Math.random() * headerImages.length);
+  }, []);
 
   const [mapDialogOpen, setMapDialogOpen] = useState(false);
 
@@ -40,7 +42,7 @@ const CubeEventPageTemplate: React.FC <{pageContext: { cubeId: string }}>= ({ pa
         <div className="max-w-screen-lg">
           <div className="flex flex-col">
             <div style={imgHeight}>
-              <GatsbyImage style={imgHeight} image={getImage(getRandomHeaderImage())} placeholder="blurred" alt="Cube-Formation, vier Maskierte Menschen" />
+              <GatsbyImage style={imgHeight} image={getImage(headerImages[randomIndex])} placeholder="blurred" alt="Cube-Formation, vier Maskierte Menschen" />
             </div>
             {cube?.isCancelled() && <div className="flex flex-row px-5 py-3 items-center bg-red-700">
               <div>
@@ -100,19 +102,6 @@ const CubeEventPageTemplate: React.FC <{pageContext: { cubeId: string }}>= ({ pa
                     <source media="(width >= 48rem)" srcset={buildGoogleMapsImageLink(cube.location.googleMapsLocationKey, "thumbnailDesktop")} />
                     <img className="cursor-pointer rounded min-w-20 w-20 md:min-w-28 md:w-28 text-lg text-gray-50" onClick={() => setMapDialogOpen(true)} alt="Picture of a geographical map showing the location of the event" />
                   </picture>}
-                  
-                  <Dialog isOpen={mapDialogOpen} onClosed={() => setMapDialogOpen(false)}>
-                    <DialogTitle>Treffpunkt vom Cube beim {cube?.location.name}</DialogTitle>
-                    <p>{cube?.location.meetingPointSummary}</p>
-                    {cube && <img className="rounded mt-4" src={buildGoogleMapsImageLink(cube.location.googleMapsLocationKey, "full")} alt="Picture of a geographical map showing the location of the event" />}
-                    <DialogActions>
-                      <div className="h-1 flex-grow"></div>
-                      {cube && <LinkButton target="_blank" type="full" href={cube?.location.googleMapsLink}>
-                        <span className="inline-block text-gray-950">Auf Google Maps ansehen</span>
-                        <FeatherIcon className="inline-block ml-2" icon="external-link" />
-                      </LinkButton>}
-                    </DialogActions>
-                  </Dialog>
                   <span className="ml-3 text-lg max-w-60">{cube?.location.meetingPointSummary}</span>
                 </div>
 
@@ -143,6 +132,19 @@ const CubeEventPageTemplate: React.FC <{pageContext: { cubeId: string }}>= ({ pa
             })}
           </div>
         </div>
+
+        <Dialog isOpen={mapDialogOpen} onClosed={() => setMapDialogOpen(false)}>
+          <DialogTitle>Treffpunkt vom Cube beim {cube?.location.name}</DialogTitle>
+          <p>{cube?.location.meetingPointSummary}</p>
+          {cube && <img className="rounded mt-4" src={buildGoogleMapsImageLink(cube.location.googleMapsLocationKey, "full")} alt="Picture of a geographical map showing the location of the event" />}
+          <DialogActions>
+            <div className="h-1 flex-grow"></div>
+            {cube && <LinkButton target="_blank" type="full" href={cube?.location.googleMapsLink}>
+              <span className="inline-block text-gray-950">Auf Google Maps ansehen</span>
+              <FeatherIcon className="inline-block ml-2" icon="external-link" />
+            </LinkButton>}
+          </DialogActions>
+        </Dialog>
         
     </Navbar>
   )

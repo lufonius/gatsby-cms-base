@@ -64,9 +64,10 @@ const EventsPage = ({ path }: PageProps) => {
     const [selectedCityFilter, setSelectedCityFilter] = useState('all');
     const [showOnlyApprovedCubes, setShowOnlyApprovedCubes] = useState(true);
     const [hidePastEvents, setHidePastEvents] = useState(true);
+    const [showCubesList, setShowCubesList] = useState(false);
   
     // Separate state for filtered items
-    const [filteredItems, setFilteredItems] = useState(cubes);
+    const [filteredItems, setFilteredItems] = useState([] as Cube[]);
   
     // on any filter change, run this function
     const handleFilterChange = (selectedCityId: string, showOnlyApprovedCubes: boolean, hidePastEvents: boolean) => {
@@ -105,12 +106,14 @@ const EventsPage = ({ path }: PageProps) => {
 
     useEffect(() => {
          // initial filtering of the cubes
+        setFilteredItems(cubes);
         handleFilterChange(selectedCityFilter, showOnlyApprovedCubes, hidePastEvents);
+        setShowCubesList(true);
       }, []);
 
   return (
     <Navbar selectedNavItem="events">
-        <div className="p-5">
+        <div className="max-w-screen-lg p-5">
             <h1 className="font-heading text-6xl mt-6">Eventkalender</h1>
             <p className="text-lg">
                 Hier findest du alle unsere Events.
@@ -158,14 +161,14 @@ const EventsPage = ({ path }: PageProps) => {
                 </Field>
             </div>
 
-            <AnimatePresence>
+            {showCubesList && <AnimatePresence>
                 {filteredItems.map((cube: Cube) => (
                     <li><CubeEvent cube={cube} /></li>
                 ))}
                 {filteredItems.length === 0 && <>
                     <span className="block text-2xl text-gray-50 mt-12"><b>Keine Events gefunden.</b></span>
                 </>}
-            </AnimatePresence>
+            </AnimatePresence>}
         </div>
     </Navbar>
 )
